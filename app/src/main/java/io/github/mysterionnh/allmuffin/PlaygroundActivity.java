@@ -31,7 +31,8 @@ public class PlaygroundActivity extends BaseActivity {
 
     private View.OnClickListener btnListener0 = new View.OnClickListener() {
         public void onClick(View v) {
-            Toast toast = Toast.makeText(_context, (CharSequence) findViewById(R.id.toastText), Toast.LENGTH_LONG);
+            EditText toastText = (EditText) findViewById(R.id.toastText);
+            Toast toast = Toast.makeText(_context, toastText.getText().toString(), Toast.LENGTH_LONG);
             toast.show();
         }
     };

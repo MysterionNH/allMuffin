@@ -39,7 +39,7 @@
                     android:layout_height="wrap_content"
                     android:id="@+id/toastText"
                     android:hint="Toast Text here"
-                    android:editable="false"
+                    android:editable="true"
                     android:layout_alignParentStart="true"
                     android:layout_centerVertical="true" />
 

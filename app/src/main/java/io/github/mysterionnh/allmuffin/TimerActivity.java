@@ -30,16 +30,9 @@ public class TimerActivity extends BaseActivity {
         btnListener = new View.OnClickListener() {
 
             public void onClick(View v) {
-                String time;
-                EditText textie = (EditText) findViewById(R.id.countdown);
-                //for (int i = 0; i < 150; i++) {
-                    time = new SimpleDateFormat("HH:mm:ss.SSS", Locale.GERMANY).format(Calendar.getInstance().getTime());
-                    //textie.setText(time);
-                    Toast toast = Toast.makeText(_context, time, Toast.LENGTH_LONG);
-                    toast.show();
-
-                    //TODO: Clear this shit
-                //}
+                String time = new SimpleDateFormat("dd.MM.yyyy (GGG) - HH:mm:ss.SSS", Locale.GERMANY).format(Calendar.getInstance().getTime());
+                Toast toast = Toast.makeText(_context, time, Toast.LENGTH_LONG);
+                toast.show();
             }
         };
     }
