@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="io.github.mysterionnh.allmuffin" >
+
+    <uses-permission android:name="android.permission.VIBRATE" />
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:theme="@style/AppTheme" >
+
+        //MainActivity
+        <activity
+            android:name=".MainActivity"
+            android:label="@string/app_name"
+            android:screenOrientation="sensorPortrait" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        //SettingsActivity
+        <activity
+            android:name=".SettingsActivity"
+            android:label="@string/sa_title"
+            android:parentActivityName=".MainActivity"
+            android:screenOrientation="sensorPortrait" >
+        </activity>
+
+        //RuleOfThreeActivity
+        <activity
+            android:name=".RuleOfThreeActivity"
+            android:label="@string/rot_title"
+            android:screenOrientation="sensorPortrait" >
+        </activity>
+
+        //TimerActivity
+        <activity
+            android:name=".TimerActivity"
+            android:label="@string/timer_title"
+            android:screenOrientation="sensorPortrait" >
+        </activity>
+
+        //PlaygroundActivity
+        <activity
+            android:name=".PlaygroundActivity"
+            android:label="@string/pg_title"
+            android:screenOrientation="sensorPortrait" >
+        </activity>
+    </application>
+</manifest>
