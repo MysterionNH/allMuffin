@@ -1,17 +1,17 @@
 <resources>
 
-    //For all
+    <!-- For all -->
 
     <string name="action_settings">Settings</string>
     <string name="action_hint">Information</string>
 
-    //For MainActivity
+    <!-- For MainActivity -->
 
     <string name="main_open">OPEN</string>
 
     <string name="main_info">Hello and welcome to \"allMuffin\", a Project were all my AndroidProjects are put together! Whatever you are doing here when you aren\'t me, but whatever, here are all my current projects in oder:</string>
 
-    //For RuleOfThreeActivity
+    <!-- For RuleOfThreeActivity -->
 
     <string name="rot_title">Rule of three calculator</string>
 
@@ -22,42 +22,45 @@
 
     <string name="buttonText">CALCULATE!</string>
 
-    //For SettingsActivity
+    <!-- For SettingsActivity -->
 
     <string name="sa_title">Settings</string>
 
     <string name="currentPercent">Current Percentage</string>
     <string name="questionedPercent">Percentage</string>
     <string name="valueOne">Value at 1%</string>
-    <string name="popup_body">This App is more a training project with Android and Java than an actual App. Thank you for going through the trouble off installing this, if you have tips, criticism or found a bug/mistake, I would be happy to here from you. :)</string>
+    <string name="popup_body">This App is more a training project with Android and Java than an
+        actual App. Thank you for going through the trouble off installing this, if you have tips,
+        criticism or found a bug/mistake, I would be happy to here from you. :)
+    </string>
     <string name="popup_title">Information</string>
     <string name="wrongInputBtnText">OKAY, I will and I\'m sorry</string>
-    <string name="wrongInputMsg">One or more entries contain an error or are left empty, please double check your inputs and try again!</string>
+    <string name="wrongInputMsg">One or more entries contain an error or are left empty, please
+        double check your inputs and try again!
+    </string>
     <string name="wrongInputTitle">Error(s) in the inputs!</string>
     <string name="missing_settings">No Settings here yet, sorry.</string>
     <string name="app_name" translatable="false">allMuffin</string>
     <string name="popup_btnText" translatable="false">OKAY</string>
 
-    //For TimerActivity
+    <!-- For TimerActivity -->
 
     <string name="timer_title">Timer</string>
 
-    //For PlaygroundActivity
+    <!-- For PlaygroundActivity -->
 
     <string name="pg_title">Playground!</string>
 
     <string name="submitBtn">SUBMIT</string>
 
+    <!-- StatusBarNotification (Template) -->
+
     <string name="new_message_notification_title_template">New message: %1$s</string>
 
     <!-- TODO: remove this placeholder text -->
-    <string name="new_message_notification_placeholder_text_template">You said %1$s and lorem ipsum
-        dolor sit amet, consectetur adipiscing elit. Etiam non enim magna. Morbi dictum, velit vel
-        semper venenatis, magna odio volutpat velit, at ullamcorper nulla lacus sed turpis.
-        Pellentesque vitae metus elit, nec tincidunt tellus. Integer sed nisl sem, ullamcorper
-        ornare lacus. Duis ac mauris sed massa congue volutpat. Donec sed erat sit amet turpis
-        viverra rhoncus sit amet nec magna. Donec lacinia ligula at libero volutpat volutpat nec nec
-        tortor.
+    <string name="new_message_notification_placeholder_text_template">This is just a sample text and
+        will be removed as soon as I have to use StatusBarNotifications for real purposes. Oh, your
+        string was: "%1$s".
     </string>
 
     <string name="action_share">Share</string>

@@ -8,8 +8,6 @@ import android.graphics.Color;
 import android.view.Gravity;
 import android.widget.TextView;
 
-import java.util.regex.Pattern;
-
 public class RuleOfThreeActivity extends BaseActivity {
 
     // Count of TextViews in Layout, is important!
@@ -45,7 +43,7 @@ public class RuleOfThreeActivity extends BaseActivity {
                     texts[i] = eTexts[i].getText().toString();
                 }
 
-                boolean empty[] = new boolean[6];
+                boolean empty[] = new boolean[texts.length];
 
                 int textCount = 0;
 

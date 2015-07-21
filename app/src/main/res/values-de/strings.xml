@@ -40,5 +40,6 @@
     <string name="missing_settings">Hier gibt\'s noch nichts einzustellen :D</string>
     <string name="submitBtn">OKAY</string>
     <string name="timer_title">Timer</string>
+    <string name="action_share">Teilen</string>
 
 </resources>
