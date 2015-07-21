@@ -11,7 +11,7 @@ import android.widget.TextView;
 public class RuleOfThreeActivity extends BaseActivity {
 
     // Count of TextViews in Layout, is important!
-    private final int TEXTVIEW_COUNT = 6;
+    private final int INPUT_FIELD_COUNT = 6;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,9 +37,9 @@ public class RuleOfThreeActivity extends BaseActivity {
                         (EditText) findViewById(R.id.questionedPercent),
                         (EditText) findViewById(R.id.questionedValue)};
 
-                String texts[] = new String[TEXTVIEW_COUNT];
+                String texts[] = new String[INPUT_FIELD_COUNT];
 
-                for (int i = 0; i < TEXTVIEW_COUNT; i++) {
+                for (int i = 0; i < INPUT_FIELD_COUNT; i++) {
                     texts[i] = eTexts[i].getText().toString();
                 }
 
@@ -53,6 +53,7 @@ public class RuleOfThreeActivity extends BaseActivity {
                     //When it isn't empty in a regular way, checks if it is empty in our way 1
                     if (!empty[textCount]) {
                         try {
+                            //noinspection ResultOfMethodCallIgnored
                             Double.parseDouble(text);
                         } catch (Exception e) {
                             empty[textCount] = true;
@@ -158,4 +159,3 @@ public class RuleOfThreeActivity extends BaseActivity {
 
 //TODO : Fix the dividing by 0 errors that are still sitting in there :/
 //TODO : Add rounding!!!1!elf!!
-//TODO: Fjx the E bug thingie

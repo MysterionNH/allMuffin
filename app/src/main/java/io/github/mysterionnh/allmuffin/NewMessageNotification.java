@@ -51,7 +51,7 @@ public class NewMessageNotification {
         final Bitmap picture = BitmapFactory.decodeResource(res, R.drawable.statusbaricon);
 
 
-        final String ticker = msg;
+        //final String ticker = msg;
         final String title = res.getString(
                 R.string.new_message_notification_title_template, msg);
         final String text = res.getString(
@@ -80,7 +80,8 @@ public class NewMessageNotification {
                 .setLargeIcon(picture)
 
                         // Set ticker text (preview) information for this notification.
-                .setTicker(ticker)
+                //.setTicker(ticker)
+                .setTicker(msg) // AS is complaining TODO: Refractors @see 54
 
                         // Show a number. This is useful when stacking notifications of
                         // a single type.

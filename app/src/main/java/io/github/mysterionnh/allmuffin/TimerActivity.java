@@ -4,7 +4,6 @@ import android.content.Context;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.Toast;
 
 import java.text.SimpleDateFormat;
@@ -39,7 +38,6 @@ public class TimerActivity extends BaseActivity {
 }
 
 //TODO: Add.. everything :D
-// get the current time (down to seconds)
 // print it somewhere?
 //   best thing would be an analogue clock but meh... I will see
 //       maybe an extra project/class (do I need a thread? possibly)
