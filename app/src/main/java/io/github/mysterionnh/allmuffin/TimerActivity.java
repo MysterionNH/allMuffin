@@ -55,3 +55,5 @@ public class TimerActivity extends BaseActivity {
 // conclusion:
 // TODO:       stop being lazy, start
 // TODO:       learn about threads, you will definitely need them this time
+
+// TODO:       DAMN GRAPHICS!!!!!! mep .-.
