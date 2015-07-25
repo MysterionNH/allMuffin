@@ -3,15 +3,21 @@ package io.github.mysterionnh.allmuffin;
 import android.content.Context;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
 import android.widget.Toast;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Locale;
 
+/**
+ * Just as Countdown, it's partner, it has a dream too. Cool stuff 's supposed to happen here some
+ * day soon(TM)
+ */
 public class TimerActivity extends BaseActivity {
 
+    /** A hack used to get the context of this Activity in places where I need it put am not allowed
+     * to get it. Sad life.
+     */
     final Context _context = (Context) this;
 
     @Override
@@ -19,8 +25,7 @@ public class TimerActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_timer);
 
-        Button btn1 = (Button)findViewById(R.id.submitBtn);
-        btn1.setOnClickListener(btnListener);
+        findViewById(R.id.submitBtn).setOnClickListener(btnListener);
     }
 
     private View.OnClickListener btnListener;
@@ -37,7 +42,6 @@ public class TimerActivity extends BaseActivity {
     }
 }
 
-//TODO: Add.. everything :D
 // print it somewhere?
 //   best thing would be an analogue clock but meh... I will see
 //       maybe an extra project/class (do I need a thread? possibly)
@@ -51,7 +55,6 @@ public class TimerActivity extends BaseActivity {
 // other way round, so give timer and calculate and, otherwise same as above
 //
 // conclusion:
-// TODO:       stop being lazy, start
 // TODO:       learn about threads, you will definitely need them this time
 
 // TODO:       DAMN GRAPHICS!!!!!! mep .-.

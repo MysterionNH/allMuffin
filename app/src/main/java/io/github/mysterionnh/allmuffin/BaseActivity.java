@@ -13,6 +13,8 @@ import android.widget.TextView;
 /**
  * This is a base for all activities in this project
  * It contains methods useful for all other activities and whatnot else :D
+ * I probably should put this variables in different classes, for example the popup, but meh..
+ * TODO I guess :/
  */
 public class BaseActivity extends Activity {
 
@@ -24,6 +26,11 @@ public class BaseActivity extends Activity {
         return true;
     }
 
+    /**
+     * This is the default OptionsMenu, which is used in all (Child-) Activities when not overridden
+     * Contains two items, one for the default settings page, the other for an default information-
+     * page over this app
+     */
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle action bar item clicks here. The action bar will
@@ -31,7 +38,6 @@ public class BaseActivity extends Activity {
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
 
-        //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
             startActivity(new Intent(this, SettingsActivity.class));
             return true;
@@ -39,11 +45,21 @@ public class BaseActivity extends Activity {
 
         if (id == R.id.action_hint) {
             openHintPopup();
+            return true;
         }
-
         return super.onOptionsItemSelected(item);
     }
 
+    /**
+     * Opens a popup with a message, default dialog one with only a title, a bod and a close button
+     *
+     * @param title     The title text (String) used in the popup
+     * @param body      The body text (String) used in the popup
+     * @param btnText   The text (String) on the close button of the popup
+     * @param color     The color (e.g. Color.RED) used for the title of the popup
+     * @param align     The Gravity (e.g. Gravity.FILL_HORIZONTAL) of the body text
+     * @param text_size The size (int) of the title.. i guess
+     */
     public void openPopup(String title, String body, String btnText, int color, int align, int text_size) {
         // The object that builds our popup
         AlertDialog.Builder builder = new AlertDialog.Builder(new ContextThemeWrapper(this, R.style.PopupCustom));
@@ -67,36 +83,27 @@ public class BaseActivity extends Activity {
         //Shows the finished popup
         AlertDialog dialog = builder.show();
 
-        //Create custom message
+        // I don't completely understand this, but it seems like I'm looking up how it has to look..
         TextView messageText = (TextView) dialog.findViewById(android.R.id.message);
+
         messageText.setGravity(align);
     }
 
-    //Opens the Info popup from the menu, always the same, that's why it's got it's own method
+    /**
+     * Just like @see openPopup, just with default values, will certainly b removed in the future (TODO)
+     * Opens when the MenuItem in the Actionbar is clicked
+     */
     public void openHintPopup() {
-        // The object that builds our popup
         AlertDialog.Builder builder = new AlertDialog.Builder(new ContextThemeWrapper(this, R.style.PopupCustom));
-
-        //Everything for the title
         TextView myMsg = new TextView(this);
         myMsg.setText(R.string.popup_title);
         myMsg.setTextColor(Color.DKGRAY);
         myMsg.setGravity(Gravity.CENTER_HORIZONTAL);
         myMsg.setTextSize(20);
-
-        //Set custom title
         builder.setCustomTitle(myMsg);
-
-        //Set body text
         builder.setMessage(R.string.popup_body);
-
-        //Add confirmation button
         builder.setPositiveButton(R.string.popup_btnText, null);
-
-        //Shows the finished popup
         AlertDialog dialog = builder.show();
-
-        //Create custom message
         TextView messageText = (TextView) dialog.findViewById(android.R.id.message);
         messageText.setGravity(Gravity.FILL_HORIZONTAL);
     }

@@ -4,10 +4,15 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
 
+/**
+ * The main Activity of this app, from here all other "projects" are reachable
+ */
 public class MainActivity extends BaseActivity {
 
+    /** A hack used to get the context of this Activity in places where I need it put am not allowed
+      * to get it. Sad life.
+      */
     final Context _context = (Context) this;
 
     @Override
@@ -15,13 +20,10 @@ public class MainActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        // Sets up the button listener for the submit button
-        Button btn1 = (Button)findViewById(R.id.drOpenButton);
-        btn1.setOnClickListener(btnListener);
-        Button btn2 = (Button)findViewById(R.id.tiOpenButton);
-        btn2.setOnClickListener(btnListener2);
-        Button btn3 = (Button)findViewById(R.id.pgOpenButton);
-        btn3.setOnClickListener(btnListener3);
+        // Sets up the button listeners for the open buttons
+        findViewById(R.id.drOpenButton).setOnClickListener(btnListener);    //RuleOfThree
+        findViewById(R.id.tiOpenButton).setOnClickListener(btnListener2);   //Timer
+        findViewById(R.id.pgOpenButton).setOnClickListener(btnListener3);   //Playground
     }
 
     private View.OnClickListener btnListener = new View.OnClickListener() {
@@ -45,6 +47,4 @@ public class MainActivity extends BaseActivity {
         }
     };
 }
-
 //TODO: Get settings (and saving to work)
-//TODO: (LONG TERM) Add other projects

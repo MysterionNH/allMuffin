@@ -2,6 +2,9 @@ package io.github.mysterionnh.allmuffin;
 
 import android.os.Bundle;
 
+/**
+ * Meh
+ */
 public class SettingsActivity extends BaseActivity {
 
     @Override
@@ -10,5 +13,3 @@ public class SettingsActivity extends BaseActivity {
         setContentView(R.layout.activity_settings);
     }
 }
-
-//TODO: Get settings (and saving to work)

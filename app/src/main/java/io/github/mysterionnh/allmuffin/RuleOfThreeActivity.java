@@ -2,18 +2,22 @@ package io.github.mysterionnh.allmuffin;
 
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
 import android.graphics.Color;
 import android.view.Gravity;
 import android.widget.TextView;
 
+/**
+ * Weird calculator for percentage and rule of three stuff
+ */
 public class RuleOfThreeActivity extends BaseActivity {
 
     // Count of TextViews in Layout, is important!
     private final int INPUT_FIELD_COUNT = 6;
+
+    // Initializes the arrays used here
     String texts[]  = new String[INPUT_FIELD_COUNT];
-    EditText eTexts[] = new EditText[INPUT_FIELD_COUNT];
+    EditText eTexts[];
     boolean empty[] = new boolean[INPUT_FIELD_COUNT];
 
     @Override
@@ -22,8 +26,7 @@ public class RuleOfThreeActivity extends BaseActivity {
         setContentView(R.layout.activty_rule_of_three);
 
         // Sets up the button listener for the submit button
-        Button btn1 = (Button)findViewById(R.id.submitBtn);
-        btn1.setOnClickListener(btnListener);
+        findViewById(R.id.submitBtn).setOnClickListener(btnListener);
     }
 
     private View.OnClickListener btnListener;
@@ -32,7 +35,11 @@ public class RuleOfThreeActivity extends BaseActivity {
         btnListener = new View.OnClickListener() {
 
             public void onClick(View v) {
-            magicStuff();
+                // Magic Stuff, don't touch
+                getTexts();
+                areInputsEmpty();
+                calculate();
+                updateFields(texts, eTexts);
             }
         };
     }
@@ -45,16 +52,14 @@ public class RuleOfThreeActivity extends BaseActivity {
     }
 
     public void getTexts() {
-        // TODO: Try to get rid of uselessPlaceholder[]
         // Get all TextFields in Activity, put them into an array
-        EditText uselessPlaceHolder[] = {(EditText) findViewById(R.id.currentPercent),
+        // Assign to global variable for later use @see updateFields()
+        eTexts = new EditText[] {(EditText) findViewById(R.id.currentPercent),
                 (EditText) findViewById(R.id.currentValue),
                 (EditText) findViewById(R.id.valueOne),
                 (EditText) findViewById(R.id.valueHundred),
                 (EditText) findViewById(R.id.questionedPercent),
                 (EditText) findViewById(R.id.questionedValue)};
-        // Assign to global variable for later use @see updateFields()
-        eTexts = uselessPlaceHolder;
 
         // Extract the text out of the TextFields
         for (int i = 0; i < INPUT_FIELD_COUNT; i++) {
@@ -62,6 +67,7 @@ public class RuleOfThreeActivity extends BaseActivity {
         }
     }
 
+    // Looks up if the inputs are empty or not usable
     public void areInputsEmpty() {
         for (int i = 0; i < INPUT_FIELD_COUNT; i++) {
             empty[i] = texts[i].isEmpty();
@@ -83,66 +89,46 @@ public class RuleOfThreeActivity extends BaseActivity {
         }
     }
 
+    // Actually calculates stuff, if possible
     public void calculate() {
-        // TODO: Clean this up, maybe a switch?
-
         if (!empty[0] && !empty[1]) {
-
-            //Calculating the value at one percent by dividing the current value by current percent
+            // Set value(s)
             texts[2] = String.valueOf(Double.parseDouble(texts[1]) / Double.parseDouble(texts[0]));
-
-            //Calculating the value at one hundred percent by dividing the current value by current percent and multiplying with one hundred #bestWay #nope :D
             texts[3] = String.valueOf(100 * (Double.parseDouble(texts[1]) / Double.parseDouble(texts[0])));
-
-            if (!empty[4]) {
-                texts[5] = String.valueOf(Double.parseDouble(texts[2]) * Double.parseDouble(texts[4]));
-            } else if (!empty[5]) {
-                texts[4] = String.valueOf(Double.parseDouble(texts[5]) / Double.parseDouble(texts[2]));
-            }
+            lastLine();
         } else if (empty[2] && empty[3]) {
             // Nothing to calculate, stupid user
             error();
-
         } else if (!empty[2]) {
-
             // In this case the first two TextViews are useless, hence I "empty" them
             texts[0] = "---";
             texts[1] = "---";
 
+            // Set value(s)
             texts[3] = String.valueOf(100 * Double.parseDouble(texts[2]));
-
-            // When the last line (calc line) is used, set the not given variable
-            if (!empty[4]) {
-                texts[5] = String.valueOf(Double.parseDouble(texts[2]) * Double.parseDouble(texts[4]));
-            } else if (!empty[5]) {
-                texts[4] = String.valueOf(Double.parseDouble(texts[5]) / Double.parseDouble(texts[2]));
-            }
+            lastLine();
         } else {
-
             // In this case the first two TextViews are useless, hence I "empty" them
             texts[0] = "---";
             texts[1] = "---";
 
+            // Set value(s)
             texts[2] = String.valueOf(Double.parseDouble(texts[3]) / 100);
-
-            // When the last line (calc line) is used, set the not given variable
-            if (!empty[4]) {
-                texts[5] = String.valueOf(Double.parseDouble(texts[2]) * Double.parseDouble(texts[4]));
-            } else if (!empty[5]) {
-                texts[4] = String.valueOf(Double.parseDouble(texts[5]) / Double.parseDouble(texts[2]));
-            }
+            lastLine();
         }
     }
 
-    public void magicStuff() {
-        getTexts();
-        areInputsEmpty();
-        calculate();
-        updateFields(texts, eTexts);
+    // Sets the content of the last line in the Activity, if requested hence the if 'n stuff
+    public void lastLine() {
+        if (!empty[4]) {
+            texts[5] = String.valueOf(Double.parseDouble(texts[2]) * Double.parseDouble(texts[4]));
+        } else if (!empty[5]) {
+            texts[4] = String.valueOf(Double.parseDouble(texts[5]) / Double.parseDouble(texts[2]));
+        }
     }
 
+    //Tells the user that he made an mistake with the inputs
     public void error() {
-        //Tells the user that he made an mistake
         openPopup(getResources().getString(R.string.wrongInputTitle),
                 getResources().getString(R.string.wrongInputMsg),
                 getResources().getString(R.string.wrongInputBtnText),

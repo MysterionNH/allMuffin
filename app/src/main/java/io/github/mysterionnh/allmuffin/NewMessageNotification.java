@@ -40,7 +40,7 @@ public class NewMessageNotification {
      * <a href="https://developer.android.com/design/patterns/notifications.html">
      * Notification design guidelines</a> when doing so.
      *
-     * @see #cancel(Context)
+     * //@see #cancel(Context)
      */
     public static void notify(final Context context,
                               final String msg, final int number) {
@@ -153,7 +153,7 @@ public class NewMessageNotification {
      * Cancels any notifications of this type previously shown using
      * {@link #notify(Context, String, int)}.
      */
-    @TargetApi(Build.VERSION_CODES.ECLAIR)
+    /**@TargetApi(Build.VERSION_CODES.ECLAIR)
     public static void cancel(final Context context) {
         final NotificationManager nm = (NotificationManager) context
                 .getSystemService(Context.NOTIFICATION_SERVICE);
@@ -162,5 +162,5 @@ public class NewMessageNotification {
         } else {
             nm.cancel(NOTIFICATION_TAG.hashCode());
         }
-    }
+    }*/
 }

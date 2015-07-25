@@ -22,6 +22,14 @@
 
     <string name="buttonText">CALCULATE!</string>
 
+        <!-- For error popup -->
+
+        <string name="wrongInputBtnText">OKAY, I will and I\'m sorry</string>
+        <string name="wrongInputMsg">One or more entries contain an error or are left empty, please
+            double check your inputs and try again!
+        </string>
+        <string name="wrongInputTitle">Error(s) in the inputs!</string>
+
     <!-- For SettingsActivity -->
 
     <string name="sa_title">Settings</string>
@@ -34,11 +42,6 @@
         criticism or found a bug/mistake, I would be happy to here from you. :)
     </string>
     <string name="popup_title">Information</string>
-    <string name="wrongInputBtnText">OKAY, I will and I\'m sorry</string>
-    <string name="wrongInputMsg">One or more entries contain an error or are left empty, please
-        double check your inputs and try again!
-    </string>
-    <string name="wrongInputTitle">Error(s) in the inputs!</string>
     <string name="missing_settings">No Settings here yet, sorry.</string>
     <string name="app_name" translatable="false">allMuffin</string>
     <string name="popup_btnText" translatable="false">OKAY</string>
