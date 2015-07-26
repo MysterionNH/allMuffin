@@ -1,20 +1,13 @@
 package io.github.mysterionnh.allmuffin;
 
 import android.app.Activity;
-import android.app.AlertDialog;
 import android.content.Intent;
-import android.graphics.Color;
-import android.view.ContextThemeWrapper;
-import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.TextView;
 
 /**
  * This is a base for all activities in this project
- * It contains methods useful for all other activities and whatnot else :D
- * I probably should put this variables in different classes, for example the popup, but meh..
- * TODO I guess :/
+ * It contains the default menu. Nothing else atm.
  */
 public class BaseActivity extends Activity {
 

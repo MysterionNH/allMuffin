@@ -6,6 +6,8 @@ import android.os.Bundle;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.RelativeLayout;
+import android.widget.TableRow;
 import android.widget.Toast;
 
 /**
@@ -28,7 +30,7 @@ public class PlaygroundActivity extends BaseActivity {
         findViewById(R.id.bakeToastBtn).setOnClickListener(btnListener0);
         findViewById(R.id.notifyStatusBarBtn).setOnClickListener(btnListener1);
         findViewById(R.id.button3).setOnClickListener(btnListener2);
-        findViewById(R.id.button4).setOnClickListener(btnListener3);
+        findViewById(R.id.testBtnbtn).setOnClickListener(btnListener3);
     }
 
     // Opens a Toast with the text in the text field before the button
@@ -51,7 +53,7 @@ public class PlaygroundActivity extends BaseActivity {
         }
     };
 
-    // Does nothing yet
+    // Opens a popup
     private View.OnClickListener btnListener2 = new View.OnClickListener() {
         public void onClick(View v) {
             NewMessagePopup popup = new NewMessagePopup(_context);
@@ -63,9 +65,16 @@ public class PlaygroundActivity extends BaseActivity {
         }
     };
 
-    // Same here
+    // IMPORTANT! First test with changing UI via code, it works! It's awesome! And fun! N' stuff!
     private View.OnClickListener btnListener3 = new View.OnClickListener() {
         public void onClick(View v) {
+            EditText editText = new EditText(_context);
+            editText.setText("Neuer Text!");
+            editText.setTextSize(25);
+            editText.setTextColor(Color.BLACK);
+            editText.setVisibility(View.VISIBLE);
+            RelativeLayout relativeLayout = (RelativeLayout) findViewById(R.id.testBtnbtn).getParent();
+            relativeLayout.addView(editText);
         }
     };
 }

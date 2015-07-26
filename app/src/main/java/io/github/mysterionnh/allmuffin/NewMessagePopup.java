@@ -69,34 +69,6 @@ public class NewMessagePopup {
         this.title = title;
     }
 
-    public int getAlign() {
-        return align;
-    }
-
-    public int getColor() {
-        return color;
-    }
-
-    public int getTextSize() {
-        return textSize;
-    }
-
-    public Context get_context() {
-        return _context;
-    }
-
-    public String getBody() {
-        return body;
-    }
-
-    public String getBtnText() {
-        return btnText;
-    }
-
-    public String getTitle() {
-        return title;
-    }
-
     /**
      * Opens a popup with a message, default dialog one with only a title, a bod and a close button
      */
@@ -130,7 +102,7 @@ public class NewMessagePopup {
     }
 
     /**
-     * Just like @see openPopup, just with default values, will certainly b removed in the future (TODO)
+     * Just like {@see show()}, just with default values, will certainly b removed in the future (TODO)
      * Opens when the MenuItem in the Actionbar is clicked
      */
     public void showHintPopup() {
