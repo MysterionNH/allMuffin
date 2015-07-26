@@ -129,11 +129,13 @@ public class RuleOfThreeActivity extends BaseActivity {
 
     //Tells the user that he made an mistake with the inputs
     public void error() {
-        openPopup(getResources().getString(R.string.wrongInputTitle),
-                getResources().getString(R.string.wrongInputMsg),
-                getResources().getString(R.string.wrongInputBtnText),
-                Color.RED,
-                Gravity.FILL_HORIZONTAL,
-                DEFAULT_TEXT_SIZE);
+        NewMessagePopup popup = new NewMessagePopup(this);
+        popup.setTitle(getResources().getString(R.string.wrongInputTitle));
+        popup.setBody(getResources().getString(R.string.wrongInputMsg));
+        popup.setBtnText(getResources().getString(R.string.wrongInputBtnText));
+        popup.setColor(Color.RED);
+        popup.setAlign(Gravity.FILL_HORIZONTAL);
+
+        popup.show();
     }
 }

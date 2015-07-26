@@ -1,7 +1,9 @@
 package io.github.mysterionnh.allmuffin;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.os.Bundle;
+import android.view.Gravity;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -33,7 +35,9 @@ public class PlaygroundActivity extends BaseActivity {
     private View.OnClickListener btnListener0 = new View.OnClickListener() {
         public void onClick(View v) {
             EditText toastText = (EditText) findViewById(R.id.toastText);
-            Toast toast = Toast.makeText(_context, toastText.getText().toString(), Toast.LENGTH_LONG);
+            Toast toast = Toast.makeText(_context,
+                    toastText.getText().toString(),
+                    Toast.LENGTH_LONG);
             toast.show();
         }
     };
@@ -41,13 +45,21 @@ public class PlaygroundActivity extends BaseActivity {
     // Opens a (default) Notification with the text...
     private View.OnClickListener btnListener1 = new View.OnClickListener() {
         public void onClick(View v) {
-            NewMessageNotification.notify(_context, (((EditText) findViewById(R.id.statusBarText)).getText().toString()), 5);
+            NewMessageNotification.notify(_context,
+                    ((EditText) findViewById(R.id.statusBarText)).getText().toString(),
+                    5);
         }
     };
 
     // Does nothing yet
     private View.OnClickListener btnListener2 = new View.OnClickListener() {
         public void onClick(View v) {
+            NewMessagePopup popup = new NewMessagePopup(_context);
+            popup.setAlign(Gravity.FILL_HORIZONTAL);
+            popup.setBody(((EditText) findViewById(R.id.popupText)).getText().toString());
+            popup.setTitle("Kuchen");
+            popup.setTextSize(50);
+            popup.show();
         }
     };
 
