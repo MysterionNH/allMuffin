@@ -1,8 +1,20 @@
 package io.github.mysterionnh.allmuffin;
 
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.Canvas;
+import android.graphics.Color;
+import android.graphics.Paint;
+import android.graphics.PorterDuff;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.SurfaceHolder;
+import android.view.SurfaceView;
 import android.view.View;
+import android.webkit.WebView;
+import android.widget.ImageView;
+import android.widget.RelativeLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.text.SimpleDateFormat;
@@ -24,21 +36,6 @@ public class TimerActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_timer);
-
-        findViewById(R.id.submitBtn).setOnClickListener(btnListener);
-    }
-
-    private View.OnClickListener btnListener;
-
-    {
-        btnListener = new View.OnClickListener() {
-
-            public void onClick(View v) {
-                String time = new SimpleDateFormat("dd.MM.yyyy (GGG) - HH:mm:ss.SSS", Locale.GERMANY).format(Calendar.getInstance().getTime());
-                Toast toast = Toast.makeText(_context, time, Toast.LENGTH_LONG);
-                toast.show();
-            }
-        };
     }
 }
 

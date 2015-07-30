@@ -4,6 +4,7 @@
 
     <string name="action_settings">Settings</string>
     <string name="action_hint">Information</string>
+    <string name="app_name" translatable="false">allMuffin</string>
 
     <!-- For MainActivity -->
 
@@ -43,7 +44,6 @@
     </string>
     <string name="popup_title">Information</string>
     <string name="missing_settings">No Settings here yet, sorry.</string>
-    <string name="app_name" translatable="false">allMuffin</string>
     <string name="popup_btnText" translatable="false">OKAY</string>
 
     <!-- For TimerActivity -->
