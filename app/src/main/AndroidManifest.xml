@@ -26,7 +26,6 @@
         <activity
             android:name=".SettingsActivity"
             android:label="@string/sa_title"
-            android:parentActivityName=".MainActivity"
             android:screenOrientation="sensorPortrait" >
         </activity>
 

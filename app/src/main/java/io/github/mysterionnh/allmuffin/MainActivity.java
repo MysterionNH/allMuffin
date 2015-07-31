@@ -2,8 +2,12 @@ package io.github.mysterionnh.allmuffin;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.view.View;
+import android.widget.LinearLayout;
 
 /**
  * The main Activity of this app, from here all other "projects" are reachable
@@ -24,6 +28,20 @@ public class MainActivity extends BaseActivity {
         findViewById(R.id.drOpenButton).setOnClickListener(btnListener);    //RuleOfThree
         findViewById(R.id.tiOpenButton).setOnClickListener(btnListener2);   //Timer
         findViewById(R.id.pgOpenButton).setOnClickListener(btnListener3);   //Playground
+
+        // Creating the SharedPreferences, the key-value file used for settings
+        PreferenceManager.setDefaultValues(_context, R.xml.preferences, false);
+
+        String color = "WHITE";
+        SharedPreferences shPref = PreferenceManager.getDefaultSharedPreferences(_context);
+        if (shPref.getBoolean(SettingsActivity.KEY_PREF_ALLOW_BG_COLOR, false)) {
+            color = shPref.getString(SettingsActivity.KEY_PREF_BG_COLOR, "WHITE");
+        }
+        findViewById(R.id.MainFrame).setBackgroundColor(Color.parseColor(color));
+
+        if (shPref.getBoolean(SettingsActivity.KEY_PREF_SHOW_POPUP, true)) {
+            new NewMessagePopup(_context).showHintPopup();
+        }
     }
 
     private View.OnClickListener btnListener = new View.OnClickListener() {

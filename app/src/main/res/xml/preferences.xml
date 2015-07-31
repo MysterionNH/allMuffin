@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+    <PreferenceCategory
+        android:title="@string/pref_general_title"
+        android:key="pref_key_storage_settings" >
+        <CheckBoxPreference
+            android:key="@string/pref_key_show_start_popup"
+            android:title="@string/pref_title_show_start_popup"
+            android:summary="@string/pref_summary_show_start_popup"
+            android:defaultValue="@string/pref_default_value_show_start_popup" />
+        <CheckBoxPreference
+            android:key="@string/pref_key_allow_bg_color_change"
+            android:title="@string/pref_title_allow_bg_color_change"
+            android:summary="@string/pref_summary_allow_bg_color_change"
+            android:defaultValue="@string/pref_default_value_allow_bg_color_change" />
+        <EditTextPreference
+            android:key="@string/pref_key_bg_color"
+            android:title="@string/pref_title_bg_color"
+            android:summary="@string/pref_summary_bg_color"
+            android:dependency="pref_key_allow_bg_color_change"
+            android:defaultValue="@string/pref_default_value_bg_color"/>
+    </PreferenceCategory>
+    <PreferenceScreen
+        android:title="@string/pref_test_title"
+        android:key="button_test_category_screen"
+        android:persistent="false" >
+        <ListPreference
+            android:key="button_test_test_key"
+            android:title="@string/button_test_test_title"
+            android:dialogTitle="@string/button_test_test_title"
+            android:entries="@array/pref_entries_test_list"
+            android:entryValues="@array/pref_entries_test_list"
+            android:defaultValue="true" />
+    </PreferenceScreen>
+</PreferenceScreen>

@@ -37,7 +37,6 @@
     //For SettingsActivity
 
     <string name="sa_title">Einstellungen</string>
-    <string name="missing_settings">Hier gibt\'s noch nichts einzustellen :D</string>
     <string name="submitBtn">OKAY</string>
     <string name="timer_title">Timer</string>
     <string name="action_share">Teilen</string>
@@ -45,5 +44,13 @@
     <string name="new_message_notification_title_template">OMFG!!!! "%1§1"!!!!1!!!elf!!!</string>
     <string name="pg_title">Biesbatz!</string>
     <string name="action_reply">Antworten</string>
+    <string name="pref_general_title">Generelle Einstellungen</string>
+    <string name="pref_summary_allow_bg_color_change">Erlaubt das ändern der Hintergrundfarbe </string>
+    <string name="pref_summary_bg_color">Hintergrundfarbe (z.B. \"BLUE\")</string>
+    <string name="pref_summary_show_start_popup">Zeige Informationspopup beim Appstart</string>
+    <string name="pref_test_title">Test</string>
+    <string name="pref_title_allow_bg_color_change">Hintergrundfarbe veränderbar</string>
+    <string name="pref_title_bg_color">Hintergrundfarbe</string>
+    <string name="pref_title_show_start_popup">Informations Popup</string>
 
 </resources>

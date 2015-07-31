@@ -6,7 +6,9 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     android:paddingBottom="@dimen/activity_vertical_margin" tools:context=".MainActivity"
     android:theme="@android:style/Theme.Material.Light.DarkActionBar"
-    android:weightSum="1">
+    android:weightSum="1"
+    android:focusableInTouchMode="false"
+    android:id="@+id/MainFrame">
 
 
     <LinearLayout

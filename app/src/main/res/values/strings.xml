@@ -4,7 +4,16 @@
 
     <string name="action_settings">Settings</string>
     <string name="action_hint">Information</string>
-    <string name="app_name" translatable="false">allMuffin</string>
+    <string name="app_name" translatable="false">allMuffin</string>#
+
+    <!-- For Information Popup, will be removed in the future -->
+
+    <string name="popup_title">Information</string>
+    <string name="popup_body">This App is more a training project with Android and Java than an
+        actual App. Thank you for going through the trouble off installing this, if you have tips,
+        criticism or found a bug/mistake, I would be happy to here from you. :)
+    </string>
+    <string name="popup_btnText" translatable="false">OKAY</string>
 
     <!-- For MainActivity -->
 
@@ -20,6 +29,9 @@
     <string name="currentValue">Current Value</string>
     <string name="valueHundred">Value at 100%</string>
     <string name="questionedValue">Value</string>
+    <string name="currentPercent">Current Percentage</string>
+    <string name="questionedPercent">Percentage</string>
+    <string name="valueOne">Value at 1%</string>
 
     <string name="buttonText">CALCULATE!</string>
 
@@ -35,17 +47,6 @@
 
     <string name="sa_title">Settings</string>
 
-    <string name="currentPercent">Current Percentage</string>
-    <string name="questionedPercent">Percentage</string>
-    <string name="valueOne">Value at 1%</string>
-    <string name="popup_body">This App is more a training project with Android and Java than an
-        actual App. Thank you for going through the trouble off installing this, if you have tips,
-        criticism or found a bug/mistake, I would be happy to here from you. :)
-    </string>
-    <string name="popup_title">Information</string>
-    <string name="missing_settings">No Settings here yet, sorry.</string>
-    <string name="popup_btnText" translatable="false">OKAY</string>
-
     <!-- For TimerActivity -->
 
     <string name="timer_title">Timer</string>
@@ -53,7 +54,6 @@
     <!-- For PlaygroundActivity -->
 
     <string name="pg_title">Playground!</string>
-
     <string name="submitBtn">SUBMIT</string>
 
     <!-- StatusBarNotification (Template) -->
@@ -69,4 +69,37 @@
     <string name="action_share">Share</string>
     <string name="action_reply">Reply</string>
 
+    <!-- Preferences (Settings) -->
+
+    <string name="pref_file_key" translatable="false">io.github.mysterionnh.allmuffin.allSharedPrefMuffins</string>
+
+    <string name="pref_general_title">General Settings</string>
+
+        <string name="pref_key_show_start_popup">pref_key_show_start_popup</string>
+        <string name="pref_title_show_start_popup">Start Popup</string>
+        <string name="pref_summary_show_start_popup">Show the Information Popup on App start</string>
+        <string name="pref_default_value_show_start_popup">true</string>
+
+        <string name="pref_key_allow_bg_color_change">pref_key_allow_bg_color_change</string>
+        <string name="pref_title_allow_bg_color_change">Change Background Color</string>
+        <string name="pref_summary_allow_bg_color_change">Allows the changing of all backgrounds in this app</string>
+        <string name="pref_default_value_allow_bg_color_change">false</string>
+
+        <string name="pref_key_bg_color">pref_key_bg_color</string>
+        <string name="pref_title_bg_color">Background Color</string>
+        <string name="pref_summary_bg_color">The Background Color you want, as a word, e.g. \"BLUE\".</string>
+        <string name="pref_default_value_bg_color" translatable="false">WHITE</string>
+
+    <string name="pref_test_title">Test</string>
+
+        <string name="button_test_test_title" translatable="false">Test List</string>
+        <string-array name="pref_entries_test_list">
+            Test1
+            Test2
+            Test3
+            vgehbciov
+            kuchenbrot
+            118754188587
+            \$/$()$%/()(/%$
+        </string-array>
 </resources>
