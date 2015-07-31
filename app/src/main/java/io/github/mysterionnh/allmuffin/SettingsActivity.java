@@ -8,8 +8,7 @@ import android.preference.PreferenceActivity;
 /**
  * Meh
  */
-public class SettingsActivity extends PreferenceActivity
-                              implements SharedPreferences.OnSharedPreferenceChangeListener {
+public class SettingsActivity extends PreferenceActivity implements SharedPreferences.OnSharedPreferenceChangeListener {
     Context _context = this;
 
     public static final String KEY_PREF_SHOW_POPUP = "pref_key_show_start_popup";

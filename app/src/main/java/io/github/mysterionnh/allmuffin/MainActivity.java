@@ -37,7 +37,11 @@ public class MainActivity extends BaseActivity {
         if (shPref.getBoolean(SettingsActivity.KEY_PREF_ALLOW_BG_COLOR, false)) {
             color = shPref.getString(SettingsActivity.KEY_PREF_BG_COLOR, "WHITE");
         }
-        findViewById(R.id.MainFrame).setBackgroundColor(Color.parseColor(color));
+        try {
+            findViewById(R.id.MainFrame).setBackgroundColor(Color.parseColor(color));
+        } catch (java.lang.IllegalArgumentException e) {
+            e.printStackTrace();
+        }
 
         if (shPref.getBoolean(SettingsActivity.KEY_PREF_SHOW_POPUP, true)) {
             new NewMessagePopup(_context).showHintPopup();
