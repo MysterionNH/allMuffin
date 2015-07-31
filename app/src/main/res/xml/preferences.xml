@@ -2,7 +2,7 @@
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
     <PreferenceCategory
         android:title="@string/pref_general_title"
-        android:key="pref_key_storage_settings" >
+        android:key="@string/pref_key_general_settings" >
         <CheckBoxPreference
             android:key="@string/pref_key_show_start_popup"
             android:title="@string/pref_title_show_start_popup"
@@ -17,9 +17,28 @@
             android:key="@string/pref_key_bg_color"
             android:title="@string/pref_title_bg_color"
             android:summary="@string/pref_summary_bg_color"
-            android:dependency="pref_key_allow_bg_color_change"
+            android:dependency="@string/pref_key_allow_bg_color_change"
             android:defaultValue="@string/pref_default_value_bg_color"/>
     </PreferenceCategory>
+    <PreferenceCategory
+        android:title="@string/pref_lang_title"
+        android:key="@string/pref_key_lang_settings" >
+        <CheckBoxPreference
+            android:key="@string/pref_key_allow_lang_change"
+            android:title="@string/pref_title_allow_lang_change"
+            android:summary="@string/pref_summary_allow_lang_change"
+            android:defaultValue="@string/pref_default_value_allow_lang_change" />
+        <ListPreference
+            android:key="@string/pref_key_lang"
+            android:title="@string/pref_title_lang"
+            android:summary="@string/pref_summary_lang"
+            android:dialogTitle="@string/pref_title_lang"
+            android:entries="@array/pref_lang_entries"
+            android:entryValues="@array/pref_lang_values"
+            android:defaultValue="@string/pref_default_lang"
+            android:dependency="@string/pref_key_allow_lang_change"/>
+    </PreferenceCategory>
+    <!-- Just an example, not in use yet, just to show future me how-to
     <PreferenceScreen
         android:title="@string/pref_test_title"
         android:key="button_test_category_screen"
@@ -32,4 +51,5 @@
             android:entryValues="@array/pref_entries_test_list"
             android:defaultValue="true" />
     </PreferenceScreen>
+    -->
 </PreferenceScreen>

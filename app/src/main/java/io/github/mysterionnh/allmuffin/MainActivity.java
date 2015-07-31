@@ -22,30 +22,24 @@ public class MainActivity extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        PreferenceManager.setDefaultValues(_context, R.xml.preferences, false);
+        setAppLanguageAccordingToSettings(_context);
+        // Has to be done after setting the language, otherwise the change doesn't apply here
         setContentView(R.layout.activity_main);
+
+        SharedPreferences shPref = PreferenceManager.getDefaultSharedPreferences(_context);
+        if (shPref.getBoolean(SettingsActivity.KEY_PREF_SHOW_POPUP,
+                Boolean.valueOf(_context.getResources().getString(R.string.pref_default_value_show_start_popup)))) {
+            new NewMessagePopup(_context).showHintPopup();
+        }
+
+        setBGColorAccordingToSettings(_context);
 
         // Sets up the button listeners for the open buttons
         findViewById(R.id.drOpenButton).setOnClickListener(btnListener);    //RuleOfThree
         findViewById(R.id.tiOpenButton).setOnClickListener(btnListener2);   //Timer
         findViewById(R.id.pgOpenButton).setOnClickListener(btnListener3);   //Playground
-
-        // Creating the SharedPreferences, the key-value file used for settings
-        PreferenceManager.setDefaultValues(_context, R.xml.preferences, false);
-
-        String color = "WHITE";
-        SharedPreferences shPref = PreferenceManager.getDefaultSharedPreferences(_context);
-        if (shPref.getBoolean(SettingsActivity.KEY_PREF_ALLOW_BG_COLOR, false)) {
-            color = shPref.getString(SettingsActivity.KEY_PREF_BG_COLOR, "WHITE");
-        }
-        try {
-            findViewById(R.id.MainFrame).setBackgroundColor(Color.parseColor(color));
-        } catch (java.lang.IllegalArgumentException e) {
-            e.printStackTrace();
-        }
-
-        if (shPref.getBoolean(SettingsActivity.KEY_PREF_SHOW_POPUP, true)) {
-            new NewMessagePopup(_context).showHintPopup();
-        }
     }
 
     private View.OnClickListener btnListener = new View.OnClickListener() {

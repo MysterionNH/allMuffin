@@ -1,5 +1,6 @@
 package io.github.mysterionnh.allmuffin;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
@@ -11,6 +12,8 @@ import android.widget.TextView;
  * Weird calculator for percentage and rule of three stuff
  */
 public class RuleOfThreeActivity extends BaseActivity {
+
+    Context _context = this;
 
     // Count of TextViews in Layout, is important!
     private final int INPUT_FIELD_COUNT = 6;
@@ -24,6 +27,7 @@ public class RuleOfThreeActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activty_rule_of_three);
+        setBGColorAccordingToSettings(_context);
 
         // Sets up the button listener for the submit button
         findViewById(R.id.submitBtn).setOnClickListener(btnListener);

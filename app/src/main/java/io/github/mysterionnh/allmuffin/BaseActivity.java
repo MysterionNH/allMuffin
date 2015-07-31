@@ -3,8 +3,13 @@ package io.github.mysterionnh.allmuffin;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.graphics.Color;
+import android.preference.PreferenceManager;
 import android.view.Menu;
 import android.view.MenuItem;
+
+import java.util.Locale;
 
 /**
  * This is a base for all activities in this project
@@ -40,5 +45,39 @@ public class BaseActivity extends Activity {
             return true;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    public void setBGColorAccordingToSettings(Context con) {
+        // Creating the SharedPreferences, the key-value file used for settings
+
+        String color = con.getResources().getString(R.string.pref_default_value_bg_color);
+        SharedPreferences shPref = PreferenceManager.getDefaultSharedPreferences(con);
+        if (shPref.getBoolean(SettingsActivity.KEY_PREF_ALLOW_BG_COLOR,
+                Boolean.valueOf(con.getResources().getString(R.string.pref_default_value_allow_bg_color_change)))) {
+            color = shPref.getString(SettingsActivity.KEY_PREF_BG_COLOR,
+                    con.getResources().getString(R.string.pref_default_value_bg_color));
+        }
+        try {
+            findViewById(R.id.MainFrame).setBackgroundColor(Color.parseColor(color));
+        } catch (java.lang.IllegalArgumentException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void setAppLanguageAccordingToSettings(Context con) {
+        SharedPreferences shPref = PreferenceManager.getDefaultSharedPreferences(con);
+
+        // This should be dangerous, but apparently isn't
+        // pref_default_lang is "Phone Default" and KEY_PREF_LANG can be "--", both aren't valid
+        // locales afaik but it still work somehow
+        if (shPref.getBoolean(SettingsActivity.KEY_PREF_ALLOW_LANG_CHANGE,
+                Boolean.valueOf(con.getResources().getString(R.string.pref_default_value_allow_lang_change)))) {
+            Locale loc = new Locale(shPref.getString(SettingsActivity.KEY_PREF_LANG,
+                    con.getResources().getString(R.string.pref_default_lang)));
+            Locale.setDefault(loc);
+            android.content.res.Configuration config = new android.content.res.Configuration();
+            config.locale = loc;
+            con.getResources().updateConfiguration(config, con.getResources().getDisplayMetrics());
+        }
     }
 }

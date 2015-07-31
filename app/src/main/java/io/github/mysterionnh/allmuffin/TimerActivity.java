@@ -27,6 +27,7 @@ public class TimerActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_timer);
+        setBGColorAccordingToSettings(_context);
 
         findViewById(R.id.testButton).setOnClickListener(btnListener0);
     }

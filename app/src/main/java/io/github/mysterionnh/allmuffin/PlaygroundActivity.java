@@ -24,6 +24,7 @@ public class PlaygroundActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_playground);
+        setBGColorAccordingToSettings(_context);
 
         // Initializes the buttons. Currently only the first two work
         findViewById(R.id.bakeToastBtn).setOnClickListener(btnListener0);

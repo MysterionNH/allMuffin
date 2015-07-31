@@ -74,32 +74,43 @@
     <string name="pref_file_key" translatable="false">io.github.mysterionnh.allmuffin.allSharedPrefMuffins</string>
 
     <string name="pref_general_title">General Settings</string>
+    <string name="pref_key_general_settings" translatable="false">pref_key_general_settings</string>
 
-        <string name="pref_key_show_start_popup">pref_key_show_start_popup</string>
+        <string name="pref_key_show_start_popup" translatable="false">pref_key_show_start_popup</string>
         <string name="pref_title_show_start_popup">Start Popup</string>
         <string name="pref_summary_show_start_popup">Show the Information Popup on App start</string>
-        <string name="pref_default_value_show_start_popup">true</string>
+        <string name="pref_default_value_show_start_popup" translatable="false">true</string>
 
-        <string name="pref_key_allow_bg_color_change">pref_key_allow_bg_color_change</string>
+        <string name="pref_key_allow_bg_color_change" translatable="false">pref_key_allow_bg_color_change</string>
         <string name="pref_title_allow_bg_color_change">Change Background Color</string>
         <string name="pref_summary_allow_bg_color_change">Allows the changing of all backgrounds in this app</string>
-        <string name="pref_default_value_allow_bg_color_change">false</string>
+        <string name="pref_default_value_allow_bg_color_change" translatable="false">false</string>
 
-        <string name="pref_key_bg_color">pref_key_bg_color</string>
+        <string name="pref_key_bg_color" translatable="false">pref_key_bg_color</string>
         <string name="pref_title_bg_color">Background Color</string>
         <string name="pref_summary_bg_color">The Background Color you want, as a word, e.g. \"BLUE\".</string>
         <string name="pref_default_value_bg_color" translatable="false">WHITE</string>
 
-    <string name="pref_test_title">Test</string>
+    <string name="pref_lang_title">Language Settings</string>
+    <string name="pref_key_lang_settings" translatable="false">pref_key_lang_settings</string>
 
-        <string name="button_test_test_title" translatable="false">Test List</string>
-        <string-array name="pref_entries_test_list">
-            Test1
-            Test2
-            Test3
-            vgehbciov
-            kuchenbrot
-            118754188587
-            \$/$()$%/()(/%$
+        <string name="pref_key_allow_lang_change" translatable="false">pref_key_allow_lang_change</string>
+        <string name="pref_title_allow_lang_change">Do not use phones default language</string>
+        <string name="pref_summary_allow_lang_change">Allow to choose a the apps language</string>
+        <string name="pref_default_value_allow_lang_change" translatable="false">false</string>
+
+        <string name="pref_key_lang" translatable="false">pref_key_lang</string>
+        <string name="pref_title_lang">Language</string>
+        <string name="pref_summary_lang">Requiers restart</string>
+        <string-array name="pref_lang_entries">
+            <item>Phone Default</item>
+            <item>English</item>
+            <item>German</item>
         </string-array>
+        <string-array name="pref_lang_values">
+            <item>--</item>
+            <item>uk</item>
+            <item>de</item>
+        </string-array>
+        <string name="pref_default_lang">Phone Default</string>
 </resources>

@@ -1,24 +1,11 @@
 <resources>
-
-    //Info Popup defaults
     <string name="popup_title">Informationen</string>
     <string name="popup_body">Diese App ist weniger eine ernstgemeinte App als vielmehr ein Übungsprojekt für mich mit Java und Android, das einigermaßen sinnvolle Aufgaben bewältigt. Vielen Dank das du die tatsächlich die Mühe gemacht hast es zu installieren. Solltest du Kritik, Anmerkungen oder gar Fehler gefunden haben, melde dich bei mir. :)</string>
-
-    //For all
-
     <string name="action_settings">Einstellungen</string>
     <string name="action_hint">Informationen</string>
-
-    //For MainActivity
-
     <string name="main_open">ÖFFNEN</string>
-
     <string name="main_info">Hallo und Willkommen im \"allMuffin\", einem Sammelprojekt für all meine Android-Projekte! Was auch immer du hier machst wenn du nicht Ich bist, aber hey, whatever, hier sind alle momentan enthaltenen Projekte in chronologischer Reihenfolge:</string>
-
-    //For RuleOfThreeActivity
-
     <string name="rot_title">Dreisatzrechner</string>
-
     <string name="greeting">Hallo und Willkommen im Dreisatz Rechner! :)</string>
     <string name="currentPercent">Aktueller Prozentwert</string>
     <string name="currentValue">Aktueller Wert</string>
@@ -26,16 +13,10 @@
     <string name="valueHundred">Wert bei 100%</string>
     <string name="questionedPercent">Prozentwert</string>
     <string name="questionedValue">Wert</string>
-
     <string name="buttonText">BERECHNEN!</string>
-
-    //Texts for the wrong input popup
     <string name="wrongInputTitle">Fehler in der Eingabe!</string>
     <string name="wrongInputMsg">Eine oder mehrere Eingaben waren fehlerhaft oder leer. Bitte überprüfe deine Eingaben und versuche es erneut!</string>
     <string name="wrongInputBtnText">OKAY, das werde ich und es tut mir leid</string>
-
-    //For SettingsActivity
-
     <string name="sa_title">Einstellungen</string>
     <string name="submitBtn">OKAY</string>
     <string name="timer_title">Timer</string>
@@ -48,9 +29,13 @@
     <string name="pref_summary_allow_bg_color_change">Erlaubt das ändern der Hintergrundfarbe </string>
     <string name="pref_summary_bg_color">Hintergrundfarbe (z.B. \"BLUE\")</string>
     <string name="pref_summary_show_start_popup">Zeige Informationspopup beim Appstart</string>
-    <string name="pref_test_title">Test</string>
     <string name="pref_title_allow_bg_color_change">Hintergrundfarbe veränderbar</string>
     <string name="pref_title_bg_color">Hintergrundfarbe</string>
     <string name="pref_title_show_start_popup">Informations Popup</string>
-
+    <string name="pref_default_lang">Geräteinstellung</string>
+    <string name="pref_lang_title">Sprach Einstellungen</string>
+    <string name="pref_summary_allow_lang_change">Erlaubt das ändern der Sprache innerhalb der App</string>
+    <string name="pref_title_allow_lang_change">Nicht die Geräteeinstellung verwenden</string>
+    <string name="pref_title_lang">Sprache</string>
+    <string name="pref_summary_lang">Erfodert Neustart</string>
 </resources>
