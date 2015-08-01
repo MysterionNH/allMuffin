@@ -6,7 +6,6 @@
     <string name="action_hint">Information</string>
     <string name="action_restart">Restart</string>
     <string name="app_name" translatable="false">allMuffin</string>
-    <string name="app_restart">App restarted</string>
 
     <!-- For Information Popup, will be removed in the future -->
 

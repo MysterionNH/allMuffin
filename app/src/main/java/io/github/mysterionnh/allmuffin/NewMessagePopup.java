@@ -7,7 +7,7 @@ import android.view.ContextThemeWrapper;
 import android.view.Gravity;
 import android.widget.TextView;
 
-public class NewMessagePopup {
+class NewMessagePopup {
 
     private Context _context;
     private String title;
@@ -102,7 +102,7 @@ public class NewMessagePopup {
     }
 
     /**
-     * Just like {@see show()}, just with default values, will certainly b removed in the future (TODO)
+     * Just like {@see show()}, just with default values, will certainly be removed in the future (TODO)
      * Opens when the MenuItem in the Actionbar is clicked
      */
     public void showHintPopup() {

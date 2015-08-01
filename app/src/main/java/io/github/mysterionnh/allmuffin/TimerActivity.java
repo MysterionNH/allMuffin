@@ -21,7 +21,7 @@ public class TimerActivity extends BaseActivity {
     /** A hack used to get the context of this Activity in places where I need it put am not allowed
      * to get it. Sad life.
      */
-    final Context _context = (Context) this;
+    private final Context _context = (Context) this;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

@@ -13,15 +13,15 @@ import android.widget.TextView;
  */
 public class RuleOfThreeActivity extends BaseActivity {
 
-    Context _context = this;
+    private Context _context = this;
 
     // Count of TextViews in Layout, is important!
     private final int INPUT_FIELD_COUNT = 6;
 
     // Initializes the arrays used here
-    String texts[]  = new String[INPUT_FIELD_COUNT];
-    EditText eTexts[];
-    boolean empty[] = new boolean[INPUT_FIELD_COUNT];
+    private String[] texts  = new String[INPUT_FIELD_COUNT];
+    private EditText[] eTexts;
+    private boolean[] empty = new boolean[INPUT_FIELD_COUNT];
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,14 +48,14 @@ public class RuleOfThreeActivity extends BaseActivity {
         };
     }
 
-    public void updateFields(String[] texts, TextView[] eTexts) {
+    private void updateFields(String[] texts, TextView[] eTexts) {
 
         for (int i = 0; i < texts.length; i++) {
             eTexts[i].setText(texts[i]);
         }
     }
 
-    public void getTexts() {
+    private void getTexts() {
         // Get all TextFields in Activity, put them into an array
         // Assign to global variable for later use @see updateFields()
         eTexts = new EditText[] {(EditText) findViewById(R.id.currentPercent),
@@ -72,7 +72,7 @@ public class RuleOfThreeActivity extends BaseActivity {
     }
 
     // Looks up if the inputs are empty or not usable
-    public void areInputsEmpty() {
+    private void areInputsEmpty() {
         for (int i = 0; i < INPUT_FIELD_COUNT; i++) {
             empty[i] = texts[i].isEmpty();
 
@@ -94,7 +94,7 @@ public class RuleOfThreeActivity extends BaseActivity {
     }
 
     // Actually calculates stuff, if possible
-    public void calculate() {
+    private void calculate() {
         if (!empty[0] && !empty[1]) {
             // Set value(s)
             texts[2] = String.valueOf(Double.parseDouble(texts[1]) / Double.parseDouble(texts[0]));
@@ -123,7 +123,7 @@ public class RuleOfThreeActivity extends BaseActivity {
     }
 
     // Sets the content of the last line in the Activity, if requested hence the if 'n stuff
-    public void lastLine() {
+    private void lastLine() {
         if (!empty[4]) {
             texts[5] = String.valueOf(Double.parseDouble(texts[2]) * Double.parseDouble(texts[4]));
         } else if (!empty[5]) {
@@ -132,7 +132,7 @@ public class RuleOfThreeActivity extends BaseActivity {
     }
 
     //Tells the user that he made an mistake with the inputs
-    public void error() {
+    private void error() {
         NewMessagePopup popup = new NewMessagePopup(this);
         popup.setTitle(getResources().getString(R.string.wrongInputTitle));
         popup.setBody(getResources().getString(R.string.wrongInputMsg));

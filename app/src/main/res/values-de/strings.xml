@@ -1,4 +1,4 @@
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
     <string name="popup_title">Informationen</string>
     <string name="popup_body">Diese App ist weniger eine ernstgemeinte App als vielmehr ein Übungsprojekt für mich mit Java und Android, das einigermaßen sinnvolle Aufgaben bewältigt. Vielen Dank das du die tatsächlich die Mühe gemacht hast es zu installieren. Solltest du Kritik, Anmerkungen oder gar Fehler gefunden haben, melde dich bei mir. :)</string>
     <string name="action_settings">Einstellungen</string>
@@ -21,7 +21,7 @@
     <string name="submitBtn">OKAY</string>
     <string name="timer_title">Timer</string>
     <string name="action_share">Teilen</string>
-    <string name="new_message_notification_placeholder_text_template">Bla bla bla, zu faul zum übersetzen bala bla.. hier dein Text: "%1§1".</string>
+    <string name="new_message_notification_placeholder_text_template" tools:ignore="Typos">Bla bla bla, zu faul zum übersetzen bala bla.. hier dein Text: "%1§1".</string>
     <string name="new_message_notification_title_template">OMFG!!!! "%1§1"!!!!1!!!elf!!!</string>
     <string name="pg_title">Biesbatz!</string>
     <string name="action_reply">Antworten</string>
@@ -59,7 +59,6 @@
     <string name="pref_positive_allow_bg_color_change">Nutze nicht Apps standardt Hintergrundfarbe</string>
     <string name="pref_positive_msg_allow_lang_change">Sprache der App ist jetzt wählbar</string>
     <string name="pref_positive_msg_show_start_popup">Info-Popup bei Appstart aktiviert</string>
-    <string name="app_restart">App neugestartet</string>
     <string name="pref_button_restart_summary">Startet die App neu (kehrt dabei zur Startseite zurück)</string>
     <string name="pref_button_restart_title">Neustart</string>
 </resources>

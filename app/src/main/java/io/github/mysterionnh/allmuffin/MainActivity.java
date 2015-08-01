@@ -15,7 +15,7 @@ public class MainActivity extends BaseActivity {
     /** A hack used to get the context of this Activity in places where I need it put am not allowed
       * to get it. Sad life.
       */
-    final Context _context = (Context) this;
+    private final Context _context = (Context) this;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,7 +27,7 @@ public class MainActivity extends BaseActivity {
         setContentView(R.layout.activity_main);
 
         SharedPreferences shPref = PreferenceManager.getDefaultSharedPreferences(_context);
-        if (shPref.getBoolean(SettingsActivity.KEY_PREF_SHOW_POPUP,
+        if (shPref.getBoolean(SettingsFragment.KEY_PREF_SHOW_POPUP,
                 Boolean.valueOf(_context.getResources().getString(R.string.pref_default_value_show_start_popup)))) {
             new NewMessagePopup(_context).showHintPopup();
         }
@@ -61,4 +61,3 @@ public class MainActivity extends BaseActivity {
         }
     };
 }
-//TODO: Get settings (and saving to work)

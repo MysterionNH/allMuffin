@@ -18,7 +18,7 @@ public class PlaygroundActivity extends BaseActivity {
     /** A hack used to get the context of this Activity in places where I need it put am not allowed
      * to get it. Sad life.
      */
-    final Context _context = (Context) this;
+    private final Context _context = (Context) this;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,7 +30,7 @@ public class PlaygroundActivity extends BaseActivity {
         findViewById(R.id.bakeToastBtn).setOnClickListener(btnListener0);
         findViewById(R.id.notifyStatusBarBtn).setOnClickListener(btnListener1);
         findViewById(R.id.button3).setOnClickListener(btnListener2);
-        findViewById(R.id.testBtnbtn).setOnClickListener(btnListener3);
+        findViewById(R.id.testButton).setOnClickListener(btnListener3);
     }
 
     // Opens a Toast with the text in the text field before the button
@@ -73,7 +73,7 @@ public class PlaygroundActivity extends BaseActivity {
             editText.setTextSize(25);
             editText.setTextColor(Color.BLACK);
             editText.setVisibility(View.VISIBLE);
-            RelativeLayout relativeLayout = (RelativeLayout) findViewById(R.id.testBtnbtn).getParent();
+            RelativeLayout relativeLayout = (RelativeLayout) findViewById(R.id.testButton).getParent();
             relativeLayout.addView(editText);
         }
     };

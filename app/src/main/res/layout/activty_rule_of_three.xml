@@ -186,7 +186,6 @@
                     android:text="@string/buttonText"
                     android:id="@+id/submitBtn"
                     android:layout_gravity="center_horizontal"
-                    android:onClick="calculate"
                     android:layout_centerHorizontal="true" />
             </RelativeLayout>
         </TableRow>

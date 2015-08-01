@@ -7,7 +7,7 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.util.Log;
 
-public class MagicAppRestarter {
+class MagicAppRestarter {
 
     private static final String TAG = "Error: ";
 
