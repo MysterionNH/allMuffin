@@ -38,4 +38,26 @@
     <string name="pref_title_allow_lang_change">Nicht die Geräteeinstellung verwenden</string>
     <string name="pref_title_lang">Sprache</string>
     <string name="pref_summary_lang">Erfodert Neustart</string>
+    <string name="action_restart">Neustart</string>
+    <string-array name="pref_lang_entries">
+        <item>Geräte Standardt</item>
+        <item>Englisch</item>
+        <item>Deutsch</item>
+    </string-array>
+    <string-array name="pref_lang_values">
+        <item>--</item>
+        <item>uk</item>
+        <item>de</item>
+    </string-array>
+    <string name="pref_negative_allow_bg_color_change">Nutze standardt Hintergrundfarbe</string>
+    <string name="pref_negative_msg_allow_lang_change">App in Gerätesprache nach Neustart</string>
+    <string name="pref_negative_msg_show_start_popup">Info-Popup bei Appstart deaktiviert</string>
+    <string name="pref_onchange_lang">App in Gerätesprache nach Neustart</string>
+    <string name="pref_onchange_lang_de">App in Deutsch nach Neustart</string>
+    <string name="pref_onchange_lang_uk">App in Englisch nach Neustart</string>
+    <string name="pref_onchange_msg_bg_color">Neue Hintegrundfarbe (sofern sie als Hintergrundfarbe vorhanden ist): \"%1$s\"</string>
+    <string name="pref_positive_allow_bg_color_change">Nutze nicht Apps standardt Hintergrundfarbe</string>
+    <string name="pref_positive_msg_allow_lang_change">Sprache der App ist jetzt wählbar</string>
+    <string name="pref_positive_msg_show_start_popup">Info-Popup bei Appstart aktiviert</string>
+    <string name="app_restart">App neugestartet</string>
 </resources>

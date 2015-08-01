@@ -19,7 +19,7 @@ public class BaseActivity extends Activity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu_main, menu);
+        getMenuInflater().inflate(R.menu.menu_default, menu);
         return true;
     }
 
@@ -43,6 +43,10 @@ public class BaseActivity extends Activity {
         if (id == R.id.action_hint) {
             new NewMessagePopup(this).showHintPopup();
             return true;
+        }
+
+        if (id == R.id.action_restart) {
+            MagicAppRestarter.doRestart(this);
         }
         return super.onOptionsItemSelected(item);
     }

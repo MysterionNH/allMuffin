@@ -38,6 +38,10 @@
             android:defaultValue="@string/pref_default_lang"
             android:dependency="@string/pref_key_allow_lang_change"/>
     </PreferenceCategory>
+    <PreferenceCategory
+        android:title="@string/pref_misc_title"
+        android:key="@string/pref_key_misc_settings" >
+    </PreferenceCategory>
     <!-- Just an example, not in use yet, just to show future me how-to
     <PreferenceScreen
         android:title="@string/pref_test_title"
