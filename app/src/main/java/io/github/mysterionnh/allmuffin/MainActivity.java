@@ -8,7 +8,7 @@ import android.preference.PreferenceManager;
 import android.view.View;
 
 /**
- * The main Activity of this app, from here all other projects are reachable
+ * The main Activity of this app, from here all other "projects" are reachable
  */
 public class MainActivity extends BaseActivity {
 
