@@ -41,6 +41,10 @@
     <PreferenceCategory
         android:title="@string/pref_misc_title"
         android:key="@string/pref_key_misc_settings" >
+        <Preference
+            android:key="@string/pref_button_restart_key"
+            android:title="@string/pref_button_restart_title"
+            android:summary="@string/pref_button_restart_summary" />
     </PreferenceCategory>
     <!-- Just an example, not in use yet, just to show future me how-to
     <PreferenceScreen

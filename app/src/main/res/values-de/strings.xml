@@ -60,4 +60,6 @@
     <string name="pref_positive_msg_allow_lang_change">Sprache der App ist jetzt wählbar</string>
     <string name="pref_positive_msg_show_start_popup">Info-Popup bei Appstart aktiviert</string>
     <string name="app_restart">App neugestartet</string>
+    <string name="pref_button_restart_summary">Startet die App neu (kehrt dabei zur Startseite zurück)</string>
+    <string name="pref_button_restart_title">Neustart</string>
 </resources>

@@ -20,12 +20,12 @@ public class MagicAppRestarter {
                     if (mStartActivity != null) {
                         mStartActivity.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                         int mPendingIntendId = 223344;
-                        PendingIntent mPendigIntent = PendingIntent.getActivity(con,
+                        PendingIntent mPendingIntent = PendingIntent.getActivity(con,
                                 mPendingIntendId,
                                 mStartActivity,
                                 PendingIntent.FLAG_CANCEL_CURRENT);
                         AlarmManager mgr = (AlarmManager) con.getSystemService(Context.ALARM_SERVICE);
-                        mgr.set(AlarmManager.RTC, System.currentTimeMillis() + 100, mPendigIntent);
+                        mgr.set(AlarmManager.RTC, System.currentTimeMillis() + 100, mPendingIntent);
                         System.exit(0);
                     } else {
                         Log.e(TAG, "Was not able to restart application, mStartActivity null");
