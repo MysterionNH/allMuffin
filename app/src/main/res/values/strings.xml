@@ -52,6 +52,8 @@
 
     <string name="timer_title">Timer</string>
 
+    <string name="time_template">hh:MM:ss,SSS</string>
+
     <!-- For PlaygroundActivity -->
 
     <string name="pg_title">Playground!</string>
