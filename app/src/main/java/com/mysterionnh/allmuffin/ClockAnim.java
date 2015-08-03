@@ -5,8 +5,11 @@ import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Paint;
+import android.graphics.Point;
+import android.view.Display;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
+import android.view.WindowManager;
 
 public class ClockAnim extends SurfaceView implements SurfaceHolder.Callback {
 
@@ -46,20 +49,20 @@ public class ClockAnim extends SurfaceView implements SurfaceHolder.Callback {
                 thread.join();
                 retry = false;
             } catch (InterruptedException e) {
+                e.printStackTrace();
             }
         }
     }
 
     class DrawClockThread extends Thread {
+        private final Object mRunLock = new Object();
+        private final SurfaceHolder mSurfaceHolder;
         private Bitmap mBackgroundImage;
-
         private int mCanvasHeight = 1;
         private int mCanvasWidth = 1;
         private long mLsstTime;
         private Paint mLinePaint;
         private boolean mRun = false;
-        private final Object mRunLock = new Object();
-        private SurfaceHolder mSurfaceHolder;
 
         public DrawClockThread(SurfaceHolder surfaceHolder, Context context) {
             // get handles to some important objects
@@ -95,16 +98,14 @@ public class ClockAnim extends SurfaceView implements SurfaceHolder.Callback {
         }
 
         private void doDraw(Canvas canvas) {
-            canvas.drawBitmap(mBackgroundImage, 0, 0, null);
-
-            canvas.drawCircle(mSurfaceView.getHeight() / 2, mSurfaceView.getWidth() / 2,
-                    mSurfaceView.getWidth() * 2 / 3, mLinePaint);
-
-            canvas.drawCircle(mSurfaceView.getHeight() / 2, mSurfaceView.getWidth() / 2,
-                    mSurfaceView.getWidth() * 3, mLinePaint);
-
-            canvas.drawLine(mSurfaceView.getHeight() / 2, mSurfaceView.getWidth() / 2,
-                    mSurfaceView.getHeight() / 2 + 50, mSurfaceView.getWidth() / 2 + 50, mLinePaint);
+            WindowManager wm = (WindowManager) mContext.getSystemService(Context.WINDOW_SERVICE);
+            Display display = wm.getDefaultDisplay();
+            Point size = new Point();
+            display.getSize(size);
+            mCanvasWidth = size.x / 2;
+            mCanvasHeight = size.x / 2;
+            canvas.drawBitmap(mBackgroundImage, mCanvasWidth, mCanvasHeight, null);
+            canvas.drawCircle(mCanvasWidth, mCanvasHeight, size.x / 4, mLinePaint);
         }
 
         public void setSurfaceSize(int width, int height) {

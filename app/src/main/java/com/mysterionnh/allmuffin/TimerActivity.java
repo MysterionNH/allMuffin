@@ -21,34 +21,36 @@ public class TimerActivity extends BaseActivity {
     /** A hack used to get the context of this Activity in places where I need it put am not allowed
      * to get it. Sad life.
      */
-    private final Context _context = (Context) this;
+    private final Context mContext = (Context) this;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_timer);
-        setBGColorAccordingToSettings(_context);
 
-        findViewById(R.id.testButton).setOnClickListener(btnListener0);
+        //FrameLayout fC = (FrameLayout) findViewById(R.id.futureClock);
+        //fC.addView(new ClockAnim(_context));
+        Toast toast = Toast.makeText(mContext,
+                new SimpleDateFormat("dd.MM.yyyy, hh:mm:ss.SSS", Locale.GERMANY).format(Calendar.getInstance().getTime()),
+                Toast.LENGTH_LONG);
+        toast.show();
     }
 
-    private View.OnClickListener btnListener0 = new View.OnClickListener() {
-        public void onClick(View v) {
-            Toast toast = Toast.makeText(_context,
-                    new SimpleDateFormat("dd.MM.yyyy, hh:mm:ss.SSS", Locale.GERMANY).format(Calendar.getInstance().getTime()),
-                    Toast.LENGTH_LONG);
-            toast.show();
+    public void onClick(View v) {
+        Toast toast = Toast.makeText(mContext,
+                new SimpleDateFormat("dd.MM.yyyy, hh:mm:ss.SSS", Locale.GERMANY).format(Calendar.getInstance().getTime()),
+                Toast.LENGTH_LONG);
+        toast.show();
 
-            ((RelativeLayout) findViewById(R.id.testButton).getParent()).setBackgroundColor(Color.GREEN);
+        ((RelativeLayout) findViewById(R.id.testButton).getParent()).setBackgroundColor(Color.GREEN);
 
-            ViewPropertyAnimator animate = findViewById(R.id.testButton).animate();
-            animate.setDuration(500);
-            animate.rotationBy(360);
-            animate.scaleXBy(5);
-            animate.scaleYBy(5);
-            animate.start();
-        }
-    };
+        ViewPropertyAnimator animate = findViewById(R.id.testButton).animate();
+        animate.setDuration(500);
+        animate.rotationBy(360);
+        animate.scaleXBy(5);
+        animate.scaleYBy(5);
+        animate.start();
+    }
 }
 
 // print it somewhere?

@@ -50,9 +50,9 @@
 
     <!-- For TimerActivity -->
 
-    <string name="timer_title">Timer</string>
+    <string name="timer_title" translatable="false">Timer</string>
 
-    <string name="time_template">hh:MM:ss,SSS</string>
+    <string name="time_template" translatable="false">hh:MM:ss,SSS</string>
 
     <!-- For PlaygroundActivity -->
 
@@ -95,7 +95,7 @@
 
         <string name="pref_key_bg_color" translatable="false">pref_key_bg_color</string>
         <string name="pref_title_bg_color">Background Color</string>
-        <string name="pref_summary_bg_color">The Background Color you want, as a word, e.g. \"BLUE\".</string>
+    <string name="pref_summary_bg_color">The Background Color you want, as a word, e.g. \"BLUE\" (Needs restart)</string>
         <string name="pref_default_value_bg_color" translatable="false">WHITE</string>
         <string name="pref_onchange_msg_bg_color">New background color (if that is an available color): \"%1$s\"</string>
 
