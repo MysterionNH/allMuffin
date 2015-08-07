@@ -1,11 +1,12 @@
 package com.mysterionnh.allmuffin;
 
 import android.content.Context;
-import android.graphics.Color;
+import android.graphics.Canvas;
 import android.os.Bundle;
-import android.view.View;
-import android.view.ViewPropertyAnimator;
-import android.widget.RelativeLayout;
+import android.view.MotionEvent;
+import android.widget.AnalogClock;
+import android.widget.FrameLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.text.SimpleDateFormat;
@@ -22,34 +23,56 @@ public class TimerActivity extends BaseActivity {
      * to get it. Sad life.
      */
     private final Context mContext = (Context) this;
+    TextView digitalClock;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_timer);
 
-        //FrameLayout fC = (FrameLayout) findViewById(R.id.futureClock);
-        //fC.addView(new ClockAnim(_context));
+        digitalClock = (TextView) findViewById(R.id.currentTime);
+
+        FrameLayout frameLayout = (FrameLayout) findViewById(R.id.futureClock);
+        Clock clock = new Clock(mContext);
+        //clock.setScaleX(1.3f);
+        //clock.setScaleY(1.3f);
+        clock.setSoundEffectsEnabled(true);
+        frameLayout.addView(clock);
+
+        timeToast();
+    }
+
+    public void timeToast() {
         Toast toast = Toast.makeText(mContext,
                 new SimpleDateFormat("dd.MM.yyyy, hh:mm:ss.SSS", Locale.GERMANY).format(Calendar.getInstance().getTime()),
-                Toast.LENGTH_LONG);
+                Toast.LENGTH_SHORT);
         toast.show();
     }
 
-    public void onClick(View v) {
-        Toast toast = Toast.makeText(mContext,
-                new SimpleDateFormat("dd.MM.yyyy, hh:mm:ss.SSS", Locale.GERMANY).format(Calendar.getInstance().getTime()),
-                Toast.LENGTH_LONG);
-        toast.show();
+    public class Clock extends AnalogClock {
 
-        ((RelativeLayout) findViewById(R.id.testButton).getParent()).setBackgroundColor(Color.GREEN);
+        private SimpleDateFormat simpleDateFormat = new SimpleDateFormat("hh:mm", Locale.GERMANY);
 
-        ViewPropertyAnimator animate = findViewById(R.id.testButton).animate();
-        animate.setDuration(500);
-        animate.rotationBy(360);
-        animate.scaleXBy(5);
-        animate.scaleYBy(5);
-        animate.start();
+        public Clock(Context context) {
+            super(context);
+        }
+
+        @Override
+        protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
+            super.onMeasure(widthMeasureSpec, heightMeasureSpec);
+        }
+
+        @Override
+        protected void onDraw(Canvas canvas) {
+            digitalClock.setText(simpleDateFormat.format(Calendar.getInstance().getTime()));
+            super.onDraw(canvas);
+        }
+
+        @Override
+        public boolean onTouchEvent(MotionEvent event) {
+            timeToast();
+            return super.onTouchEvent(event);
+        }
     }
 }
 
