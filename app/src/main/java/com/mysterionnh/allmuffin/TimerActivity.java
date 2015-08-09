@@ -19,6 +19,9 @@ import java.util.Locale;
  */
 public class TimerActivity extends BaseActivity {
 
+    /** A hack used to get the context of this Activity in places where I need it put am not allowed
+     * to get it. Sad life.
+     */
     private final Context mContext = (Context) this;
     TextView digitalClock;
 

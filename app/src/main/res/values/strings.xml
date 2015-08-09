@@ -59,32 +59,6 @@
     <string name="pg_title">Playground!</string>
     <string name="submitBtn">SUBMIT</string>
 
-    <!-- CalculatorActivity -->
-
-    <string name="calc_title">Calculator</string>
-    <string name="clrButton" translatable="false">C</string>
-    <string name="delButton" translatable="false">&lt;&#8212;</string>
-    <string name="divButton" translatable="false">/</string>
-    <string name="timesButton" translatable="false">*</string>
-    <string name="plusButton" translatable="false">+</string>
-    <string name="minusButton" translatable="false">-</string>
-    <string name="equalsButton" translatable="false">=</string>
-    <string name="parenthesesButton" translatable="false">( )</string>
-    <string name="reverseButton" translatable="false">+/-</string>
-    <string name="periodButton">.</string>
-    <string name="numButton0" translatable="false">0</string>
-    <string name="numButton1" translatable="false">1</string>
-    <string name="numButton2" translatable="false">2</string>
-    <string name="numButton3" translatable="false">3</string>
-    <string name="numButton4" translatable="false">4</string>
-    <string name="numButton5" translatable="false">5</string>
-    <string name="numButton6" translatable="false">6</string>
-    <string name="numButton7" translatable="false">7</string>
-    <string name="numButton8" translatable="false">8</string>
-    <string name="numButton9" translatable="false">9</string>
-
-    <string name="outputEmptyWarning">Nothing to delete!</string>
-
     <!-- StatusBarNotification (Template) -->
 
     <string name="new_message_notification_title_template">New message: %1$s</string>

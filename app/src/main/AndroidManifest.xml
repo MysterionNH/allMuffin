@@ -26,7 +26,6 @@
         <activity
             android:name=".SettingsActivity"
             android:label="@string/sa_title"
-            android:parentActivityName=".MainActivity"
             android:screenOrientation="sensorPortrait" >
         </activity>
 
@@ -34,7 +33,6 @@
         <activity
             android:name=".RuleOfThreeActivity"
             android:label="@string/rot_title"
-            android:parentActivityName=".MainActivity"
             android:screenOrientation="sensorPortrait" >
         </activity>
 
@@ -42,7 +40,6 @@
         <activity
             android:name=".TimerActivity"
             android:label="@string/timer_title"
-            android:parentActivityName=".MainActivity"
             android:screenOrientation="sensorPortrait" >
         </activity>
 
@@ -50,14 +47,6 @@
         <activity
             android:name=".PlaygroundActivity"
             android:label="@string/pg_title"
-            android:parentActivityName=".MainActivity"
-            android:screenOrientation="sensorPortrait"></activity>
-
-        <!-- CalculatorActivity -->
-        <activity
-            android:name=".CalculatorActivity"
-            android:label="@string/calc_title"
-            android:parentActivityName=".MainActivity"
             android:screenOrientation="sensorPortrait" >
         </activity>
     </application>
