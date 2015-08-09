@@ -1,8 +1,13 @@
-package com.mysterionnh.allmuffin;
+package com.mysterionnh.allmuffin.activities;
 
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+
+import com.mysterionnh.allmuffin.R;
+import com.mysterionnh.allmuffin.fragments.SettingsFragment;
+import com.mysterionnh.allmuffin.helper.MagicAppRestarter;
+import com.mysterionnh.allmuffin.helper.NewMessagePopup;
 
 /**
  * Settings 'n stuff

@@ -1,4 +1,4 @@
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
 
     <!-- For all -->
 
@@ -6,6 +6,8 @@
     <string name="action_hint">Information</string>
     <string name="action_restart">Restart</string>
     <string name="app_name" translatable="false">allMuffin</string>
+
+    <string name="default_hint" translatable="false">Text</string>
 
     <!-- For Information Popup, will be removed in the future -->
 
@@ -100,7 +102,7 @@
 
     <!-- Preferences (Settings) -->
 
-    <string name="pref_file_key" translatable="false">io.github.mysterionnh.allmuffin.allSharedPrefMuffins</string>
+    <string name="pref_file_key" translatable="false" tools:ignore="UnusedResources">io.github.mysterionnh.allmuffin.allSharedPrefMuffins</string>
 
     <string name="pref_general_title">General Settings</string>
     <string name="pref_key_general_settings" translatable="false">pref_key_general_settings</string>

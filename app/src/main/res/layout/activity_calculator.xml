@@ -208,7 +208,7 @@
                 android:text="@string/numButton0" />
 
             <Button
-                android:id="@+id/peroidButton"
+                android:id="@+id/periodButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_column="1"

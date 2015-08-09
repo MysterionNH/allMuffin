@@ -1,4 +1,4 @@
-package com.mysterionnh.allmuffin;
+package com.mysterionnh.allmuffin.activities;
 
 import android.content.Context;
 import android.graphics.Color;
@@ -9,6 +9,10 @@ import android.widget.EditText;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
 
+import com.mysterionnh.allmuffin.R;
+import com.mysterionnh.allmuffin.helper.NewMessageNotification;
+import com.mysterionnh.allmuffin.helper.NewMessagePopup;
+
 /**
  * An Activity only there to be cool and to test around with different stuff
  * Mostly used for fun and for development tests
@@ -17,7 +21,7 @@ public class PlaygroundActivity extends BaseActivity {
 
     private final Context _context = (Context) this;
     // Opens a Toast with the text in the text field before the button
-    private View.OnClickListener btnListener0 = new View.OnClickListener() {
+    private final View.OnClickListener btnListener0 = new View.OnClickListener() {
         public void onClick(View v) {
             EditText toastText = (EditText) findViewById(R.id.toastText);
             Toast toast = Toast.makeText(_context,
@@ -27,7 +31,7 @@ public class PlaygroundActivity extends BaseActivity {
         }
     };
     // Opens a (default) Notification with the text...
-    private View.OnClickListener btnListener1 = new View.OnClickListener() {
+    private final View.OnClickListener btnListener1 = new View.OnClickListener() {
         public void onClick(View v) {
             NewMessageNotification.notify(_context,
                     ((EditText) findViewById(R.id.statusBarText)).getText().toString(),
@@ -35,7 +39,7 @@ public class PlaygroundActivity extends BaseActivity {
         }
     };
     // Opens a popup
-    private View.OnClickListener btnListener2 = new View.OnClickListener() {
+    private final View.OnClickListener btnListener2 = new View.OnClickListener() {
         public void onClick(View v) {
             NewMessagePopup popup = new NewMessagePopup(_context);
             popup.setAlign(Gravity.FILL_HORIZONTAL);
@@ -46,7 +50,7 @@ public class PlaygroundActivity extends BaseActivity {
         }
     };
     // IMPORTANT! First test with changing UI via code, it works! It's awesome! And fun! N' stuff!
-    private View.OnClickListener btnListener3 = new View.OnClickListener() {
+    private final View.OnClickListener btnListener3 = new View.OnClickListener() {
         public void onClick(View v) {
             EditText editText = new EditText(_context);
             editText.setText("Neuer Text!");

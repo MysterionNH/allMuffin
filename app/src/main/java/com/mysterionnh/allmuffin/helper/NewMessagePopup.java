@@ -1,4 +1,4 @@
-package com.mysterionnh.allmuffin;
+package com.mysterionnh.allmuffin.helper;
 
 import android.app.AlertDialog;
 import android.content.Context;
@@ -7,9 +7,12 @@ import android.view.ContextThemeWrapper;
 import android.view.Gravity;
 import android.widget.TextView;
 
-class NewMessagePopup {
+import com.mysterionnh.allmuffin.R;
 
-    private Context _context;
+@SuppressWarnings("ALL")
+public class NewMessagePopup {
+
+    private final Context _context;
     private String title;
     private String body;
     private String btnText;
@@ -30,7 +33,7 @@ class NewMessagePopup {
     /**
      * @param align The Gravity (e.g. Gravity.FILL_HORIZONTAL) of the body text
      */
-    public void setAlign(int align) {
+    public void setAlign(@SuppressWarnings("SameParameterValue") int align) {
         this.align = align;
     }
 
@@ -51,14 +54,14 @@ class NewMessagePopup {
     /**
      * @param color The color (e.g. Color.RED) used for the title of the popup
      */
-    public void setColor(int color) {
+    public void setColor(@SuppressWarnings("SameParameterValue") int color) {
         this.color = color;
     }
 
     /**
      * @param textSize The size (int) of the title.. i guess
      */
-    public void setTextSize(int textSize) {
+    public void setTextSize(@SuppressWarnings("SameParameterValue") int textSize) {
         this.textSize = textSize;
     }
 

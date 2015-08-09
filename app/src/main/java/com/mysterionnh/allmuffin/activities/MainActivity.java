@@ -1,4 +1,4 @@
-package com.mysterionnh.allmuffin;
+package com.mysterionnh.allmuffin.activities;
 
 import android.content.Context;
 import android.content.Intent;
@@ -7,31 +7,35 @@ import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.view.View;
 
+import com.mysterionnh.allmuffin.R;
+import com.mysterionnh.allmuffin.fragments.SettingsFragment;
+import com.mysterionnh.allmuffin.helper.NewMessagePopup;
+
 /**
  * The main Activity of this app, from here all other "projects" are reachable
  */
 public class MainActivity extends BaseActivity {
 
     private final Context _context = (Context) this;
-    private View.OnClickListener btnListener = new View.OnClickListener() {
+    private final View.OnClickListener btnListener = new View.OnClickListener() {
 
         public void onClick(View v) {
             startActivity(new Intent(_context, RuleOfThreeActivity.class));
         }
     };
-    private View.OnClickListener btnListener2 = new View.OnClickListener() {
+    private final View.OnClickListener btnListener2 = new View.OnClickListener() {
 
         public void onClick(View v) {
             startActivity(new Intent(_context, TimerActivity.class));
         }
     };
-    private View.OnClickListener btnListener3 = new View.OnClickListener() {
+    private final View.OnClickListener btnListener3 = new View.OnClickListener() {
 
         public void onClick(View v) {
             startActivity(new Intent(_context, PlaygroundActivity.class));
         }
     };
-    private View.OnClickListener btnListener4 = new View.OnClickListener() {
+    private final View.OnClickListener btnListener4 = new View.OnClickListener() {
 
         public void onClick(View v) {
             startActivity(new Intent(_context, CalculatorActivity.class));

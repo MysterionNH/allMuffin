@@ -30,7 +30,6 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/spaceUnderClock"
         android:layout_centerHorizontal="true"
-        android:inputType="date|datetime|time"
         android:text="@string/time_template"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:textColor="#000" />

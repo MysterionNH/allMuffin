@@ -1,4 +1,4 @@
-package com.mysterionnh.allmuffin;
+package com.mysterionnh.allmuffin.fragments;
 
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -9,15 +9,17 @@ import android.preference.PreferenceFragment;
 import android.preference.PreferenceManager;
 import android.widget.Toast;
 
-public class SettingsFragment extends PreferenceFragment implements SharedPreferences.OnSharedPreferenceChangeListener {
-    private Context mContext;
-    private SharedPreferences mSharedPreferences;
+import com.mysterionnh.allmuffin.R;
+import com.mysterionnh.allmuffin.helper.MagicAppRestarter;
 
+public class SettingsFragment extends PreferenceFragment implements SharedPreferences.OnSharedPreferenceChangeListener {
     public static final String KEY_PREF_SHOW_POPUP = "pref_key_show_start_popup";
     public static final String KEY_PREF_ALLOW_BG_COLOR = "pref_key_allow_bg_color_change";
     public static final String KEY_PREF_BG_COLOR = "pref_key_bg_color";
     public static final String KEY_PREF_ALLOW_LANG_CHANGE = "pref_key_allow_lang_change";
     public static final String KEY_PREF_LANG = "pref_key_lang";
+    private Context mContext;
+    private SharedPreferences mSharedPreferences;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {

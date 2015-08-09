@@ -1,5 +1,6 @@
-package com.mysterionnh.allmuffin;
+package com.mysterionnh.allmuffin.activities;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
@@ -9,12 +10,18 @@ import android.preference.PreferenceManager;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.mysterionnh.allmuffin.R;
+import com.mysterionnh.allmuffin.fragments.SettingsFragment;
+import com.mysterionnh.allmuffin.helper.MagicAppRestarter;
+import com.mysterionnh.allmuffin.helper.NewMessagePopup;
+
 import java.util.Locale;
 
 /**
  * This is a base for all activities in this project
  * It contains the default menu. Nothing else atm.
  */
+@SuppressLint("Registered")
 public class BaseActivity extends Activity {
 
     @Override

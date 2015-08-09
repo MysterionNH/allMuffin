@@ -1,4 +1,4 @@
-package com.mysterionnh.allmuffin;
+package com.mysterionnh.allmuffin.helper;
 
 import android.annotation.TargetApi;
 import android.app.Notification;
@@ -13,6 +13,8 @@ import android.net.Uri;
 import android.os.Build;
 import android.support.v4.app.NotificationCompat;
 
+import com.mysterionnh.allmuffin.R;
+
 
 /**
  * Helper class for showing and canceling new message
@@ -21,7 +23,7 @@ import android.support.v4.app.NotificationCompat;
  * This class makes heavy use of the {@link NotificationCompat.Builder} helper
  * class to create notifications in a backward-compatible way.
  */
-class NewMessageNotification {
+public class NewMessageNotification {
     /**
      * The unique identifier for this type of notification.
      */

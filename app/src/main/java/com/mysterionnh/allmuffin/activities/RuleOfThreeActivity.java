@@ -1,39 +1,31 @@
-package com.mysterionnh.allmuffin;
+package com.mysterionnh.allmuffin.activities;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.os.Bundle;
+import android.view.Gravity;
 import android.view.View;
 import android.widget.EditText;
-import android.graphics.Color;
-import android.view.Gravity;
 import android.widget.TextView;
+
+import com.mysterionnh.allmuffin.R;
+import com.mysterionnh.allmuffin.helper.NewMessagePopup;
 
 /**
  * Weird calculator for percentage and rule of three stuff
  */
 public class RuleOfThreeActivity extends BaseActivity {
 
-    private Context _context = this;
+    private final Context _context = this;
 
     // Count of TextViews in Layout, is important!
     private final int INPUT_FIELD_COUNT = 6;
 
     // Initializes the arrays used here
-    private String[] texts  = new String[INPUT_FIELD_COUNT];
+    private final String[] texts = new String[INPUT_FIELD_COUNT];
+    private final boolean[] empty = new boolean[INPUT_FIELD_COUNT];
+    private final View.OnClickListener btnListener;
     private EditText[] eTexts;
-    private boolean[] empty = new boolean[INPUT_FIELD_COUNT];
-
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activty_rule_of_three);
-        setBGColorAccordingToSettings(_context);
-
-        // Sets up the button listener for the submit button
-        findViewById(R.id.submitBtn).setOnClickListener(btnListener);
-    }
-
-    private View.OnClickListener btnListener;
 
     {
         btnListener = new View.OnClickListener() {
@@ -46,6 +38,16 @@ public class RuleOfThreeActivity extends BaseActivity {
                 updateFields(texts, eTexts);
             }
         };
+    }
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activty_rule_of_three);
+        setBGColorAccordingToSettings(_context);
+
+        // Sets up the button listener for the submit button
+        findViewById(R.id.submitBtn).setOnClickListener(btnListener);
     }
 
     private void updateFields(String[] texts, TextView[] eTexts) {

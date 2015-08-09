@@ -1,4 +1,4 @@
-package com.mysterionnh.allmuffin;
+package com.mysterionnh.allmuffin.activities;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -8,26 +8,42 @@ import android.widget.GridLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.mysterionnh.allmuffin.R;
+
 public class CalculatorActivity extends BaseActivity {
 
     private final Context _context = (Context) this;
-    Button mClickedButton;
-    TextView mOutputView;
+    private Button mClickedButton;
+    private TextView mOutputView;
     //TODO: siehste schon
-    View.OnClickListener buttonListener = new View.OnClickListener() {
+    private final View.OnClickListener buttonListener = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
-            mClickedButton = (Button) v;
+
             String outputText = mOutputView.getText().toString();
-            outputText += mClickedButton.getText();
-            mOutputView.setText(outputText);
+            mClickedButton = (Button) v;
+
+            switch (mClickedButton.getId()) {
+                case R.id.parenthesesButton: {
+                    //if (!outputText.equals("")) {
+                    //outputText.contains("(");
+                    //}
+                    break;
+                }
+                default: {
+                    outputText += mClickedButton.getText();
+                    mOutputView.setText(outputText);
+                }
+            }
         }
     };
-    View.OnClickListener buttonListener1 = new View.OnClickListener() {
+    private final View.OnClickListener buttonListener1 = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
+
             String outputText = mOutputView.getText().toString();
             mClickedButton = (Button) v;
+
             switch (mClickedButton.getId()) {
                 case R.id.clrButton: {
                     outputText = "";
@@ -65,15 +81,20 @@ public class CalculatorActivity extends BaseActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        // Initializing the activity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_calculator);
         setBGColorAccordingToSettings(_context);
 
+        // Get the TextView were everything gets displayed
         mOutputView = (TextView) findViewById(R.id.outputView);
+        // Gets the grid in which all buttons are, then extracts all buttons, and sort them (not-/displayable)
+        // Add onClickListener according to sorting
         GridLayout inputWrapper = (GridLayout) findViewById(R.id.inputGrid);
         int buttonCount = inputWrapper.getChildCount();
-        Button buttons[] = new Button[buttonCount];
+        Button[] buttons = new Button[buttonCount];
         boolean isDisplayable;
+
         for (int i = 0; i < buttonCount; i++) {
             buttons[i] = (Button) inputWrapper.getChildAt(i);
             switch (buttons[i].getId()) {

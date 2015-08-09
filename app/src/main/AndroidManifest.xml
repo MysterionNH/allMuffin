@@ -12,7 +12,7 @@
 
         <!-- MainActivity -->
         <activity
-            android:name=".MainActivity"
+            android:name=".activities.MainActivity"
             android:label="@string/app_name"
             android:screenOrientation="sensorPortrait" >
             <intent-filter>
@@ -24,40 +24,40 @@
 
         <!-- SettingsActivity -->
         <activity
-            android:name=".SettingsActivity"
+            android:name=".activities.SettingsActivity"
             android:label="@string/sa_title"
-            android:parentActivityName=".MainActivity"
+            android:parentActivityName=".activities.MainActivity"
             android:screenOrientation="sensorPortrait" >
         </activity>
 
         <!-- RuleOfThreeActivity -->
         <activity
-            android:name=".RuleOfThreeActivity"
+            android:name=".activities.RuleOfThreeActivity"
             android:label="@string/rot_title"
-            android:parentActivityName=".MainActivity"
+            android:parentActivityName=".activities.MainActivity"
             android:screenOrientation="sensorPortrait" >
         </activity>
 
         <!-- TimerActivity -->
         <activity
-            android:name=".TimerActivity"
+            android:name=".activities.TimerActivity"
             android:label="@string/timer_title"
-            android:parentActivityName=".MainActivity"
+            android:parentActivityName=".activities.MainActivity"
             android:screenOrientation="sensorPortrait" >
         </activity>
 
         <!-- PlaygroundActivity -->
         <activity
-            android:name=".PlaygroundActivity"
+            android:name=".activities.PlaygroundActivity"
             android:label="@string/pg_title"
-            android:parentActivityName=".MainActivity"
-            android:screenOrientation="sensorPortrait"></activity>
+            android:parentActivityName=".activities.MainActivity"
+            android:screenOrientation="sensorPortrait" />
 
         <!-- CalculatorActivity -->
         <activity
-            android:name=".CalculatorActivity"
+            android:name=".activities.CalculatorActivity"
             android:label="@string/calc_title"
-            android:parentActivityName=".MainActivity"
+            android:parentActivityName=".activities.MainActivity"
             android:screenOrientation="sensorPortrait" >
         </activity>
     </application>

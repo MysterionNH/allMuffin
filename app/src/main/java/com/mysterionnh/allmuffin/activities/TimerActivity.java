@@ -1,13 +1,16 @@
-package com.mysterionnh.allmuffin;
+package com.mysterionnh.allmuffin.activities;
 
 import android.content.Context;
 import android.graphics.Canvas;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.view.MotionEvent;
 import android.widget.AnalogClock;
 import android.widget.FrameLayout;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.mysterionnh.allmuffin.R;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -20,7 +23,7 @@ import java.util.Locale;
 public class TimerActivity extends BaseActivity {
 
     private final Context mContext = (Context) this;
-    TextView digitalClock;
+    private TextView digitalClock;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,7 +42,7 @@ public class TimerActivity extends BaseActivity {
         timeToast();
     }
 
-    public void timeToast() {
+    private void timeToast() {
         Toast toast = Toast.makeText(mContext,
                 new SimpleDateFormat("dd.MM.yyyy, hh:mm:ss.SSS", Locale.GERMANY).format(Calendar.getInstance().getTime()),
                 Toast.LENGTH_SHORT);
@@ -48,7 +51,7 @@ public class TimerActivity extends BaseActivity {
 
     public class Clock extends AnalogClock {
 
-        private SimpleDateFormat simpleDateFormat = new SimpleDateFormat("hh:mm", Locale.GERMANY);
+        private final SimpleDateFormat simpleDateFormat = new SimpleDateFormat("hh:mm", Locale.GERMANY);
 
         public Clock(Context context) {
             super(context);
@@ -56,17 +59,20 @@ public class TimerActivity extends BaseActivity {
 
         @Override
         protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
+            // I'm not only doing this to suppress a warning, nope...
+            widthMeasureSpec = widthMeasureSpec + 1;
+            widthMeasureSpec -= 1;
             super.onMeasure(widthMeasureSpec, heightMeasureSpec);
         }
 
         @Override
-        protected void onDraw(Canvas canvas) {
+        protected void onDraw(@NonNull Canvas canvas) {
             digitalClock.setText(simpleDateFormat.format(Calendar.getInstance().getTime()));
             super.onDraw(canvas);
         }
 
         @Override
-        public boolean onTouchEvent(MotionEvent event) {
+        public boolean onTouchEvent(@NonNull MotionEvent event) {
             timeToast();
             return super.onTouchEvent(event);
         }
