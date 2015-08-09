@@ -12,10 +12,31 @@ import android.view.View;
  */
 public class MainActivity extends BaseActivity {
 
-    /** A hack used to get the context of this Activity in places where I need it put am not allowed
-      * to get it. Sad life.
-      */
     private final Context _context = (Context) this;
+    private View.OnClickListener btnListener = new View.OnClickListener() {
+
+        public void onClick(View v) {
+            startActivity(new Intent(_context, RuleOfThreeActivity.class));
+        }
+    };
+    private View.OnClickListener btnListener2 = new View.OnClickListener() {
+
+        public void onClick(View v) {
+            startActivity(new Intent(_context, TimerActivity.class));
+        }
+    };
+    private View.OnClickListener btnListener3 = new View.OnClickListener() {
+
+        public void onClick(View v) {
+            startActivity(new Intent(_context, PlaygroundActivity.class));
+        }
+    };
+    private View.OnClickListener btnListener4 = new View.OnClickListener() {
+
+        public void onClick(View v) {
+            startActivity(new Intent(_context, CalculatorActivity.class));
+        }
+    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,26 +59,6 @@ public class MainActivity extends BaseActivity {
         findViewById(R.id.drOpenButton).setOnClickListener(btnListener);    //RuleOfThree
         findViewById(R.id.tiOpenButton).setOnClickListener(btnListener2);   //Timer
         findViewById(R.id.pgOpenButton).setOnClickListener(btnListener3);   //Playground
+        findViewById(R.id.calcOpenButton).setOnClickListener(btnListener4); //Calculator
     }
-
-    private View.OnClickListener btnListener = new View.OnClickListener() {
-
-        public void onClick(View v) {
-            startActivity(new Intent(_context, RuleOfThreeActivity.class));
-        }
-    };
-
-    private View.OnClickListener btnListener2 = new View.OnClickListener() {
-
-        public void onClick(View v) {
-            startActivity(new Intent(_context, TimerActivity.class));
-        }
-    };
-
-    private View.OnClickListener btnListener3 = new View.OnClickListener() {
-
-        public void onClick(View v) {
-            startActivity(new Intent(_context, PlaygroundActivity.class));
-        }
-    };
 }
