@@ -19,7 +19,6 @@
     <string name="wrongInputBtnText">OKAY, das werde ich und es tut mir leid</string>
     <string name="sa_title">Einstellungen</string>
     <string name="submitBtn">OKAY</string>
-    <string name="timer_title">Timer</string>
     <string name="action_share">Teilen</string>
     <string name="new_message_notification_placeholder_text_template" tools:ignore="Typos">Bla bla bla, zu faul zum übersetzen bala bla.. hier dein Text: \"%1$s\".</string>
     <string name="new_message_notification_title_template">OMFG!!!!!! \"%1$s\"!!!1!!elf!!!</string>
@@ -61,4 +60,7 @@
     <string name="pref_positive_msg_show_start_popup">Info-Popup bei Appstart aktiviert</string>
     <string name="pref_button_restart_summary">Startet die App neu (kehrt dabei zur Startseite zurück)</string>
     <string name="pref_button_restart_title">Neustart</string>
+    <string name="calc_title">Taschenrechner</string>
+    <string name="periodButton">,</string>
+    <string name="outputEmptyWarning">Nichts zu löschen!</string>
 </resources>
