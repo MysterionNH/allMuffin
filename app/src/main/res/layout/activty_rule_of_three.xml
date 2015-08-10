@@ -55,7 +55,7 @@
                     android:layout_centerHorizontal="true"
                     android:layout_gravity="center_horizontal"
                     android:ems="10"
-                    android:hint="@string/currentPercent"
+                    android:hint="@string/current_percent"
                     android:inputType="number|numberDecimal"
                     android:singleLine="true" />
             </RelativeLayout>
@@ -80,7 +80,7 @@
                     android:layout_centerHorizontal="true"
                     android:layout_gravity="center_horizontal"
                     android:ems="10"
-                    android:hint="@string/currentValue"
+                    android:hint="@string/current_value"
                     android:inputType="number|numberDecimal" />
             </RelativeLayout>
         </TableRow>
@@ -104,7 +104,7 @@
                     android:layout_centerHorizontal="true"
                     android:layout_gravity="center_horizontal"
                     android:ems="10"
-                    android:hint="@string/valueOne"
+                    android:hint="@string/value_one"
                     android:inputType="number|numberDecimal" />
             </RelativeLayout>
         </TableRow>
@@ -128,7 +128,7 @@
                     android:layout_centerHorizontal="true"
                     android:layout_gravity="center_horizontal"
                     android:ems="10"
-                    android:hint="@string/valueHundred"
+                    android:hint="@string/value_hundred"
                     android:inputType="number|numberDecimal" />
             </RelativeLayout>
         </TableRow>
@@ -154,7 +154,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:ems="10"
-                    android:hint="@string/questionedPercent"
+                    android:hint="@string/questioned_percent"
                     android:inputType="number|numberDecimal" />
 
                 <EditText
@@ -163,7 +163,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:ems="10"
-                    android:hint="@string/questionedValue"
+                    android:hint="@string/questioned_value"
                     android:inputType="number|none|numberDecimal" />
             </LinearLayout>
         </TableRow>
@@ -186,7 +186,7 @@
                     android:layout_height="wrap_content"
                     android:layout_centerHorizontal="true"
                     android:layout_gravity="center_horizontal"
-                    android:text="@string/buttonText" />
+                    android:text="@string/button_submit" />
             </RelativeLayout>
         </TableRow>
     </LinearLayout>

@@ -7,16 +7,16 @@
     <string name="main_info">Hallo und Willkommen im \"allMuffin\", einem Sammelprojekt für all meine Android-Projekte! Was auch immer du hier machst wenn du nicht Ich bist, aber hey, whatever, hier sind alle momentan enthaltenen Projekte in chronologischer Reihenfolge:</string>
     <string name="rot_title">Dreisatzrechner</string>
     <string name="greeting">Hallo und Willkommen im Dreisatz Rechner! :)</string>
-    <string name="currentPercent">Aktueller Prozentwert</string>
-    <string name="currentValue">Aktueller Wert</string>
-    <string name="valueOne">Wert bei einem Prozent</string>
-    <string name="valueHundred">Wert bei 100%</string>
-    <string name="questionedPercent">Prozentwert</string>
-    <string name="questionedValue">Wert</string>
-    <string name="buttonText">BERECHNEN!</string>
-    <string name="wrongInputTitle">Fehler in der Eingabe!</string>
-    <string name="wrongInputMsg">Eine oder mehrere Eingaben waren fehlerhaft oder leer. Bitte überprüfe deine Eingaben und versuche es erneut!</string>
-    <string name="wrongInputBtnText">OKAY, das werde ich und es tut mir leid</string>
+    <string name="current_percent">Aktueller Prozentwert</string>
+    <string name="current_value">Aktueller Wert</string>
+    <string name="value_one">Wert bei einem Prozent</string>
+    <string name="value_hundred">Wert bei 100%</string>
+    <string name="questioned_percent">Prozentwert</string>
+    <string name="questioned_value">Wert</string>
+    <string name="button_submit">BERECHNEN!</string>
+    <string name="title_wrong_input">Fehler in der Eingabe!</string>
+    <string name="message_wrong_input">Eine oder mehrere Eingaben waren fehlerhaft oder leer. Bitte überprüfe deine Eingaben und versuche es erneut!</string>
+    <string name="button_wrong_input">OKAY, das werde ich und es tut mir leid</string>
     <string name="sa_title">Einstellungen</string>
     <string name="submitBtn">OKAY</string>
     <string name="action_share">Teilen</string>
@@ -61,6 +61,7 @@
     <string name="pref_button_restart_summary">Startet die App neu (kehrt dabei zur Startseite zurück)</string>
     <string name="pref_button_restart_title">Neustart</string>
     <string name="calc_title">Taschenrechner</string>
-    <string name="periodButton">,</string>
-    <string name="outputEmptyWarning">Nichts zu löschen!</string>
+    <string name="button_period">,</string>
+    <string name="warning_output_empty">Nichts zu löschen!</string>
+    <string name="invalid_entry">Ungültige Eingabe!</string>
 </resources>

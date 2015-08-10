@@ -29,22 +29,22 @@
     <string name="rot_title">Rule of three calculator</string>
 
     <string name="greeting">Hello and welcome to the rule of three calculator! :)</string>
-    <string name="currentValue">Current Value</string>
-    <string name="valueHundred">Value at 100%</string>
-    <string name="questionedValue">Value</string>
-    <string name="currentPercent">Current Percentage</string>
-    <string name="questionedPercent">Percentage</string>
-    <string name="valueOne">Value at 1%</string>
+    <string name="current_value">Current Value</string>
+    <string name="value_hundred">Value at 100%</string>
+    <string name="questioned_value">Value</string>
+    <string name="current_percent">Current Percentage</string>
+    <string name="questioned_percent">Percentage</string>
+    <string name="value_one">Value at 1%</string>
 
-    <string name="buttonText">CALCULATE!</string>
+    <string name="button_submit">CALCULATE!</string>
 
         <!-- For error popup -->
 
-        <string name="wrongInputBtnText">OKAY, I will and I\'m sorry</string>
-        <string name="wrongInputMsg">One or more entries contain an error or are left empty, please
+    <string name="button_wrong_input">OKAY, I will and I\'m sorry</string>
+        <string name="message_wrong_input">One or more entries contain an error or are left empty, please
             double check your inputs and try again!
         </string>
-        <string name="wrongInputTitle">Error(s) in the inputs!</string>
+    <string name="title_wrong_input">Error(s) in the inputs!</string>
 
     <!-- For SettingsActivity -->
 
@@ -64,28 +64,31 @@
     <!-- CalculatorActivity -->
 
     <string name="calc_title">Calculator</string>
-    <string name="clrButton" translatable="false">C</string>
-    <string name="delButton" translatable="false">&lt;&#8212;</string>
-    <string name="divButton" translatable="false">/</string>
-    <string name="timesButton" translatable="false">*</string>
-    <string name="plusButton" translatable="false">+</string>
-    <string name="minusButton" translatable="false">-</string>
-    <string name="equalsButton" translatable="false">=</string>
-    <string name="parenthesesButton" translatable="false">( )</string>
-    <string name="reverseButton" translatable="false">+/-</string>
-    <string name="periodButton">.</string>
-    <string name="numButton0" translatable="false">0</string>
-    <string name="numButton1" translatable="false">1</string>
-    <string name="numButton2" translatable="false">2</string>
-    <string name="numButton3" translatable="false">3</string>
-    <string name="numButton4" translatable="false">4</string>
-    <string name="numButton5" translatable="false">5</string>
-    <string name="numButton6" translatable="false">6</string>
-    <string name="numButton7" translatable="false">7</string>
-    <string name="numButton8" translatable="false">8</string>
-    <string name="numButton9" translatable="false">9</string>
 
-    <string name="outputEmptyWarning">Nothing to delete!</string>
+    <string name="button_clear" translatable="false">C</string>
+    <string name="button_delete" translatable="false">&lt;&#8212;</string>
+    <string name="button_divide" translatable="false">/</string>
+    <string name="button_multiply" translatable="false">*</string>
+    <string name="button_add" translatable="false">+</string>
+    <string name="button_subtract" translatable="false">-</string>
+    <string name="button_equals" translatable="false">=</string>
+    <string name="button_parentheses" translatable="false">( )</string>
+    <string name="button_revert_value" translatable="false">+/-</string>
+    <string name="button_period">.</string>
+    <string name="button_num_zero" translatable="false">0</string>
+    <string name="button_num_one" translatable="false">1</string>
+    <string name="button_num_two" translatable="false">2</string>
+    <string name="button_num_three" translatable="false">3</string>
+    <string name="button_num_four" translatable="false">4</string>
+    <string name="button_num_five" translatable="false">5</string>
+    <string name="button_num_six" translatable="false">6</string>
+    <string name="button_num_seven" translatable="false">7</string>
+    <string name="button_num_eight" translatable="false">8</string>
+    <string name="button_num_nine" translatable="false">9</string>
+
+    <string name="warning_output_empty">Nothing to delete!</string>
+
+    <string name="invalid_entry">Invalid entry!</string>
 
     <!-- StatusBarNotification (Template) -->
 

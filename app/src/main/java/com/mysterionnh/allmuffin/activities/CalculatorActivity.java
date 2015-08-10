@@ -6,35 +6,122 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.GridLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.mysterionnh.allmuffin.R;
+import com.mysterionnh.allmuffin.helper.Errors;
 
 public class CalculatorActivity extends BaseActivity {
 
     private final Context _context = (Context) this;
     private Button mClickedButton;
     private TextView mOutputView;
-    //TODO: siehste schon
+    private String mOutputText;
     private final View.OnClickListener buttonListener = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
 
-            String outputText = mOutputView.getText().toString();
+            mOutputText = mOutputView.getText().toString();
             mClickedButton = (Button) v;
 
             switch (mClickedButton.getId()) {
+                case R.id.reverseButton: {
+                    // TODO: Gets handled, but in the worst way possible
+                    mOutputText = reverseNum(mOutputText);
+                    break;
+                }
+                case R.id.periodButton: {
+                    if (!mOutputText.equals("")) {
+                        if (lastCharIsNumeric(mOutputText) && !currentNumIsDecimal(mOutputText)) {
+                            mOutputText += ".";
+                        } else {
+                            Errors.errorToast(_context, getResources().getString(R.string.invalid_entry));
+                        }
+                    } else {
+                        mOutputText = "0.";
+                    }
+                    break;
+                }
+                case R.id.timesButton: {
+                    putSign(mClickedButton);
+                    break;
+                }
+                case R.id.minusButton: {
+                    putSign(mClickedButton);
+                    break;
+                }
+                case R.id.plusButton: {
+                    putSign(mClickedButton);
+                    break;
+                }
+                case R.id.divButton: {
+                    putSign(mClickedButton);
+                    break;
+                }
                 case R.id.parenthesesButton: {
-                    //if (!outputText.equals("")) {
-                    //outputText.contains("(");
-                    //}
+                    if (!mOutputText.equals("")) {
+                        char[] temp = mOutputText.toCharArray();
+                        int open = 0;
+                        int closed = 0;
+                        for (int i = temp.length - 1; 0 <= i; i--) {
+                            if (temp[i] == '(') {
+                                open++;
+                            }
+                            if (temp[i] == ')') {
+                                closed++;
+                            }
+                        }
+
+                        if (open > closed) {
+                            // The last one is open, so we close it
+                            if (lastCharIsNumeric(mOutputText) || temp[temp.length - 1] == ')') {
+                                // Only close when last char is a number
+                                mOutputText += ")";
+                            } else if (temp[temp.length - 1] == '(') {
+                                mOutputText += "(";
+                            } else {
+                                Errors.errorToast(_context,
+                                        getResources().getString(R.string.invalid_entry));
+                            }
+                        } else {
+                            // More closed than or equal open ones, so open new one
+                            if (mOutputText.charAt(mOutputText.length() - 1) == ')' || lastCharIsNumeric(mOutputText)) {
+                                // If the last char is the last one or a number, user likely wants to multiply
+                                mOutputText += "*";
+                            }
+                            mOutputText += "(";
+                        }
+                    } else {
+                        mOutputText += "(";
+                    }
                     break;
                 }
                 default: {
-                    outputText += mClickedButton.getText();
-                    mOutputView.setText(outputText);
+                    if (!mOutputText.equals("")) {
+                        char[] temp = mOutputText.toCharArray();
+                        switch (temp[temp.length - 1]) {
+                            case ')': {
+                                mOutputText += "+" + mClickedButton.getText();
+                                break;
+                            }
+                            case '/': {
+                                if (mClickedButton.getText().toString().equals("0")) {
+                                    Errors.errorToast(_context,
+                                            getResources().getString(R.string.invalid_entry));
+                                } else {
+                                    mOutputText += mClickedButton.getText().toString();
+                                }
+                                break;
+                            }
+                            default: {
+                                mOutputText += mClickedButton.getText().toString();
+                            }
+                        }
+                    } else {
+                        mOutputText += mClickedButton.getText().toString();
+                    }
                 }
             }
+            updateOutput(mOutputText);
         }
     };
     private final View.OnClickListener buttonListener1 = new View.OnClickListener() {
@@ -64,10 +151,8 @@ public class CalculatorActivity extends BaseActivity {
                             outputText = "";
                         }
                     } else {
-                        Toast toast = Toast.makeText(_context,
-                                R.string.outputEmptyWarning,
-                                Toast.LENGTH_LONG);
-                        toast.show();
+                        Errors.errorToast(_context,
+                                getResources().getString(R.string.warning_output_empty));
                     }
                     break;
                 }
@@ -125,5 +210,59 @@ public class CalculatorActivity extends BaseActivity {
 
     private void updateOutput(String outputText) {
         mOutputView.setText(outputText);
+        mOutputText = "";
+    }
+
+    private void putSign(Button btn) {
+        if (!mOutputText.equals("")) {
+            if (lastCharIsNumeric(mOutputText) || mOutputText.charAt(mOutputText.length() - 1) == ')') {
+                mOutputText += btn.getText().toString();
+            } else {
+                Errors.errorToast(_context, getResources().getString(R.string.invalid_entry));
+            }
+        } else {
+            mOutputText = "0" + btn.getText().toString();
+        }
+    }
+
+    private boolean currentNumIsDecimal(String string) {
+        char[] text = string.toCharArray();
+        for (int i = text.length - 1; i >= 0; i--) {
+            if (!lastCharIsNumeric(String.valueOf(text[i]))) {
+                return text[i] == '.';
+            }
+        }
+        return false;
+    }
+
+    private String reverseNum(String string) {
+        char[] text = string.toCharArray();
+        for (int i = text.length - 1; i >= 0; i--) {
+            if (!lastCharIsNumeric(String.valueOf(text[i]))) {
+                String[] tempStrings = new String[2];
+                tempStrings[0] = string.substring(0, i - 1);
+                tempStrings[1] = string.substring(i);
+                tempStrings[1] = "(-(" + tempStrings[1];
+                string = tempStrings[0] + tempStrings[1];
+                return string;
+            }
+        }
+        return "(-(" + string;
+    }
+
+    private boolean lastCharIsNumeric(String string) {
+        if (!string.equals("")) {
+            try {
+                //noinspection ResultOfMethodCallIgnored
+                Integer.parseInt(String.valueOf(string.charAt(string.length() - 1)));
+                // Only close when last char is a number
+                return true;
+            } catch (NumberFormatException e) {
+                e.printStackTrace();
+                return false;
+            }
+        } else {
+            return false;
+        }
     }
 }

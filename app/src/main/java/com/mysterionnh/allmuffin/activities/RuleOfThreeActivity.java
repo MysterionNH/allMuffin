@@ -1,15 +1,13 @@
 package com.mysterionnh.allmuffin.activities;
 
 import android.content.Context;
-import android.graphics.Color;
 import android.os.Bundle;
-import android.view.Gravity;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 
 import com.mysterionnh.allmuffin.R;
-import com.mysterionnh.allmuffin.helper.NewMessagePopup;
+import com.mysterionnh.allmuffin.helper.Errors;
 
 /**
  * Weird calculator for percentage and rule of three stuff
@@ -104,7 +102,9 @@ public class RuleOfThreeActivity extends BaseActivity {
             lastLine();
         } else if (empty[2] && empty[3]) {
             // Nothing to calculate, stupid user
-            error();
+            Errors.errorPopup(_context, getResources().getString(R.string.title_wrong_input),
+                    getResources().getString(R.string.message_wrong_input),
+                    getResources().getString(R.string.button_wrong_input));
         } else if (!empty[2]) {
             // In this case the first two TextViews are useless, hence I "empty" them
             texts[0] = "---";
@@ -131,17 +131,5 @@ public class RuleOfThreeActivity extends BaseActivity {
         } else if (!empty[5]) {
             texts[4] = String.valueOf(Double.parseDouble(texts[5]) / Double.parseDouble(texts[2]));
         }
-    }
-
-    //Tells the user that he made an mistake with the inputs
-    private void error() {
-        NewMessagePopup popup = new NewMessagePopup(this);
-        popup.setTitle(getResources().getString(R.string.wrongInputTitle));
-        popup.setBody(getResources().getString(R.string.wrongInputMsg));
-        popup.setBtnText(getResources().getString(R.string.wrongInputBtnText));
-        popup.setColor(Color.RED);
-        popup.setAlign(Gravity.FILL_HORIZONTAL);
-
-        popup.show();
     }
 }
