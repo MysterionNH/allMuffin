@@ -161,7 +161,7 @@ public class CalculatorActivity extends BaseActivity {
                     break;
                 }
                 case R.id.equalsButton: {
-                    calculate();
+                    updateOutput(calculate(mOutputView.getText().toString(), true));
                     isUpdated = true;
                 }
             }
@@ -216,33 +216,57 @@ public class CalculatorActivity extends BaseActivity {
         }
     }
 
-    //TODO: Clear and comment
-    private void calculate() {
-        mOutputText = mOutputView.getText().toString();
-        if (!mOutputText.equals("")) {
+    //TODO: Clean and comment
+    private String calculate(String problem, boolean updateLastProblem) {
+        if (!problem.equals("") || !problem.equals("+") || problem.equals("-") || problem.equals("*") || problem.equals("÷")) {
             double primarySolution = 0;
             double solution;
             int numAndOperatorCount = 0;
             String tempNum = "";
-            int PROBLEM_LENGTH = mOutputText.length();
+            int PROBLEM_LENGTH = problem.length();
 
             boolean[] allowReset = new boolean[PROBLEM_LENGTH];
             int[] primaryOperatorLocations = new int[PROBLEM_LENGTH];
             char[] operators = new char[PROBLEM_LENGTH];
             Double[] numbers = new Double[PROBLEM_LENGTH];
-            char[] outputArray = mOutputText.toCharArray();
+            char[] outputArray = problem.toCharArray();
+            char[] inParentheses = new char[PROBLEM_LENGTH];
 
             for (int i = 0; i < PROBLEM_LENGTH; i++) {
                 if (lastCharIsNumeric(String.valueOf(outputArray[i])) || outputArray[i] == '.') {
                     tempNum += outputArray[i];
-                } else {
-                    numbers[numAndOperatorCount] = Double.valueOf(tempNum);
-                    operators[numAndOperatorCount] = outputArray[i];
+                } else if (outputArray[i] == '(') {
+                    if (!tempNum.equals("")) {
+                        numbers[numAndOperatorCount] = Double.valueOf(tempNum);
+                        numAndOperatorCount++;
+                    }
+                    for (int n = i + 1; outputArray[n] != ')'; n++) {
+                        inParentheses[n - (i + 1)] = outputArray[n];
+                    }
                     tempNum = "";
+                    for (char c : inParentheses) {
+                        if (c != '\u0000') {
+                            tempNum += c;
+                        }
+                    }
+                    Errors.logError(_context, tempNum);
+                    numbers[numAndOperatorCount] = Double.valueOf(calculate(tempNum, false));
+                    numAndOperatorCount++;
+                    i += tempNum.length() + 1;
+                    tempNum = "";
+                } else {
+                    if (!tempNum.equals("")) {
+                        numbers[numAndOperatorCount] = Double.valueOf(tempNum);
+                        tempNum = "";
+                        //numAndOperatorCount++;
+                    }
+                    operators[numAndOperatorCount] = outputArray[i];
                     numAndOperatorCount++;
                 }
             }
-            numbers[numAndOperatorCount] = Double.valueOf(tempNum);
+            if (!tempNum.equals("")) {
+                numbers[numAndOperatorCount] = Double.valueOf(tempNum);
+            }
 
             for (int k = 0; k < operators.length; k++) {
                 if (operators[k] == '*' || operators[k] == '÷') {
@@ -268,7 +292,7 @@ public class CalculatorActivity extends BaseActivity {
                             } else {
                                 Errors.errorToast(_context,
                                         getResources().getString(R.string.invalid_entry));
-                                return;
+                                return problem;
                             }
                             break;
                         }
@@ -295,10 +319,13 @@ public class CalculatorActivity extends BaseActivity {
                     }
                 }
             }
-            mLastProblemView.setText(mOutputText + "=");
-            updateOutput(String.valueOf(solution + primarySolution));
+            if (updateLastProblem) {
+                mLastProblemView.setText(problem + "=");
+            }
+            return (String.valueOf(solution + primarySolution));
         } else {
             Errors.errorToast(_context, getResources().getString(R.string.invalid_entry));
+            return problem;
         }
     }
 
