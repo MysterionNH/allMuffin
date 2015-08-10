@@ -128,6 +128,7 @@ public class CalculatorActivity extends BaseActivity {
         @Override
         public void onClick(View v) {
 
+            boolean isUpdated = false;
             String outputText = mOutputView.getText().toString();
             mClickedButton = (Button) v;
 
@@ -158,9 +159,13 @@ public class CalculatorActivity extends BaseActivity {
                 }
                 case R.id.equalsButton: {
                     //TODO: Call calcMethod
+                    calculate();
+                    isUpdated = true;
                 }
             }
-            updateOutput(outputText);
+            if (!isUpdated) {
+                updateOutput(outputText);
+            }
         }
     };
 
@@ -206,6 +211,50 @@ public class CalculatorActivity extends BaseActivity {
                 buttons[i].setOnClickListener(buttonListener1);
             }
         }
+    }
+
+    private void calculate() {
+        double solution = 0;
+        int numAndOperatorCount = 0;
+        String tempNum = "";
+        mOutputText = mOutputView.getText().toString();
+        char[] opertaors = new char[mOutputText.length()];
+        Double[] nums = new Double[mOutputText.length()];
+        char[] outputArray = mOutputText.toCharArray();
+        for (int i = 0; i < mOutputText.length(); i++) {
+            if (lastCharIsNumeric(String.valueOf(outputArray[i])) || outputArray[i] == '.') {
+                tempNum += outputArray[i];
+            } else {
+                nums[numAndOperatorCount] = Double.valueOf(tempNum);
+                opertaors[numAndOperatorCount] = outputArray[i];
+                tempNum = "";
+                numAndOperatorCount++;
+            }
+        }
+
+        nums[numAndOperatorCount] = Double.valueOf(tempNum);
+
+        for (int j = 0; j < nums.length; j++) {
+            switch (opertaors[j]) {
+                case '+': {
+                    solution = nums[j] + nums[j + 1];
+                    break;
+                }
+                case '-': {
+                    solution = nums[j] - nums[j + 1];
+                    break;
+                }
+                case '/': {
+                    solution = nums[j] / nums[j + 1];
+                    break;
+                }
+                case '*': {
+                    solution = nums[j] * nums[j + 1];
+                    break;
+                }
+            }
+        }
+        updateOutput(String.valueOf(solution));
     }
 
     private void updateOutput(String outputText) {
