@@ -14,12 +14,14 @@ public class CalculatorActivity extends BaseActivity {
 
     private final Context _context = (Context) this;
     private Button mClickedButton;
+    private TextView mLastProblemView;
     private TextView mOutputView;
     private String mOutputText;
     private final View.OnClickListener buttonListener = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
 
+            mLastProblemView.setText("");
             mOutputText = mOutputView.getText().toString();
             mClickedButton = (Button) v;
 
@@ -128,6 +130,7 @@ public class CalculatorActivity extends BaseActivity {
         @Override
         public void onClick(View v) {
 
+            mLastProblemView.setText("");
             boolean isUpdated = false;
             String outputText = mOutputView.getText().toString();
             mClickedButton = (Button) v;
@@ -158,7 +161,6 @@ public class CalculatorActivity extends BaseActivity {
                     break;
                 }
                 case R.id.equalsButton: {
-                    //TODO: Call calcMethod
                     calculate();
                     isUpdated = true;
                 }
@@ -176,6 +178,7 @@ public class CalculatorActivity extends BaseActivity {
         setContentView(R.layout.activity_calculator);
         setBGColorAccordingToSettings(_context);
 
+        mLastProblemView = (TextView) findViewById(R.id.lastProblem);
         // Get the TextView were everything gets displayed
         mOutputView = (TextView) findViewById(R.id.outputView);
         // Gets the grid in which all buttons are, then extracts all buttons, and sort them (not-/displayable)
@@ -215,83 +218,88 @@ public class CalculatorActivity extends BaseActivity {
 
     //TODO: Clear and comment
     private void calculate() {
-        double primarieSolution = 0;
-        double solution;
-        int numAndOperatorCount = 0;
-        String tempNum = "";
         mOutputText = mOutputView.getText().toString();
-        int PROBLEM_LENGTH = mOutputText.length();
+        if (!mOutputText.equals("")) {
+            double primarySolution = 0;
+            double solution;
+            int numAndOperatorCount = 0;
+            String tempNum = "";
+            int PROBLEM_LENGTH = mOutputText.length();
 
-        boolean[] allowReset = new boolean[PROBLEM_LENGTH];
-        int[] primarieOperatorsLoctions = new int[PROBLEM_LENGTH];
-        char[] operators = new char[PROBLEM_LENGTH];
-        Double[] nums = new Double[PROBLEM_LENGTH];
-        char[] outputArray = mOutputText.toCharArray();
+            boolean[] allowReset = new boolean[PROBLEM_LENGTH];
+            int[] primaryOperatorLocations = new int[PROBLEM_LENGTH];
+            char[] operators = new char[PROBLEM_LENGTH];
+            Double[] numbers = new Double[PROBLEM_LENGTH];
+            char[] outputArray = mOutputText.toCharArray();
 
-        for (int i = 0; i < PROBLEM_LENGTH; i++) {
-            if (lastCharIsNumeric(String.valueOf(outputArray[i])) || outputArray[i] == '.') {
-                tempNum += outputArray[i];
-            } else {
-                nums[numAndOperatorCount] = Double.valueOf(tempNum);
-                operators[numAndOperatorCount] = outputArray[i];
-                tempNum = "";
-                numAndOperatorCount++;
+            for (int i = 0; i < PROBLEM_LENGTH; i++) {
+                if (lastCharIsNumeric(String.valueOf(outputArray[i])) || outputArray[i] == '.') {
+                    tempNum += outputArray[i];
+                } else {
+                    numbers[numAndOperatorCount] = Double.valueOf(tempNum);
+                    operators[numAndOperatorCount] = outputArray[i];
+                    tempNum = "";
+                    numAndOperatorCount++;
+                }
             }
-        }
-        nums[numAndOperatorCount] = Double.valueOf(tempNum);
+            numbers[numAndOperatorCount] = Double.valueOf(tempNum);
 
-        for (int k = 0; k < operators.length; k++) {
-            if (operators[k] == '*' || operators[k] == '/') {
-                primarieOperatorsLoctions[k] = k;
-            } else {
-                primarieOperatorsLoctions[k] = -1;
+            for (int k = 0; k < operators.length; k++) {
+                if (operators[k] == '*' || operators[k] == '÷') {
+                    primaryOperatorLocations[k] = k;
+                } else {
+                    primaryOperatorLocations[k] = -1;
+                }
             }
-        }
-        for (int l = 0; l < primarieOperatorsLoctions.length; l++) {
-            if (primarieOperatorsLoctions[l] >= 0) {
-                switch (operators[primarieOperatorsLoctions[l]]) {
-                    case '*': {
-                        primarieSolution = nums[primarieOperatorsLoctions[l]] * nums[primarieOperatorsLoctions[l] + 1];
-                        nums[primarieOperatorsLoctions[l] + 1] = primarieSolution;
-                        allowReset[l] = true;
-                        break;
-                    }
-                    case '/': {
-                        if (nums[primarieOperatorsLoctions[l] + 1] != '0') {
-                            primarieSolution = nums[primarieOperatorsLoctions[l]] / nums[primarieOperatorsLoctions[l] + 1];
-                            nums[primarieOperatorsLoctions[l] + 1] = primarieSolution;
+            for (int l = 0; l < primaryOperatorLocations.length; l++) {
+                if (primaryOperatorLocations[l] >= 0) {
+                    switch (operators[primaryOperatorLocations[l]]) {
+                        case '*': {
+                            primarySolution = numbers[primaryOperatorLocations[l]] * numbers[primaryOperatorLocations[l] + 1];
+                            numbers[primaryOperatorLocations[l] + 1] = primarySolution;
                             allowReset[l] = true;
-                        } else {
-                            Errors.errorToast(_context,
-                                    getResources().getString(R.string.invalid_entry));
-                            return;
+                            break;
                         }
+                        case '÷': {
+                            if (numbers[primaryOperatorLocations[l] + 1] != '0') {
+                                primarySolution = numbers[primaryOperatorLocations[l]] / numbers[primaryOperatorLocations[l] + 1];
+                                numbers[primaryOperatorLocations[l] + 1] = primarySolution;
+                                allowReset[l] = true;
+                            } else {
+                                Errors.errorToast(_context,
+                                        getResources().getString(R.string.invalid_entry));
+                                return;
+                            }
+                            break;
+                        }
+                    }
+                }
+            }
+            for (int m = 0; m < allowReset.length; m++) {
+                if (allowReset[m]) {
+                    numbers[primaryOperatorLocations[m]] = 0.0;
+                    numbers[primaryOperatorLocations[m] + 1] = 0.0;
+                    operators[primaryOperatorLocations[m]] = ' ';
+                }
+            }
+            solution = numbers[0];
+            for (int j = 0; j < numbers.length; j++) {
+                switch (operators[j]) {
+                    case '+': {
+                        solution += numbers[j + 1];
+                        break;
+                    }
+                    case '-': {
+                        solution -= numbers[j + 1];
                         break;
                     }
                 }
             }
+            mLastProblemView.setText(mOutputText + "=");
+            updateOutput(String.valueOf(solution + primarySolution));
+        } else {
+            Errors.errorToast(_context, getResources().getString(R.string.invalid_entry));
         }
-        for (int m = 0; m < allowReset.length; m++) {
-            if (allowReset[m]) {
-                nums[primarieOperatorsLoctions[m]] = 0.0;
-                nums[primarieOperatorsLoctions[m] + 1] = 0.0;
-                operators[primarieOperatorsLoctions[m]] = ' ';
-            }
-        }
-        solution = nums[0];
-        for (int j = 0; j < nums.length; j++) {
-            switch (operators[j]) {
-                case '+': {
-                    solution += nums[j + 1];
-                    break;
-                }
-                case '-': {
-                    solution -= nums[j + 1];
-                    break;
-                }
-            }
-        }
-        updateOutput(String.valueOf(solution + primarieSolution));
     }
 
     private void updateOutput(String outputText) {

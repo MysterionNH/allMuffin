@@ -67,7 +67,7 @@
 
     <string name="button_clear" translatable="false">C</string>
     <string name="button_delete" translatable="false">&lt;&#8212;</string>
-    <string name="button_divide" translatable="false">/</string>
+    <string name="button_divide" translatable="false">÷</string>
     <string name="button_multiply" translatable="false">*</string>
     <string name="button_add" translatable="false">+</string>
     <string name="button_subtract" translatable="false">-</string>

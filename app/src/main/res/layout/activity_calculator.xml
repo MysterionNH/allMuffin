@@ -17,24 +17,56 @@
         android:backgroundTintMode="screen"
         android:orientation="vertical">
 
-        <TextView
-            android:id="@+id/outputView"
-            style="@android:style/TextAppearance.Holo.Large"
-            android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
-            android:layout_alignParentBottom="true"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentRight="true"
-            android:height="20dp"
-            android:background="#D8D5C9"
-            android:backgroundTintMode="screen"
-            android:editable="false"
-            android:gravity="bottom|end|right"
-            android:hint="@string/button_num_zero"
-            android:singleLine="true"
-            android:textColor="#000"
-            android:textIsSelectable="true"
-            android:textSize="50sp" />
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <EditText
+                android:id="@+id/lastProblem"
+                style="@android:style/TextAppearance.Holo.Large"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentTop="true"
+                android:height="20dp"
+                android:background="#EAD9AF"
+                android:editable="true"
+                android:gravity="top|end|right"
+                android:inputType="none"
+                android:numeric="decimal"
+                android:paddingLeft="@dimen/activity_horizontal_margin"
+                android:paddingRight="@dimen/activity_horizontal_margin"
+                android:singleLine="true"
+                android:textColor="#000"
+                android:textIsSelectable="true"
+                android:textSize="50sp" />
+
+            <EditText
+                android:id="@+id/outputView"
+                style="@android:style/TextAppearance.Holo.Large"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentTop="true"
+                android:layout_below="@+id/lastProblem"
+                android:layout_marginLeft="0dp"
+                android:layout_marginTop="58dp"
+                android:height="20dp"
+                android:background="#EAD9AF"
+                android:editable="true"
+                android:gravity="bottom|end|right"
+                android:hint="@string/button_num_zero"
+                android:inputType="none"
+                android:numeric="decimal"
+                android:paddingLeft="@dimen/activity_horizontal_margin"
+                android:paddingRight="@dimen/activity_horizontal_margin"
+                android:paddingTop="@dimen/activity_vertical_margin"
+                android:singleLine="true"
+                android:textColor="#000"
+                android:textIsSelectable="true"
+                android:textSize="50sp" />
+
+        </RelativeLayout>
     </RelativeLayout>
 
     <RelativeLayout
