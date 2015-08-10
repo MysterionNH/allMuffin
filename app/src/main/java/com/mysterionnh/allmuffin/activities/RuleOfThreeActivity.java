@@ -76,7 +76,7 @@ public class RuleOfThreeActivity extends BaseActivity {
         for (int i = 0; i < INPUT_FIELD_COUNT; i++) {
             empty[i] = texts[i].isEmpty();
 
-            // Okay, there is text in it, buuut is it a double?
+            // Okay, there is text in it, but is it a double?
             if (!empty[i]) {
                 try {
                     //noinspection ResultOfMethodCallIgnored

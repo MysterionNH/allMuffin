@@ -12,11 +12,29 @@ import com.mysterionnh.allmuffin.helper.Errors;
 
 public class CalculatorActivity extends BaseActivity {
 
-    private final Context _context = (Context) this;
+    /**
+     * As always, storing context, easier and safer to access
+     */
+    private final Context mContext = (Context) this;
+    /**
+     * The View Button that was clicked
+     */
     private Button mClickedButton;
+    /**
+     * The additional top view that shows the last problem so the solutions isn't alone
+     */
     private TextView mLastProblemView;
+    /**
+     * The view were the problem while typing is shown and the solution after calculation
+     */
     private TextView mOutputView;
+    /**
+     * The text of {@see mOutputView}
+     */
     private String mOutputText;
+    /**
+     * The OnClickListener for all buttons that get displayed somehow
+     */
     private final View.OnClickListener buttonListener = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
@@ -27,7 +45,6 @@ public class CalculatorActivity extends BaseActivity {
 
             switch (mClickedButton.getId()) {
                 case R.id.reverseButton: {
-                    // TODO: Gets handled, but in the worst way possible
                     mOutputText = reverseNum(mOutputText);
                     break;
                 }
@@ -36,7 +53,7 @@ public class CalculatorActivity extends BaseActivity {
                         if (lastCharIsNumeric(mOutputText) && !currentNumIsDecimal(mOutputText)) {
                             mOutputText += ".";
                         } else {
-                            Errors.errorToast(_context, getResources().getString(R.string.invalid_entry));
+                            Errors.errorToast(mContext, getResources().getString(R.string.invalid_entry));
                         }
                     } else {
                         mOutputText = "0.";
@@ -78,10 +95,12 @@ public class CalculatorActivity extends BaseActivity {
                             if (lastCharIsNumeric(mOutputText) || temp[temp.length - 1] == ')') {
                                 // Only close when last char is a number
                                 mOutputText += ")";
-                            } else if (temp[temp.length - 1] == '(') {
+                            } else if (temp[temp.length - 1] == '(' || temp[temp.length - 1] == '+'
+                                    || temp[temp.length - 1] == '*' || temp[temp.length - 1] == '÷'
+                                    || temp[temp.length - 1] == '-') {
                                 mOutputText += "(";
                             } else {
-                                Errors.errorToast(_context,
+                                Errors.errorToast(mContext,
                                         getResources().getString(R.string.invalid_entry));
                             }
                         } else {
@@ -107,7 +126,7 @@ public class CalculatorActivity extends BaseActivity {
                             }
                             case '/': {
                                 if (mClickedButton.getText().toString().equals("0")) {
-                                    Errors.errorToast(_context,
+                                    Errors.errorToast(mContext,
                                             getResources().getString(R.string.invalid_entry));
                                 } else {
                                     mOutputText += mClickedButton.getText().toString();
@@ -126,6 +145,9 @@ public class CalculatorActivity extends BaseActivity {
             updateOutput(mOutputText);
         }
     };
+    /**
+     * The OnClickListener for all buttons that have an action and doesn't get displayed directly
+     */
     private final View.OnClickListener buttonListener1 = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
@@ -155,7 +177,7 @@ public class CalculatorActivity extends BaseActivity {
                             outputText = "";
                         }
                     } else {
-                        Errors.errorToast(_context,
+                        Errors.errorToast(mContext,
                                 getResources().getString(R.string.warning_output_empty));
                     }
                     break;
@@ -176,7 +198,7 @@ public class CalculatorActivity extends BaseActivity {
         // Initializing the activity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_calculator);
-        setBGColorAccordingToSettings(_context);
+        setBGColorAccordingToSettings(mContext);
 
         mLastProblemView = (TextView) findViewById(R.id.lastProblem);
         // Get the TextView were everything gets displayed
@@ -216,23 +238,67 @@ public class CalculatorActivity extends BaseActivity {
         }
     }
 
-    //TODO: Clean and comment
-    private String calculate(String problem, boolean updateLastProblem) {
-        if (!problem.equals("") || !problem.equals("+") || problem.equals("-") || problem.equals("*") || problem.equals("÷")) {
-            double primarySolution = 0;
+    /**
+     * Does the calculation of the problem
+     *
+     * @param problem           The problem to calculate, usually mOutputText
+     * @param updateLastProblem true if you lastProblemView to show your problem
+     * @return Returns the solution of the problem as string or, if problem was
+     * invalid, the problem itself
+     */
+    private String calculate(String problem, boolean updateLastProblem) { //TODO: Catch division by 0
+        if (problemIsValid(problem)) {
+            problem = fixParentheses(problem);
+            /**
+             * The solution of the primary problems (e.g. multiplication and division) are stored here
+             */
+            double primarySolution = 0.0;
+            /**
+             * The solution of the "normal" problems (e.g. addition and subtraction) are stored here
+             */
             double solution;
+            /**
+             * Used to define the order of numbers and operators, also to make sure every number
+             * is used with the correct other number and operator
+             */
             int numAndOperatorCount = 0;
+            /**
+             * When building the numbers out of the char array, before they are finished they get
+             * stored here temporally till I'm ready to build them
+             */
             String tempNum = "";
+            /**
+             * Used for all arrays as max length, none of them can get longer than the original
+             * problem
+             */
             int PROBLEM_LENGTH = problem.length();
-
+            /**
+             * Some variables need to be reset, in here is stored which are allowed when
+             */
             boolean[] allowReset = new boolean[PROBLEM_LENGTH];
+            /**
+             * The index of the primary operators inside the char[] out of the problem
+             */
             int[] primaryOperatorLocations = new int[PROBLEM_LENGTH];
+            /**
+             * All operators in the order they are going to be used
+             */
             char[] operators = new char[PROBLEM_LENGTH];
+            /**
+             * All numbers in the oder they are going to be used
+             */
             Double[] numbers = new Double[PROBLEM_LENGTH];
+            /**
+             * The original problem but as char[]
+             */
             char[] outputArray = problem.toCharArray();
+            /**
+             * Everything in between parentheses, so this can be calculated beforehand
+             */
             char[] inParentheses = new char[PROBLEM_LENGTH];
 
             for (int i = 0; i < PROBLEM_LENGTH; i++) {
+                // Here the numbers get build
                 if (lastCharIsNumeric(String.valueOf(outputArray[i])) || outputArray[i] == '.') {
                     tempNum += outputArray[i];
                 } else if (outputArray[i] == '(') {
@@ -240,7 +306,17 @@ public class CalculatorActivity extends BaseActivity {
                         numbers[numAndOperatorCount] = Double.valueOf(tempNum);
                         numAndOperatorCount++;
                     }
-                    for (int n = i + 1; outputArray[n] != ')'; n++) {
+                    int openedParentheses = 0;
+                    int closedParentheses = 0;
+                    for (int p = 0; p < problem.length(); p++) {
+                        if (problem.charAt(p) == '(') {
+                            openedParentheses++;
+                        }
+                    }
+                    for (int n = i + 1; openedParentheses > closedParentheses; n++) {
+                        if (outputArray[n] == ')') {
+                            closedParentheses++;
+                        }
                         inParentheses[n - (i + 1)] = outputArray[n];
                     }
                     tempNum = "";
@@ -249,25 +325,27 @@ public class CalculatorActivity extends BaseActivity {
                             tempNum += c;
                         }
                     }
-                    Errors.logError(_context, tempNum);
                     numbers[numAndOperatorCount] = Double.valueOf(calculate(tempNum, false));
                     numAndOperatorCount++;
                     i += tempNum.length() + 1;
                     tempNum = "";
                 } else {
+                    // Okay, it isn't a number anymore, if we haven't build the number before this
+                    // already, do it now
                     if (!tempNum.equals("")) {
                         numbers[numAndOperatorCount] = Double.valueOf(tempNum);
                         tempNum = "";
-                        //numAndOperatorCount++;
                     }
                     operators[numAndOperatorCount] = outputArray[i];
                     numAndOperatorCount++;
                 }
             }
+            // Last check if we didn't forgot to build a number
             if (!tempNum.equals("")) {
                 numbers[numAndOperatorCount] = Double.valueOf(tempNum);
             }
 
+            // Look if there are any primary operators and if so, where
             for (int k = 0; k < operators.length; k++) {
                 if (operators[k] == '*' || operators[k] == '÷') {
                     primaryOperatorLocations[k] = k;
@@ -275,6 +353,8 @@ public class CalculatorActivity extends BaseActivity {
                     primaryOperatorLocations[k] = -1;
                 }
             }
+
+            // If there were any, calculate with them
             for (int l = 0; l < primaryOperatorLocations.length; l++) {
                 if (primaryOperatorLocations[l] >= 0) {
                     switch (operators[primaryOperatorLocations[l]]) {
@@ -290,7 +370,7 @@ public class CalculatorActivity extends BaseActivity {
                                 numbers[primaryOperatorLocations[l] + 1] = primarySolution;
                                 allowReset[l] = true;
                             } else {
-                                Errors.errorToast(_context,
+                                Errors.errorToast(mContext,
                                         getResources().getString(R.string.invalid_entry));
                                 return problem;
                             }
@@ -299,6 +379,8 @@ public class CalculatorActivity extends BaseActivity {
                     }
                 }
             }
+
+            // Reset some variables.. not sure anymore why I had to do this
             for (int m = 0; m < allowReset.length; m++) {
                 if (allowReset[m]) {
                     numbers[primaryOperatorLocations[m]] = 0.0;
@@ -306,7 +388,15 @@ public class CalculatorActivity extends BaseActivity {
                     operators[primaryOperatorLocations[m]] = ' ';
                 }
             }
-            solution = numbers[0];
+
+            // The first number is our starting point
+            if (numbers[0] != null) {
+                solution = numbers[0];
+            } else {
+                solution = 0;
+            }
+
+            // Woo! - Real calculation
             for (int j = 0; j < numbers.length; j++) {
                 switch (operators[j]) {
                     case '+': {
@@ -319,12 +409,16 @@ public class CalculatorActivity extends BaseActivity {
                     }
                 }
             }
+
             if (updateLastProblem) {
                 mLastProblemView.setText(problem + "=");
             }
+
+            // Everything went well, here comes the solution
             return (String.valueOf(solution + primarySolution));
         } else {
-            Errors.errorToast(_context, getResources().getString(R.string.invalid_entry));
+            // Noob
+            Errors.errorToast(mContext, getResources().getString(R.string.invalid_entry));
             return problem;
         }
     }
@@ -334,12 +428,42 @@ public class CalculatorActivity extends BaseActivity {
         mOutputText = "";
     }
 
+    private boolean problemIsValid(String problem) {
+        // I have never seen this before, but AS told me it works and it does so... I don't touch it
+        return !problem.equals("") || !problem.equals("+") || !problem.equals("-") || !problem.equals("*") || !problem.equals("÷") || !problem.equals("(");
+    }
+
+    /**
+     * Just in case the user was to lazy to close all thous stupid parentheses it opened, we close
+     * them
+     *
+     * @param problem The string in which I should check the ps
+     * @return returns the fixed string, if it was okay, itself
+     */
+    private String fixParentheses(String problem) {
+        int openedParentheses = 0;
+        int closedParentheses = 0;
+        for (int p = 0; p < problem.length(); p++) {
+            if (problem.charAt(p) == '(') {
+                openedParentheses++;
+            } else if (problem.charAt(p) == ')') {
+                closedParentheses++;
+            }
+        }
+        if (openedParentheses > closedParentheses) {
+            for (int q = 0; q < openedParentheses - closedParentheses; q++) {
+                problem += ")";
+            }
+        }
+        return problem;
+    }
+
     private void putSign(Button btn) {
         if (!mOutputText.equals("")) {
             if (lastCharIsNumeric(mOutputText) || mOutputText.charAt(mOutputText.length() - 1) == ')') {
                 mOutputText += btn.getText().toString();
             } else {
-                Errors.errorToast(_context, getResources().getString(R.string.invalid_entry));
+                Errors.errorToast(mContext, getResources().getString(R.string.invalid_entry));
             }
         } else {
             mOutputText = "0" + btn.getText().toString();
@@ -356,6 +480,7 @@ public class CalculatorActivity extends BaseActivity {
         return false;
     }
 
+    // TODO: Fix placement
     private String reverseNum(String string) {
         char[] text = string.toCharArray();
         for (int i = text.length - 1; i >= 0; i--) {
@@ -363,12 +488,12 @@ public class CalculatorActivity extends BaseActivity {
                 String[] tempStrings = new String[2];
                 tempStrings[0] = string.substring(0, i - 1);
                 tempStrings[1] = string.substring(i);
-                tempStrings[1] = "(-(" + tempStrings[1];
+                tempStrings[1] = "(-" + tempStrings[1];
                 string = tempStrings[0] + tempStrings[1];
                 return string;
             }
         }
-        return "(-(" + string;
+        return "(-" + string;
     }
 
     private boolean lastCharIsNumeric(String string) {
