@@ -213,48 +213,85 @@ public class CalculatorActivity extends BaseActivity {
         }
     }
 
+    //TODO: Clear and comment
     private void calculate() {
-        double solution = 0;
+        double primarieSolution = 0;
+        double solution;
         int numAndOperatorCount = 0;
         String tempNum = "";
         mOutputText = mOutputView.getText().toString();
-        char[] opertaors = new char[mOutputText.length()];
-        Double[] nums = new Double[mOutputText.length()];
+        int PROBLEM_LENGTH = mOutputText.length();
+
+        boolean[] allowReset = new boolean[PROBLEM_LENGTH];
+        int[] primarieOperatorsLoctions = new int[PROBLEM_LENGTH];
+        char[] operators = new char[PROBLEM_LENGTH];
+        Double[] nums = new Double[PROBLEM_LENGTH];
         char[] outputArray = mOutputText.toCharArray();
-        for (int i = 0; i < mOutputText.length(); i++) {
+
+        for (int i = 0; i < PROBLEM_LENGTH; i++) {
             if (lastCharIsNumeric(String.valueOf(outputArray[i])) || outputArray[i] == '.') {
                 tempNum += outputArray[i];
             } else {
                 nums[numAndOperatorCount] = Double.valueOf(tempNum);
-                opertaors[numAndOperatorCount] = outputArray[i];
+                operators[numAndOperatorCount] = outputArray[i];
                 tempNum = "";
                 numAndOperatorCount++;
             }
         }
-
         nums[numAndOperatorCount] = Double.valueOf(tempNum);
 
+        for (int k = 0; k < operators.length; k++) {
+            if (operators[k] == '*' || operators[k] == '/') {
+                primarieOperatorsLoctions[k] = k;
+            } else {
+                primarieOperatorsLoctions[k] = -1;
+            }
+        }
+        for (int l = 0; l < primarieOperatorsLoctions.length; l++) {
+            if (primarieOperatorsLoctions[l] >= 0) {
+                switch (operators[primarieOperatorsLoctions[l]]) {
+                    case '*': {
+                        primarieSolution = nums[primarieOperatorsLoctions[l]] * nums[primarieOperatorsLoctions[l] + 1];
+                        nums[primarieOperatorsLoctions[l] + 1] = primarieSolution;
+                        allowReset[l] = true;
+                        break;
+                    }
+                    case '/': {
+                        if (nums[primarieOperatorsLoctions[l] + 1] != '0') {
+                            primarieSolution = nums[primarieOperatorsLoctions[l]] / nums[primarieOperatorsLoctions[l] + 1];
+                            nums[primarieOperatorsLoctions[l] + 1] = primarieSolution;
+                            allowReset[l] = true;
+                        } else {
+                            Errors.errorToast(_context,
+                                    getResources().getString(R.string.invalid_entry));
+                            return;
+                        }
+                        break;
+                    }
+                }
+            }
+        }
+        for (int m = 0; m < allowReset.length; m++) {
+            if (allowReset[m]) {
+                nums[primarieOperatorsLoctions[m]] = 0.0;
+                nums[primarieOperatorsLoctions[m] + 1] = 0.0;
+                operators[primarieOperatorsLoctions[m]] = ' ';
+            }
+        }
+        solution = nums[0];
         for (int j = 0; j < nums.length; j++) {
-            switch (opertaors[j]) {
+            switch (operators[j]) {
                 case '+': {
-                    solution = nums[j] + nums[j + 1];
+                    solution += nums[j + 1];
                     break;
                 }
                 case '-': {
-                    solution = nums[j] - nums[j + 1];
-                    break;
-                }
-                case '/': {
-                    solution = nums[j] / nums[j + 1];
-                    break;
-                }
-                case '*': {
-                    solution = nums[j] * nums[j + 1];
+                    solution -= nums[j + 1];
                     break;
                 }
             }
         }
-        updateOutput(String.valueOf(solution));
+        updateOutput(String.valueOf(solution + primarieSolution));
     }
 
     private void updateOutput(String outputText) {
