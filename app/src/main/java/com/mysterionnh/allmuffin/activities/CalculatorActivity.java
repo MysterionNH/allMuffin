@@ -415,12 +415,40 @@ public class CalculatorActivity extends BaseActivity {
             }
 
             // Everything went well, here comes the solution
-            return (String.valueOf(solution + primarySolution));
+            return roundAndDeleteUnusedNumbers(solution + primarySolution);
         } else {
             // Noob
             Errors.errorToast(mContext, getResources().getString(R.string.invalid_entry));
             return problem;
         }
+    }
+
+    private String roundAndDeleteUnusedNumbers(Double solution) {
+        boolean decimal = true;
+        char[] outputArray;
+        String tempNum;
+        outputArray = (String.valueOf(solution)).toCharArray();
+        for (int r = outputArray.length - 1; r > 0; r--) {
+            if (outputArray[r] == '0') {
+                outputArray[r] = '-';
+            } else {
+                if (outputArray[r] == '.') {
+                    outputArray[r] = '-';
+                    decimal = false;
+                }
+                r = 0;
+            }
+        }
+        tempNum = "";
+        for (char ch : outputArray) {
+            if (ch != '-')
+                tempNum += ch;
+        }
+        if (decimal) {
+            solution = Double.valueOf(tempNum);
+            tempNum = String.valueOf(Math.round(solution * 100.0) / 100.0);
+        }
+        return tempNum;
     }
 
     private void updateOutput(String outputText) {
