@@ -47,8 +47,7 @@ public class SettingsFragment extends PreferenceFragment implements SharedPrefer
         Resources res = mContext.getResources();
         String updateMsg = "";
         switch (key) {
-            case KEY_PREF_SHOW_POPUP :
-            {
+            case KEY_PREF_SHOW_POPUP: {
                 if (mSharedPreferences.getBoolean(KEY_PREF_SHOW_POPUP,
                         Boolean.valueOf(res.getString(R.string.pref_default_value_show_start_popup)))) {
                     updateMsg = res.getString(R.string.pref_positive_msg_show_start_popup);
@@ -57,8 +56,7 @@ public class SettingsFragment extends PreferenceFragment implements SharedPrefer
                 }
                 break;
             }
-            case KEY_PREF_ALLOW_BG_COLOR :
-            {
+            case KEY_PREF_ALLOW_BG_COLOR: {
                 if (mSharedPreferences.getBoolean(KEY_PREF_ALLOW_BG_COLOR,
                         Boolean.valueOf(res.getString(R.string.pref_default_value_allow_bg_color_change)))) {
                     updateMsg = res.getString(R.string.pref_positive_allow_bg_color_change);
@@ -67,14 +65,12 @@ public class SettingsFragment extends PreferenceFragment implements SharedPrefer
                 }
                 break;
             }
-            case KEY_PREF_BG_COLOR :
-            {
+            case KEY_PREF_BG_COLOR: {
                 updateMsg = res.getString(R.string.pref_onchange_msg_bg_color,
                         mSharedPreferences.getString(KEY_PREF_BG_COLOR, res.getString(R.string.pref_default_value_bg_color)));
                 break;
             }
-            case KEY_PREF_ALLOW_LANG_CHANGE :
-            {
+            case KEY_PREF_ALLOW_LANG_CHANGE: {
                 if (mSharedPreferences.getBoolean(KEY_PREF_ALLOW_LANG_CHANGE,
                         Boolean.valueOf(res.getString(R.string.pref_default_value_allow_lang_change)))) {
                     updateMsg = res.getString(R.string.pref_positive_msg_allow_lang_change);
@@ -83,22 +79,18 @@ public class SettingsFragment extends PreferenceFragment implements SharedPrefer
                 }
                 break;
             }
-            case KEY_PREF_LANG :
-            {
+            case KEY_PREF_LANG: {
                 //noinspection ConstantConditions
                 switch (mSharedPreferences.getString(KEY_PREF_LANG, res.getString(R.string.pref_default_lang))) {
-                    case "uk" :
-                    {
+                    case "uk": {
                         updateMsg = res.getString(R.string.pref_onchange_lang_uk);
                         break;
                     }
-                    case "de" :
-                    {
+                    case "de": {
                         updateMsg = res.getString(R.string.pref_onchange_lang_de);
                         break;
                     }
-                    default :
-                    {
+                    default: {
                         updateMsg = res.getString(R.string.pref_onchange_lang);
                         break;
                     }

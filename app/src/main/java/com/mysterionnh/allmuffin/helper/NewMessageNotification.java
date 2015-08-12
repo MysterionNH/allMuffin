@@ -41,7 +41,7 @@ public class NewMessageNotification {
      * sure to follow the
      * <a href="https://developer.android.com/design/patterns/notifications.html">
      * Notification design guidelines</a> when doing so.
-     *
+     * <p/>
      * //@see #cancel(Context)
      */
     public static void notify(final Context context,
@@ -82,7 +82,7 @@ public class NewMessageNotification {
                 .setLargeIcon(picture)
 
                         // Set ticker text (preview) information for this notification.
-                //.setTicker(ticker)
+                        //.setTicker(ticker)
                 .setTicker(msg) // AS is complaining TODO: Refractors @see 54
 
                         // Show a number. This is useful when stacking notifications of
@@ -157,12 +157,12 @@ public class NewMessageNotification {
      */
     /**@TargetApi(Build.VERSION_CODES.ECLAIR)
     public static void cancel(final Context context) {
-        final NotificationManager nm = (NotificationManager) context
-                .getSystemService(Context.NOTIFICATION_SERVICE);
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.ECLAIR) {
-            nm.cancel(NOTIFICATION_TAG, 0);
-        } else {
-            nm.cancel(NOTIFICATION_TAG.hashCode());
-        }
+    final NotificationManager nm = (NotificationManager) context
+    .getSystemService(Context.NOTIFICATION_SERVICE);
+    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.ECLAIR) {
+    nm.cancel(NOTIFICATION_TAG, 0);
+    } else {
+    nm.cancel(NOTIFICATION_TAG.hashCode());
+    }
     }*/
 }

@@ -9,7 +9,6 @@ import android.widget.TextView;
 
 import com.mysterionnh.allmuffin.R;
 
-@SuppressWarnings("ALL")
 public class NewMessagePopup {
 
     private final Context _context;
@@ -38,14 +37,14 @@ public class NewMessagePopup {
     }
 
     /**
-     * @param body  The body text (String) used in the popup
+     * @param body The body text (String) used in the popup
      */
     public void setBody(String body) {
         this.body = body;
     }
 
     /**
-     * @param btnText   The text (String) on the close button of the popup
+     * @param btnText The text (String) on the close button of the popup
      */
     public void setBtnText(String btnText) {
         this.btnText = btnText;
@@ -77,7 +76,7 @@ public class NewMessagePopup {
      */
     public void show() {
         // The object that builds our popup
-        AlertDialog.Builder builder = new AlertDialog.Builder(new ContextThemeWrapper(_context, R.style.PopupCustom));
+        AlertDialog.Builder builder = new AlertDialog.Builder(new ContextThemeWrapper(_context, R.style.MaterialPopup));
 
         //Everything for the title
         TextView myMsg = new TextView(_context);
@@ -109,7 +108,7 @@ public class NewMessagePopup {
      * Opens when the MenuItem in the Actionbar is clicked
      */
     public void showHintPopup() {
-        AlertDialog.Builder builder = new AlertDialog.Builder(new ContextThemeWrapper(_context, R.style.PopupCustom));
+        AlertDialog.Builder builder = new AlertDialog.Builder(new ContextThemeWrapper(_context, R.style.MaterialPopup));
         TextView myMsg = new TextView(_context);
         myMsg.setText(R.string.popup_title);
         myMsg.setTextColor(Color.DKGRAY);

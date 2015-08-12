@@ -21,11 +21,11 @@
     <string name="submitBtn">OKAY</string>
     <string name="action_share">Teilen</string>
     <string name="new_message_notification_placeholder_text_template" tools:ignore="Typos">Bla bla bla, zu faul zum übersetzen bala bla.. hier dein Text: \"%1$s\".</string>
-    <string name="new_message_notification_title_template">OMFG!!!!!! \"%1$s\"!!!1!!elf!!!</string>
+    <string name="new_message_notification_title_template">Neue Nachricht: \"%1$s\"</string>
     <string name="pg_title">Biesbatz!</string>
     <string name="action_reply">Antworten</string>
     <string name="pref_general_title">Generelle Einstellungen</string>
-    <string name="pref_summary_allow_bg_color_change">Erlaubt das ändern der Hintergrundfarbe </string>
+    <string name="pref_summary_allow_bg_color_change">Erlaubt das ändern der Hintergrundfarbe</string>
     <string name="pref_summary_bg_color">Hintergrundfarbe (z.B. \"BLUE\") - Neustart erfoderlich</string>
     <string name="pref_summary_show_start_popup">Zeige Informationspopup beim Appstart</string>
     <string name="pref_title_allow_bg_color_change">Hintergrundfarbe veränderbar</string>
@@ -34,12 +34,12 @@
     <string name="pref_default_lang">Geräteinstellung</string>
     <string name="pref_lang_title">Sprach Einstellungen</string>
     <string name="pref_summary_allow_lang_change">Erlaubt das ändern der Sprache innerhalb der App</string>
-    <string name="pref_title_allow_lang_change">Nicht die Geräteeinstellung verwenden</string>
+    <string name="pref_title_allow_lang_change">App nicht in Gerätsprache</string>
     <string name="pref_title_lang">Sprache</string>
     <string name="pref_summary_lang">Erfodert Neustart</string>
     <string name="action_restart">Neustart</string>
     <string-array name="pref_lang_entries">
-        <item>Geräte Standardt</item>
+        <item>Geräteinstellung</item>
         <item>Englisch</item>
         <item>Deutsch</item>
     </string-array>
@@ -49,12 +49,12 @@
         <item>de</item>
     </string-array>
     <string name="pref_negative_allow_bg_color_change">Standard Hintergrundfarbe</string>
-    <string name="pref_negative_msg_allow_lang_change">App in Gerätesprache nach Neustart</string>
+    <string name="pref_negative_msg_allow_lang_change">Sprache: Geräteinstellung</string>
     <string name="pref_negative_msg_show_start_popup">Info-Popup bei Appstart deaktiviert</string>
-    <string name="pref_onchange_lang">App in Gerätesprache nach Neustart</string>
-    <string name="pref_onchange_lang_de">App in Deutsch nach Neustart</string>
-    <string name="pref_onchange_lang_uk">App in Englisch nach Neustart</string>
-    <string name="pref_onchange_msg_bg_color">Neue Hintegrundfarbe (sofern sie als Hintergrundfarbe vorhanden ist): \"%1$s\"</string>
+    <string name="pref_onchange_lang">Sprache: Geräteinstellung</string>
+    <string name="pref_onchange_lang_de">Sprache: Deutsch</string>
+    <string name="pref_onchange_lang_uk">Sprache: Englisch</string>
+    <string name="pref_onchange_msg_bg_color">Hintegrundfarbe (sofern sie als Hintergrundfarbe vorhanden ist): \"%1$s\"</string>
     <string name="pref_positive_allow_bg_color_change">Hintergrundfarbe veränderbar</string>
     <string name="pref_positive_msg_allow_lang_change">Sprache der App ist jetzt wählbar</string>
     <string name="pref_positive_msg_show_start_popup">Info-Popup bei Appstart aktiviert</string>

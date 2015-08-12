@@ -58,7 +58,7 @@ public class RuleOfThreeActivity extends BaseActivity {
     private void getTexts() {
         // Get all TextFields in Activity, put them into an array
         // Assign to global variable for later use @see updateFields()
-        eTexts = new EditText[] {(EditText) findViewById(R.id.currentPercent),
+        eTexts = new EditText[]{(EditText) findViewById(R.id.currentPercent),
                 (EditText) findViewById(R.id.currentValue),
                 (EditText) findViewById(R.id.valueOne),
                 (EditText) findViewById(R.id.valueHundred),

@@ -8,7 +8,6 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    android:theme="@android:style/Theme.Material.Light.DarkActionBar"
     android:weightSum="1"
     tools:context=".MainActivity">
 
@@ -65,7 +64,8 @@
                         android:layout_alignParentTop="true"
                         android:layout_gravity="right"
                         android:singleLine="true"
-                        android:text="@string/main_open" />
+                        android:text="@string/main_open"
+                        android:theme="@style/MaterialButton" />
                 </RelativeLayout>
             </TableRow>
 
@@ -98,7 +98,8 @@
                         android:layout_centerVertical="true"
                         android:layout_gravity="right"
                         android:singleLine="true"
-                        android:text="@string/main_open" />
+                        android:text="@string/main_open"
+                        android:theme="@style/MaterialButton" />
                 </RelativeLayout>
             </TableRow>
 
@@ -127,7 +128,8 @@
                         android:layout_height="wrap_content"
                         android:layout_alignParentEnd="true"
                         android:layout_centerVertical="true"
-                        android:text="@string/main_open" />
+                        android:text="@string/main_open"
+                        android:theme="@style/MaterialButton" />
 
                 </RelativeLayout>
             </TableRow>
@@ -157,7 +159,8 @@
                         android:layout_height="wrap_content"
                         android:layout_alignParentEnd="true"
                         android:layout_centerVertical="true"
-                        android:text="@string/main_open" />
+                        android:text="@string/main_open"
+                        android:theme="@style/MaterialButton" />
                 </RelativeLayout>
             </TableRow>
 
