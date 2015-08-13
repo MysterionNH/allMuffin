@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="CustomPopup" parent="android:Theme.Material.Light.DarkActionBar">
+
+    </style>
+
+    <style name="CustomButton" parent="android:Theme.Material.Light.DarkActionBar">
+
+    </style>
+</resources>

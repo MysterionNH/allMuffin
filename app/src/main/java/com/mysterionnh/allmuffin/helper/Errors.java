@@ -14,7 +14,7 @@ public class Errors {
      * @param errorMsg Error message to log
      */
     public static void errorToast(Context context, String errorMsg) {
-        Toast toast = Toast.makeText(context, errorMsg, Toast.LENGTH_LONG);
+        Toast toast = Toast.makeText(context, errorMsg, Toast.LENGTH_SHORT);
         toast.show();
     }
 
@@ -31,5 +31,9 @@ public class Errors {
 
     public static void logError(Context context, String msg) {
         Log.e(context.getClass().getName(), msg);
+    }
+
+    public static void logWarning(Context context, String msg) {
+        Log.w(context.getClass().getName(), msg);
     }
 }

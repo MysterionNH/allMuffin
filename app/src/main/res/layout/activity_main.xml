@@ -65,7 +65,7 @@
                         android:layout_gravity="right"
                         android:singleLine="true"
                         android:text="@string/main_open"
-                        android:theme="@style/MaterialButton" />
+                        android:theme="@style/CustomButton" />
                 </RelativeLayout>
             </TableRow>
 
@@ -99,7 +99,7 @@
                         android:layout_gravity="right"
                         android:singleLine="true"
                         android:text="@string/main_open"
-                        android:theme="@style/MaterialButton" />
+                        android:theme="@style/CustomButton" />
                 </RelativeLayout>
             </TableRow>
 
@@ -129,7 +129,7 @@
                         android:layout_alignParentEnd="true"
                         android:layout_centerVertical="true"
                         android:text="@string/main_open"
-                        android:theme="@style/MaterialButton" />
+                        android:theme="@style/CustomButton" />
 
                 </RelativeLayout>
             </TableRow>
@@ -160,7 +160,7 @@
                         android:layout_alignParentEnd="true"
                         android:layout_centerVertical="true"
                         android:text="@string/main_open"
-                        android:theme="@style/MaterialButton" />
+                        android:theme="@style/CustomButton" />
                 </RelativeLayout>
             </TableRow>
 

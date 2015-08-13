@@ -50,7 +50,7 @@ public class CalculatorActivity extends BaseActivity {
                 }
                 case R.id.periodButton: {
                     if (!mOutputText.equals("")) {
-                        if (lastCharIsNumeric(mOutputText) && !currentNumIsDecimal(mOutputText)) {
+                        if (lastCharIsNumeric(mOutputText) && currentNumIsNotDecimal(mOutputText)) {
                             mOutputText += ".";
                         } else {
                             Errors.errorToast(mContext, getResources().getString(R.string.invalid_entry));
@@ -342,6 +342,11 @@ public class CalculatorActivity extends BaseActivity {
                         tempNum = "";
                     }
                     if (outputArray[i] != ')') {
+                        if (numAndOperatorCount > 0) {
+                            if (operators[numAndOperatorCount - 1] == '\u0000') {
+                                numAndOperatorCount--;
+                            }
+                        }
                         operators[numAndOperatorCount] = outputArray[i];
                         numAndOperatorCount++;
                     }
@@ -421,7 +426,6 @@ public class CalculatorActivity extends BaseActivity {
             }
 
             // Everything went well, here comes the solution
-            Errors.logError(mContext, "solution: " + solution + "\nprimarySolution: " + "\ntotal: " + (solution + primarySolution));
             return roundAndDeleteUnusedNumbers(solution + primarySolution);
         } else {
             // Noob
@@ -522,24 +526,23 @@ public class CalculatorActivity extends BaseActivity {
         }
     }
 
-    private boolean currentNumIsDecimal(String string) {
+    private boolean currentNumIsNotDecimal(String string) {
         char[] text = string.toCharArray();
         for (int i = text.length - 1; i >= 0; i--) {
             if (!lastCharIsNumeric(String.valueOf(text[i]))) {
-                return text[i] == '.';
+                return text[i] != '.';
             }
         }
-        return false;
+        return true;
     }
 
-    // TODO: Fix placement
     private String reverseNum(String string) {
         char[] text = string.toCharArray();
         for (int i = text.length - 1; i >= 0; i--) {
-            if (!lastCharIsNumeric(String.valueOf(text[i]))) {
+            if (!lastCharIsNumeric(String.valueOf(text[i])) && text[i] != '.') {
                 String[] tempStrings = new String[2];
-                tempStrings[0] = string.substring(0, i - 1);
-                tempStrings[1] = string.substring(i);
+                tempStrings[0] = string.substring(0, i + 1);
+                tempStrings[1] = string.substring(i + 1);
                 tempStrings[1] = "(-" + tempStrings[1];
                 string = tempStrings[0] + tempStrings[1];
                 return string;

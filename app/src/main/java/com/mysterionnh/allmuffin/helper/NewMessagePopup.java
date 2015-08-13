@@ -76,7 +76,7 @@ public class NewMessagePopup {
      */
     public void show() {
         // The object that builds our popup
-        AlertDialog.Builder builder = new AlertDialog.Builder(new ContextThemeWrapper(_context, R.style.MaterialPopup));
+        AlertDialog.Builder builder = new AlertDialog.Builder(new ContextThemeWrapper(_context, R.style.CustomPopup));
 
         //Everything for the title
         TextView myMsg = new TextView(_context);
@@ -108,7 +108,7 @@ public class NewMessagePopup {
      * Opens when the MenuItem in the Actionbar is clicked
      */
     public void showHintPopup() {
-        AlertDialog.Builder builder = new AlertDialog.Builder(new ContextThemeWrapper(_context, R.style.MaterialPopup));
+        AlertDialog.Builder builder = new AlertDialog.Builder(new ContextThemeWrapper(_context, R.style.CustomPopup));
         TextView myMsg = new TextView(_context);
         myMsg.setText(R.string.popup_title);
         myMsg.setTextColor(Color.DKGRAY);

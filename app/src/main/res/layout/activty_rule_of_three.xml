@@ -186,7 +186,7 @@
                     android:layout_centerHorizontal="true"
                     android:layout_gravity="center_horizontal"
                     android:text="@string/button_submit"
-                    android:theme="@style/MaterialButton" />
+                    android:theme="@style/CustomButton" />
             </RelativeLayout>
         </TableRow>
     </LinearLayout>

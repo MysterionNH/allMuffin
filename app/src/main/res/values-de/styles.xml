@@ -5,11 +5,11 @@
         <!-- Customize your theme here. -->
     </style>
 
-    <style name="MaterialPopup" parent="android:Theme.Holo.Light.DarkActionBar">
+    <style name="CustomPopup" parent="android:Theme.Holo.Light.DarkActionBar">
 
     </style>
 
-    <style name="MaterialButton" parent="android:Theme.Material.Light.DarkActionBar" tools:targetAPI="21">
+    <style name="CustomButton" parent="android:Theme.Material.Light.DarkActionBar" tools:targetAPI="21">
 
     </style>
 

@@ -45,7 +45,7 @@ public class NewMessageNotification {
      * //@see #cancel(Context)
      */
     public static void notify(final Context context,
-                              final String msg, final int number) {
+                              final String msg, @SuppressWarnings("SameParameterValue") final int number) {
         final Resources res = context.getResources();
 
         // This image is used as the notification's large icon (thumbnail).

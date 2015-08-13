@@ -45,7 +45,7 @@
                     android:layout_alignParentEnd="true"
                     android:layout_centerVertical="true"
                     android:text="@string/submitBtn"
-                    android:theme="@style/MaterialButton" />
+                    android:theme="@style/CustomButton" />
 
             </RelativeLayout>
         </TableRow>
@@ -79,7 +79,7 @@
                     android:layout_alignParentEnd="true"
                     android:layout_centerVertical="true"
                     android:text="@string/submitBtn"
-                    android:theme="@style/MaterialButton" />
+                    android:theme="@style/CustomButton" />
             </RelativeLayout>
         </TableRow>
 
@@ -112,7 +112,7 @@
                     android:layout_alignParentEnd="true"
                     android:layout_centerVertical="true"
                     android:text="@string/submitBtn"
-                    android:theme="@style/MaterialButton" />
+                    android:theme="@style/CustomButton" />
             </RelativeLayout>
         </TableRow>
 
@@ -135,7 +135,7 @@
                     android:layout_alignParentEnd="false"
                     android:layout_centerInParent="true"
                     android:text="@string/submitBtn"
-                    android:theme="@style/MaterialButton" />
+                    android:theme="@style/CustomButton" />
             </RelativeLayout>
         </TableRow>
 
