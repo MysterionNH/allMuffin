@@ -50,5 +50,17 @@
             android:name=".activities.CalculatorActivity"
             android:label="@string/calc_title"
             android:parentActivityName=".activities.MainActivity" />
+
+        <!-- GameHub -->
+        <activity
+            android:name=".activities.GameHubActivity"
+            android:label="@string/gh_title"
+            android:parentActivityName=".activities.MainActivity" />
+
+        <!-- Game: TicTacToe -->
+        <activity
+            android:name=".activities.games.TickTackToeActivity"
+            android:label="@string/game_ttt_title"
+            android:parentActivityName=".activities.GameHubActivity" />
     </application>
 </manifest>

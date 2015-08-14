@@ -64,5 +64,5 @@
     <string name="button_period">,</string>
     <string name="warning_output_empty">Nichts zu löschen!</string>
     <string name="invalid_entry">Ungültige Eingabe!</string>
-    <string name="game_hub_info">Hier siehst du ein paar (aktuell nur eins, sollte dieser Text hier noch stehen und du siehst mehr als eins, melde dich ruhig bei mir :)) Spiele an denen ich mich versucht habe</string>
+    <string name="game_hub_info">Hier siehst du ein paar (aktuell nur eins, sollte dieser Text hier noch stehen und du siehst mehr als eins, melde dich ruhig bei mir :)) Spiele an denen ich mich versucht habe.</string>
 </resources>

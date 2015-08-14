@@ -100,7 +100,7 @@
 
     <!-- Games -->
 
-    <string name="game_ttt_title">Tick Tack Toe</string>
+    <string name="game_ttt_title" translatable="false">Tic Tac Toe</string>
 
     <!-- StatusBarNotification (Template) -->
 
