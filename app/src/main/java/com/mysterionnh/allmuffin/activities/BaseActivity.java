@@ -80,7 +80,7 @@ public class BaseActivity extends Activity {
 
         // This should be dangerous, but apparently isn't
         // pref_default_lang is "Phone Default" and KEY_PREF_LANG can be "--", both aren't valid
-        // locales afaik but it still work somehow
+        // locales afaik but it still works somehow
         if (shPref.getBoolean(SettingsFragment.KEY_PREF_ALLOW_LANG_CHANGE,
                 Boolean.valueOf(con.getResources().getString(R.string.pref_default_value_allow_lang_change)))) {
             Locale loc = new Locale(shPref.getString(SettingsFragment.KEY_PREF_LANG,

@@ -1,7 +1,9 @@
 package com.mysterionnh.allmuffin.activities;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
 import android.view.View;
 import android.widget.Button;
@@ -9,7 +11,10 @@ import android.widget.GridLayout;
 import android.widget.TextView;
 
 import com.mysterionnh.allmuffin.R;
+import com.mysterionnh.allmuffin.fragments.SettingsFragment;
 import com.mysterionnh.allmuffin.helper.Errors;
+
+import java.util.Locale;
 
 public class CalculatorActivity extends BaseActivity {
 
@@ -37,7 +42,12 @@ public class CalculatorActivity extends BaseActivity {
      * The OnClickListener for all buttons that get displayed somehow
      */
     private boolean mWasShowingSolution;
-    private final View.OnClickListener buttonListener = new View.OnClickListener() {
+    /**
+     * This stores whether the solution was rounded or not
+     */
+    private boolean mRounded = false;
+
+    private final View.OnClickListener buttonListener = new View.OnClickListener() { //TODO: put a ',' when language is german, make it work
         @Override
         public void onClick(View v) {
 
@@ -49,15 +59,16 @@ public class CalculatorActivity extends BaseActivity {
                     break;
                 }
                 case R.id.periodButton: {
-                    if (!mOutputText.equals("")) {
-                        if (lastCharIsNumeric(mOutputText) && currentNumIsNotDecimal(mOutputText)) {
-                            mOutputText += ".";
-                        } else {
-                            Errors.errorToast(mContext, getResources().getString(R.string.invalid_entry));
-                        }
-                    } else {
-                        mOutputText = "0.";
-                    }
+                    //if (!mOutputText.equals("")) {
+                    //    if (lastCharIsNumeric(mOutputText) && currentNumIsNotDecimal(mOutputText)) {
+                    //        mOutputText += ".";
+                    //    } else {
+                    //        Errors.errorToast(mContext, getResources().getString(R.string.invalid_entry));
+                    //    }
+                    //} else {
+                    //    mOutputText = "0.";
+                    //}
+                    putSign(mClickedButton);
                     break;
                 }
                 case R.id.timesButton: {
@@ -188,12 +199,12 @@ public class CalculatorActivity extends BaseActivity {
                     break;
                 }
                 case R.id.equalsButton: {
-                    updateOutput(calculate(mOutputView.getText().toString(), true));
+                    updateOutput(formatStringAccordingToLanguage(calculate(mOutputView.getText().toString(), true)));
                     isUpdated = true;
                 }
             }
             if (!isUpdated) {
-                updateOutput(mOutputText);
+                updateOutput(formatStringAccordingToLanguage(mOutputText));
             }
         }
     };
@@ -243,6 +254,7 @@ public class CalculatorActivity extends BaseActivity {
         }
     }
 
+    // // FIXME: 14.08.2015 Sometimes solutions don't work - - = +
     /**
      * Does the calculation of the problem
      *
@@ -253,7 +265,7 @@ public class CalculatorActivity extends BaseActivity {
      */
     private String calculate(String problem, boolean updateLastProblem) {
         if (problemIsValid(problem)) {
-            problem = fixParentheses(problem);
+            problem = fixProblem(problem);
             /**
              * The solution of the primary problems (e.g. multiplication and division) are stored here
              */
@@ -304,7 +316,7 @@ public class CalculatorActivity extends BaseActivity {
 
             for (int i = 0; i < PROBLEM_LENGTH; i++) {
                 // Here the numbers get build
-                if (lastCharIsNumeric(String.valueOf(outputArray[i])) || outputArray[i] == '.') {
+                if (lastCharIsNumeric(String.valueOf(outputArray[i])) || outputArray[i] == '.' || outputArray[i] == '.') {
                     tempNum += outputArray[i];
                 } else if (outputArray[i] == '(') {
                     if (!tempNum.equals("")) {
@@ -341,6 +353,7 @@ public class CalculatorActivity extends BaseActivity {
                         numbers[numAndOperatorCount] = Double.valueOf(tempNum);
                         tempNum = "";
                     }
+
                     if (outputArray[i] != ')') {
                         if (numAndOperatorCount > 0) {
                             if (operators[numAndOperatorCount - 1] == '\u0000') {
@@ -366,6 +379,9 @@ public class CalculatorActivity extends BaseActivity {
                 }
             }
 
+            if (primariesExisting(primaryOperatorLocations) && numbers[0] == null && operators[0] == '-' && numbers[1] != null) {
+                numbers[1] = (0 - numbers[1]);
+            }
             // If there were any, calculate with them
             for (int l = 0; l < primaryOperatorLocations.length; l++) {
                 if (primaryOperatorLocations[l] >= 0) {
@@ -421,12 +437,18 @@ public class CalculatorActivity extends BaseActivity {
                 }
             }
 
+            tempNum = roundAndDeleteUnusedNumbers(solution + primarySolution);
+
             if (updateLastProblem) {
-                mLastProblemView.setText(fixDecimals(problem) + "=");
+                if (mRounded) {
+                    mLastProblemView.setText(formatStringAccordingToLanguage(fixDecimals(problem) + "≈"));
+                } else {
+                    mLastProblemView.setText(formatStringAccordingToLanguage(fixDecimals(problem) + "="));
+                }
             }
 
             // Everything went well, here comes the solution
-            return roundAndDeleteUnusedNumbers(solution + primarySolution);
+            return tempNum;
         } else {
             // Noob
             Errors.errorToast(mContext, getResources().getString(R.string.invalid_entry));
@@ -434,7 +456,17 @@ public class CalculatorActivity extends BaseActivity {
         }
     }
 
+    private boolean primariesExisting(int[] pO) {
+        for (int i : pO) {
+            if (i >= 0) {
+                return true;
+            }
+        }
+        return false;
+    }
+
     private String roundAndDeleteUnusedNumbers(Double solution) {
+        String tempSolution;
         boolean decimal = true;
         char[] outputArray;
         String tempNum;
@@ -457,7 +489,12 @@ public class CalculatorActivity extends BaseActivity {
         }
         if (decimal) {
             solution = Double.valueOf(tempNum);
+            tempSolution = tempNum;
             tempNum = String.valueOf(Math.round(solution * 100.0) / 100.0);
+            // Only if it really changed we want the other equal sign
+            if (!tempSolution.equals(tempNum)) {
+                mRounded = true;
+            }
         }
         return tempNum;
     }
@@ -488,16 +525,20 @@ public class CalculatorActivity extends BaseActivity {
      * @param problem The string in which I should check the ps
      * @return returns the fixed string, if it was okay, itself
      */
-    private String fixParentheses(String problem) {
+    private String fixProblem(String problem) {
+        char[] problemArray = problem.toCharArray();
         int openedParentheses = 0;
         int closedParentheses = 0;
-        for (int p = 0; p < problem.length(); p++) {
-            if (problem.charAt(p) == '(') {
+        for (int p = 0; p < problemArray.length; p++) {
+            if (problemArray[p] == '(') {
                 openedParentheses++;
-            } else if (problem.charAt(p) == ')') {
+            } else if (problemArray[p] == ')') {
                 closedParentheses++;
+            } else if (problem.charAt(p) == ',') {
+                problemArray[p] = '.';
             }
         }
+        problem = String.valueOf(problemArray);
         if (openedParentheses > closedParentheses) {
             for (int q = 0; q < openedParentheses - closedParentheses; q++) {
                 problem += ")";
@@ -508,16 +549,41 @@ public class CalculatorActivity extends BaseActivity {
 
     @NonNull
     private String fixDecimals(String problem) {
+
         if (problem.charAt(problem.length() - 1) == '.') {
             problem += "0";
         }
         return problem;
     }
 
+    private String formatStringAccordingToLanguage(String problem) {
+        SharedPreferences shPref = PreferenceManager.getDefaultSharedPreferences(mContext);
+        if (shPref.getBoolean(SettingsFragment.KEY_PREF_ALLOW_LANG_CHANGE,
+                Boolean.valueOf(mContext.getResources().getString(R.string.pref_default_value_allow_lang_change)))) {
+            Locale loc = new Locale(shPref.getString(SettingsFragment.KEY_PREF_LANG,
+                    mContext.getResources().getString(R.string.pref_default_lang)));
+            if (loc.getDisplayLanguage().equals("Deutsch")) {
+                char[] problemArray = problem.toCharArray();
+                for (int i = 0; i < problemArray.length - 1; i++) {
+                    if (problemArray[i] == '.') {
+                        problemArray[i] = ',';
+                    }
+                }
+                problem = String.valueOf(problemArray);
+            }
+        }
+        return problem;
+    }
+
     private void putSign(Button btn) {
+        String buttonText = btn.getText().toString();
         if (!mOutputText.equals("")) {
             if (lastCharIsNumeric(mOutputText) || mOutputText.charAt(mOutputText.length() - 1) == ')') {
-                mOutputText += btn.getText().toString();
+                mOutputText += buttonText;
+            } else if (lastCharIsNumeric(mOutputText) || mOutputText.charAt(mOutputText.length() - 1) == '(') {
+                if (buttonText.equals("-")) {
+                    mOutputText += buttonText;
+                }
             } else {
                 Errors.errorToast(mContext, getResources().getString(R.string.invalid_entry));
             }
@@ -526,15 +592,17 @@ public class CalculatorActivity extends BaseActivity {
         }
     }
 
-    private boolean currentNumIsNotDecimal(String string) {
+    /* Was used once, maybe need it again later
+    private boolean currentNumIsDecimal(String string) {
         char[] text = string.toCharArray();
         for (int i = text.length - 1; i >= 0; i--) {
             if (!lastCharIsNumeric(String.valueOf(text[i]))) {
-                return text[i] != '.';
+                return text[i] == '.';
             }
         }
-        return true;
+        return false;
     }
+    */
 
     private String reverseNum(String string) {
         char[] text = string.toCharArray();
@@ -543,7 +611,11 @@ public class CalculatorActivity extends BaseActivity {
                 String[] tempStrings = new String[2];
                 tempStrings[0] = string.substring(0, i + 1);
                 tempStrings[1] = string.substring(i + 1);
-                tempStrings[1] = "(-" + tempStrings[1];
+                if (text[i] == ')') {
+                    tempStrings[1] = "*(-" + tempStrings[1];
+                } else {
+                    tempStrings[1] = "(-" + tempStrings[1];
+                }
                 string = tempStrings[0] + tempStrings[1];
                 return string;
             }
@@ -575,6 +647,7 @@ public class CalculatorActivity extends BaseActivity {
         mLastProblemView.setText("");
         mOutputView.setText("");
         mOutputText = "";
+        mRounded = false;
     }
 
     private void updateGlobals(View v) {
