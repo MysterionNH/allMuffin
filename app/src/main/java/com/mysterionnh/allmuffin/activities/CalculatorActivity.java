@@ -47,7 +47,7 @@ public class CalculatorActivity extends BaseActivity {
      */
     private boolean mRounded = false;
 
-    private final View.OnClickListener buttonListener = new View.OnClickListener() { //TODO: put a ',' when language is german, make it work
+    private final View.OnClickListener buttonListener = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
 
@@ -254,7 +254,6 @@ public class CalculatorActivity extends BaseActivity {
         }
     }
 
-    // // FIXME: 14.08.2015 Sometimes solutions don't work - - = +
     /**
      * Does the calculation of the problem
      *
