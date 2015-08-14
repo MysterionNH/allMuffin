@@ -164,6 +164,36 @@
                 </RelativeLayout>
             </TableRow>
 
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <RelativeLayout
+                    android:id="@+id/relativeLayout2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:id="@+id/textView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentStart="true"
+                        android:layout_centerVertical="true"
+                        android:text="@string/gh_title"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:textColor="#ff000000" />
+
+                    <Button
+                        android:id="@+id/ghOpenButton"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentEnd="true"
+                        android:layout_centerVertical="true"
+                        android:text="@string/main_open"
+                        android:theme="@style/CustomButton" />
+                </RelativeLayout>
+            </TableRow>
+
         </LinearLayout>
 
     </LinearLayout>

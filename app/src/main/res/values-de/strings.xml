@@ -24,8 +24,8 @@
     <string name="new_message_notification_title_template">Neue Nachricht: \"%1$s\"</string>
     <string name="pg_title">Biesbatz!</string>
     <string name="action_reply">Antworten</string>
-    <string name="pref_general_title">Generelle Einstellungen</string>
-    <string name="pref_summary_allow_bg_color_change">Erlaubt das ändern der Hintergrundfarbe</string>
+    <string name="pref_general_title">Allgemeine Einstellungen</string>
+    <string name="pref_summary_allow_bg_color_change">Erlaubt das ändern der Hintergrundfarbe (macher Seiten)</string>
     <string name="pref_summary_bg_color">Hintergrundfarbe (z.B. \"BLUE\") - Neustart erfoderlich</string>
     <string name="pref_summary_show_start_popup">Zeige Informationspopup beim Appstart</string>
     <string name="pref_title_allow_bg_color_change">Hintergrundfarbe veränderbar</string>
@@ -64,4 +64,5 @@
     <string name="button_period">,</string>
     <string name="warning_output_empty">Nichts zu löschen!</string>
     <string name="invalid_entry">Ungültige Eingabe!</string>
+    <string name="game_hub_info">Hier siehst du ein paar (aktuell nur eins, sollte dieser Text hier noch stehen und du siehst mehr als eins, melde dich ruhig bei mir :)) Spiele an denen ich mich versucht habe</string>
 </resources>

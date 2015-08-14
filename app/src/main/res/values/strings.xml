@@ -41,7 +41,7 @@
     <!-- For error popup -->
 
     <string name="button_wrong_input">OKAY, I will and I\'m sorry</string>
-        <string name="message_wrong_input">One or more entries contain an error or are left empty, please
+        <string name="message_wrong_input">One or more entries contain an error or were left empty, please
             double check your inputs and try again!
         </string>
     <string name="title_wrong_input">Error(s) in the inputs!</string>
@@ -66,7 +66,7 @@
     <string name="calc_title">Calculator</string>
 
     <string name="button_clear" translatable="false">C</string>
-    <string name="button_delete" translatable="false">&lt;&#8212;</string>
+    <string name="button_delete" translatable="false">&#8592;</string>
     <string name="button_divide" translatable="false">÷</string>
     <string name="button_multiply" translatable="false">*</string>
     <string name="button_add" translatable="false">+</string>
@@ -89,6 +89,18 @@
     <string name="warning_output_empty">Nothing to delete!</string>
 
     <string name="invalid_entry">Invalid entry!</string>
+
+    <!-- GameHubActivity -->
+
+    <string name="gh_title" translatable="false">Game Hub</string>
+
+    <string name="game_hub_info">Here you find a few (currently only one, if this text is still here
+        but you see more than one, feel free to message me about this issue) \"games\" I tried my
+        self on.</string>
+
+    <!-- Games -->
+
+    <string name="game_ttt_title">Tick Tack Toe</string>
 
     <!-- StatusBarNotification (Template) -->
 
@@ -114,15 +126,15 @@
     <string name="pref_title_show_start_popup">Start Popup</string>
     <string name="pref_summary_show_start_popup">Show the Information Popup on App start</string>
     <string name="pref_default_value_show_start_popup" translatable="false">true</string>
-    <string name="pref_positive_msg_show_start_popup">You will now see an information popup when you start the App</string>
-    <string name="pref_negative_msg_show_start_popup">You will not continue to see an information popup on App start</string>
+    <string name="pref_positive_msg_show_start_popup">Information Popup on App start enabled</string>
+    <string name="pref_negative_msg_show_start_popup">Information popup on App start disabled</string>
 
     <string name="pref_key_allow_bg_color_change" translatable="false">pref_key_allow_bg_color_change</string>
     <string name="pref_title_allow_bg_color_change">Change Background Color</string>
-    <string name="pref_summary_allow_bg_color_change">Allows the changing of all backgrounds in this app</string>
+    <string name="pref_summary_allow_bg_color_change">Allows the changing of all (*cough* some) backgrounds in this app</string>
     <string name="pref_default_value_allow_bg_color_change" translatable="false">false</string>
-    <string name="pref_positive_allow_bg_color_change">Not using Apps default Background Color</string>
-    <string name="pref_negative_allow_bg_color_change">Using Apps default Background Color</string>
+    <string name="pref_positive_allow_bg_color_change">Not using the default background color</string>
+    <string name="pref_negative_allow_bg_color_change">Now using the default background color</string>
 
     <string name="pref_key_bg_color" translatable="false">pref_key_bg_color</string>
     <string name="pref_title_bg_color">Background Color</string>
@@ -134,15 +146,15 @@
     <string name="pref_key_lang_settings" translatable="false">pref_key_lang_settings</string>
 
     <string name="pref_key_allow_lang_change" translatable="false">pref_key_allow_lang_change</string>
-    <string name="pref_title_allow_lang_change">Do not use devices language</string>
-    <string name="pref_summary_allow_lang_change">Allow to choose a the apps language</string>
+    <string name="pref_title_allow_lang_change">Do not use system language</string>
+    <string name="pref_summary_allow_lang_change">Allows you to choose a the apps language</string>
     <string name="pref_default_value_allow_lang_change" translatable="false">false</string>
-    <string name="pref_positive_msg_allow_lang_change">You can now choose the language of this App</string>
-    <string name="pref_negative_msg_allow_lang_change">Using Phones Default language for the App</string>
+    <string name="pref_positive_msg_allow_lang_change">Not using the system language</string>
+    <string name="pref_negative_msg_allow_lang_change">Now using system language for the App</string>
 
     <string name="pref_key_lang" translatable="false">pref_key_lang</string>
     <string name="pref_title_lang">Language</string>
-    <string name="pref_summary_lang">Needs restart</string>
+    <string name="pref_summary_lang">Requires restart</string>
     <string-array name="pref_lang_entries">
         <item>Phone Default</item>
         <item>English</item>
@@ -153,15 +165,15 @@
         <item>uk</item>
         <item>de</item>
     </string-array>
-    <string name="pref_default_lang">Phone Default</string>
+    <string name="pref_default_lang">System setting</string>
     <string name="pref_onchange_lang_uk">App will be in English after restart</string>
     <string name="pref_onchange_lang_de">App will be in German after restart</string>
-    <string name="pref_onchange_lang">App will be in Phones Default language after restart</string>
+    <string name="pref_onchange_lang">Using devise language after restart</string>
 
     <string name="pref_misc_title" translatable="false">Miscellaneous</string>
     <string name="pref_key_misc_settings" translatable="false">pref_key_misc_settings</string>
 
     <string name="pref_button_restart_key" translatable="false">pref_button_restart_key</string>
     <string name="pref_button_restart_title">Restart</string>
-    <string name="pref_button_restart_summary">Restarts the App (and therefore returns to the main page)</string>
+    <string name="pref_button_restart_summary">Restarts the App (and returns to the main page)</string>
 </resources>
