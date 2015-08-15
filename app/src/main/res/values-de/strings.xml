@@ -65,4 +65,15 @@
     <string name="warning_output_empty">Nichts zu löschen!</string>
     <string name="invalid_entry">Ungültige Eingabe!</string>
     <string name="game_hub_info">Hier siehst du ein paar (aktuell nur eins, sollte dieser Text hier noch stehen und du siehst mehr als eins, melde dich ruhig bei mir :)) Spiele an denen ich mich versucht habe.</string>
+    <string name="pref_summary_calc">Nummer der Nachkommastellen auf die gerundet werden soll</string>
+    <string name="pref_title_calc">Nachkommastellen</string>
+    <string name="pref_title_calc_settings">Taschenrechner Einstellungen</string>
+    <string name="pref_default_calc">Standardt (2)</string>
+    <string name="game_ttt_title_view">Starte ein neuses Spiel!</string>
+    <string name="game_ttt_button_one_player">Ein Spieler</string>
+    <string name="game_ttt_button_two_player">Zwei Spieler</string>
+    <string name="pref_onchange_calc">Nachkommastellen: </string>
+    <string name="title_view">Starte ein neues Spiel</string>
+    <string name="pref_button_reset_title">Zurücksetzen</string>
+    <string name="pref_button_reset_summary">Setzt alle Einstellungen auf Standarteinstellungen zurück</string>
 </resources>

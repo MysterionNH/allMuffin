@@ -39,12 +39,28 @@
             android:title="@string/pref_title_lang" />
     </PreferenceCategory>
     <PreferenceCategory
+        android:key="@string/pref_key_calc_settings"
+        android:title="@string/pref_title_calc_settings">
+        <ListPreference
+            android:defaultValue="@string/pref_default_calc"
+            android:dialogTitle="@string/pref_title_calc"
+            android:entries="@array/pref_calc_entries"
+            android:entryValues="@array/pref_calc_values"
+            android:key="@string/pref_key_calc"
+            android:summary="@string/pref_summary_calc"
+            android:title="@string/pref_title_calc" />
+    </PreferenceCategory>
+    <PreferenceCategory
         android:key="@string/pref_key_misc_settings"
         android:title="@string/pref_misc_title">
         <Preference
             android:key="@string/pref_button_restart_key"
             android:summary="@string/pref_button_restart_summary"
             android:title="@string/pref_button_restart_title" />
+        <Preference
+            android:key="@string/pref_button_reset_key"
+            android:summary="@string/pref_button_reset_summary"
+            android:title="@string/pref_button_reset_title" />
     </PreferenceCategory>
     <!-- Just an example, not in use yet, just to show future me how-to
     <PreferenceScreen

@@ -1,6 +1,5 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/MainFrame"
-    style="@android:style/Widget.DeviceDefault.Light.Button.Small"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:paddingBottom="@dimen/activity_vertical_margin"
@@ -9,14 +8,74 @@
     android:paddingTop="@dimen/activity_vertical_margin">
 
     <TextView
-        android:id="@+id/editText"
+        android:id="@+id/questionView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true"
-        android:text="Not here yet, sorry :("
-        android:textColor="#000"
-        android:textSize="20dp" />
+        android:text="@string/game_ttt_title_view"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+
+    <Space
+        android:id="@+id/tttTitleSpacer"
+        android:layout_width="fill_parent"
+        android:layout_height="25dp"
+        android:layout_below="@+id/questionView" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentTop="false"
+        android:layout_below="@+id/tttTitleSpacer"
+        android:measureWithLargestChild="false"
+        android:orientation="vertical"
+        android:visibility="visible">
+
+        <TableRow
+            android:id="@+id/playerCountWrapper"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <RelativeLayout
+                android:id="@+id/playerCount"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/buttonOnePlayer"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_toLeftOf="@+id/spacerPlayerCount"
+                    android:text="@string/game_ttt_button_one_player"
+                    android:theme="@style/CustomButton" />
+
+                <Space
+                    android:id="@+id/spacerPlayerCount"
+                    android:layout_width="50dp"
+                    android:layout_height="20dp"
+                    android:layout_centerHorizontal="true" />
+
+                <Button
+                    android:id="@+id/buttonTwoPlayer"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_toRightOf="@+id/spacerPlayerCount"
+                    android:text="@string/game_ttt_button_two_player"
+                    android:theme="@style/CustomButton" />
+
+            </RelativeLayout>
+
+            <TextView
+                android:id="@+id/textView2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:text="Medium Text"
+                android:textAppearance="?android:attr/textAppearanceMedium" />
+        </TableRow>
+
+    </LinearLayout>
 </RelativeLayout>
 
     

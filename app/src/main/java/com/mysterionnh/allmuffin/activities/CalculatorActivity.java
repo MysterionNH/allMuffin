@@ -22,6 +22,11 @@ public class CalculatorActivity extends BaseActivity {
      * As always, storing context, easier and safer to access
      */
     private final Context mContext = (Context) this;
+    SharedPreferences mSharedPrefs;
+    /**
+     * The value with we use for rounding, change regarding to settings
+     */
+    double mRoundingValue;
     /**
      * The View Button that was clicked
      */
@@ -215,6 +220,9 @@ public class CalculatorActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_calculator);
         setBGColorAccordingToSettings(mContext);
+
+        mSharedPrefs = PreferenceManager.getDefaultSharedPreferences(mContext);
+        mRoundingValue = Math.pow(10.0, Double.valueOf(mSharedPrefs.getString(mContext.getResources().getString(R.string.pref_key_calc), "2")));
 
         mLastProblemView = (TextView) findViewById(R.id.lastProblem);
         // Get the TextView were everything gets displayed
@@ -489,7 +497,7 @@ public class CalculatorActivity extends BaseActivity {
         if (decimal) {
             solution = Double.valueOf(tempNum);
             tempSolution = tempNum;
-            tempNum = String.valueOf(Math.round(solution * 100.0) / 100.0);
+            tempNum = String.valueOf(Math.round(solution * mRoundingValue) / mRoundingValue);
             // Only if it really changed we want the other equal sign
             if (!tempSolution.equals(tempNum)) {
                 mRounded = true;

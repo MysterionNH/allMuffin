@@ -18,6 +18,7 @@ public class SettingsFragment extends PreferenceFragment implements SharedPrefer
     public static final String KEY_PREF_BG_COLOR = "pref_key_bg_color";
     public static final String KEY_PREF_ALLOW_LANG_CHANGE = "pref_key_allow_lang_change";
     public static final String KEY_PREF_LANG = "pref_key_lang";
+    public static final String KEY_PREF_CALC = "pref_key_calc";
     private Context mContext;
     private SharedPreferences mSharedPreferences;
 
@@ -32,10 +33,22 @@ public class SettingsFragment extends PreferenceFragment implements SharedPrefer
         mSharedPreferences.registerOnSharedPreferenceChangeListener(this);
 
         Preference restartButton = findPreference(getString(R.string.pref_button_restart_key));
+        Preference resetButton = findPreference(getString(R.string.pref_button_reset_key));
 
         restartButton.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
             @Override
             public boolean onPreferenceClick(Preference preference) {
+                MagicAppRestarter.doRestart(mContext);
+                return true;
+            }
+        });
+
+        resetButton.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
+            @Override
+            public boolean onPreferenceClick(Preference preference) {
+                SharedPreferences.Editor editor = mSharedPreferences.edit();
+                editor.clear();
+                editor.commit();
                 MagicAppRestarter.doRestart(mContext);
                 return true;
             }
@@ -95,6 +108,12 @@ public class SettingsFragment extends PreferenceFragment implements SharedPrefer
                         break;
                     }
                 }
+                break;
+            }
+            case KEY_PREF_CALC: {
+                updateMsg = (mContext.getResources().getString(R.string.pref_onchange_calc) + " " + sharedPreferences.getString(SettingsFragment.KEY_PREF_CALC,
+                        mContext.getResources().getString(R.string.pref_default_calc)));
+                break;
             }
         }
         Toast toast = Toast.makeText(mContext,

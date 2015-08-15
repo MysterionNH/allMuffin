@@ -102,6 +102,11 @@
 
     <string name="game_ttt_title" translatable="false">Tic Tac Toe</string>
 
+    <string name="game_ttt_title_view">Start a new game!</string>
+
+    <string name="game_ttt_button_one_player">One Player</string>
+    <string name="game_ttt_button_two_player">Two Player</string>
+
     <!-- StatusBarNotification (Template) -->
 
     <string name="new_message_notification_title_template">New message: %1$s</string>
@@ -156,7 +161,7 @@
     <string name="pref_title_lang">Language</string>
     <string name="pref_summary_lang">Requires restart</string>
     <string-array name="pref_lang_entries">
-        <item>Phone Default</item>
+        <item>System setting</item>
         <item>English</item>
         <item>German</item>
     </string-array>
@@ -170,10 +175,41 @@
     <string name="pref_onchange_lang_de">App will be in German after restart</string>
     <string name="pref_onchange_lang">Using devise language after restart</string>
 
+    <string name="pref_key_calc_settings" translatable="false">pref_key_calc_settings</string>
+    <string name="pref_title_calc_settings">Calculator Settings</string>
+
+    <string name="pref_title_calc">After dot count</string>
+    <string name="pref_summary_calc">Set the count of places after the dot until rounding sets in</string>
+    <string name="pref_key_calc" translatable="false">pref_key_calc</string>
+    <string name="pref_default_calc">Default (2)</string>
+    <string-array name="pref_calc_entries">
+        <item>App default (2)</item>
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+        <item>6</item>
+    </string-array>
+    <string-array name="pref_calc_values">
+        <item>2</item>
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+        <item>6</item>
+    </string-array>
+    <string name="pref_onchange_calc">After dot count: </string>
+
     <string name="pref_misc_title" translatable="false">Miscellaneous</string>
     <string name="pref_key_misc_settings" translatable="false">pref_key_misc_settings</string>
 
     <string name="pref_button_restart_key" translatable="false">pref_button_restart_key</string>
     <string name="pref_button_restart_title">Restart</string>
     <string name="pref_button_restart_summary">Restarts the App (and returns to the main page)</string>
+
+    <string name="pref_button_reset_key" translatable="false">pref_button_reset_key</string>
+    <string name="pref_button_reset_title">Reset</string>
+    <string name="pref_button_reset_summary">Reset setting to defaults</string>
 </resources>
