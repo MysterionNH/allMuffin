@@ -1,8 +1,11 @@
 package com.mysterionnh.allmuffin.activities.games;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.os.Bundle;
+import android.view.KeyEvent;
 import android.view.View;
+import android.view.inputmethod.EditorInfo;
 import android.widget.Button;
 import android.widget.RelativeLayout;
 import android.widget.TableRow;
@@ -26,17 +29,12 @@ public class TickTackToeActivity extends BaseActivity {
      * Buttons, used for the settings
      */
     Button[] mButtons;
-
+    String mNamePlayerOne;
+    String mNamePlayerTwo;
     /**
      * The main layout, everything else is in here
      */
     private RelativeLayout mMainFrame;
-
-    /**
-     * The TextView were all questions regarding the game settings are displayed
-     */
-    private TextView mQuestionView;
-
     /**
      * Defines the stage the user is in
      */
@@ -46,19 +44,79 @@ public class TickTackToeActivity extends BaseActivity {
         public void onClick(View v) {
             switch (v.getId()) {
                 case R.id.buttonOnePlayer: {
+                    v.setBackgroundColor(Color.TRANSPARENT);
                     mTableRows[mStage].setAlpha(0.3f);
-                    mTableRows[mStage].setEnabled(false);
-                    mQuestionView.setText("Choose Name");
+                    mTableRows[mStage].setClickable(false);
                     mStage++;
+                    mTableRows[mStage].setVisibility(View.VISIBLE);
                     mMultiplayer = false;
+                    final TextView tv = (TextView) findViewById(R.id.playerOneName);
+                    tv.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+                        @Override
+                        public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+                            if ((event != null && event.getKeyCode() == KeyEvent.KEYCODE_ENTER) || (actionId == EditorInfo.IME_ACTION_DONE)) {
+                                mNamePlayerOne = tv.getText().toString();
+                                mTableRows[mStage].setAlpha(0.3f);
+                                mTableRows[mStage].setClickable(false);
+                                mStage++;
+                                mTableRows[mStage].setVisibility(View.VISIBLE);
+                                TextView display = (TextView) findViewById(R.id.namePlayerTwoView);
+                                display.setText(mContext.getResources().getString(R.string.game_ttt_settings_player_two_name_ai, mNamePlayerOne) + ".");
+                                final TextView tv = (TextView) findViewById(R.id.playerTwoName);
+                                tv.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+                                    @Override
+                                    public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+                                        if ((event != null && event.getKeyCode() == KeyEvent.KEYCODE_ENTER) || (actionId == EditorInfo.IME_ACTION_DONE)) {
+                                            mNamePlayerTwo = tv.getText().toString();
+                                            mTableRows[mStage].setAlpha(0.3f);
+                                            mTableRows[mStage].setClickable(false);
+                                            mStage++;
+                                            mTableRows[mStage].setVisibility(View.VISIBLE);
+                                        }
+                                        return false;
+                                    }
+                                });
+                            }
+                            return false;
+                        }
+                    });
                     break;
                 }
                 case R.id.buttonTwoPlayer: {
+                    v.setBackgroundColor(Color.TRANSPARENT);
                     mTableRows[mStage].setAlpha(0.3f);
-                    mTableRows[mStage].setEnabled(false);
-                    mQuestionView.setText("Choose Names");
+                    mTableRows[mStage].setClickable(false);
                     mStage++;
+                    mTableRows[mStage].setVisibility(View.VISIBLE);
                     mMultiplayer = true;
+                    final TextView tv = (TextView) findViewById(R.id.playerOneName);
+                    tv.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+                        @Override
+                        public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+                            if ((event != null && event.getKeyCode() == KeyEvent.KEYCODE_ENTER) || (actionId == EditorInfo.IME_ACTION_DONE)) {
+                                mNamePlayerOne = tv.getText().toString();
+                                mTableRows[mStage].setAlpha(0.3f);
+                                mTableRows[mStage].setClickable(false);
+                                mStage++;
+                                mTableRows[mStage].setVisibility(View.VISIBLE);
+                                final TextView tv = (TextView) findViewById(R.id.playerTwoName);
+                                tv.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+                                    @Override
+                                    public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+                                        if ((event != null && event.getKeyCode() == KeyEvent.KEYCODE_ENTER) || (actionId == EditorInfo.IME_ACTION_DONE)) {
+                                            mNamePlayerTwo = tv.getText().toString();
+                                            mTableRows[mStage].setAlpha(0.3f);
+                                            mTableRows[mStage].setClickable(false);
+                                            mStage++;
+                                            mTableRows[mStage].setVisibility(View.VISIBLE);
+                                        }
+                                        return false;
+                                    }
+                                });
+                            }
+                            return false;
+                        }
+                    });
                     break;
                 }
             }
@@ -68,19 +126,39 @@ public class TickTackToeActivity extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.game_tic_tac_toe);
+        setContentView(R.layout.game_tic_tac_toe_settings);
 
         mMainFrame = (RelativeLayout) findViewById(R.id.MainFrame);
 
-        mQuestionView = (TextView) findViewById(R.id.tttSettingsTitle);
-
-        mTableRows = new TableRow[]{(TableRow) findViewById(R.id.playerCountWrapper)};
+        mTableRows = new TableRow[]{(TableRow) findViewById(R.id.playerCountWrapper),
+                (TableRow) findViewById(R.id.namePlayerOne),
+                (TableRow) findViewById(R.id.namePlayerTwo)};
 
         mButtons = new Button[]{(Button) findViewById(R.id.buttonOnePlayer),
                 (Button) findViewById(R.id.buttonTwoPlayer)};
 
         for (Button b : mButtons) {
             b.setOnClickListener(btnListener);
+        }
+    }
+
+    @Override
+    public void onBackPressed() {
+        if (mStage == 0) {
+            super.onBackPressed();
+        } else {
+            revertOneStep();
+        }
+    }
+
+    private void revertOneStep() {
+        mTableRows[mStage].setVisibility(View.GONE);
+        mStage--;
+        mTableRows[mStage].setAlpha(1.0f);
+        if (mStage == 0) {
+            for (Button b : mButtons) {
+                b.setBackgroundColor(Color.LTGRAY); //// FIXME: 16.08.2015 Doesn't look like the button in the first place, just some weird gray square
+            }
         }
     }
 }

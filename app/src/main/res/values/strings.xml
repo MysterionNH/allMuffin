@@ -104,8 +104,14 @@
 
     <string name="game_ttt_title_view">Start a new game!</string>
 
+    <string name="game_ttt_settings_player_count">Do you have friends?</string>
     <string name="game_ttt_button_one_player">One Player</string>
     <string name="game_ttt_button_two_player">Two Player</string>
+
+    <string name="game_ttt_settings_player_one_name">Enter your Name, Player One</string>
+
+    <string name="game_ttt_settings_player_two_name">Enter your Name, Player Two</string>
+    <string name="game_ttt_settings_player_two_name_ai">Enter the Name of your opponent, %1$s</string>
 
     <!-- StatusBarNotification (Template) -->
 

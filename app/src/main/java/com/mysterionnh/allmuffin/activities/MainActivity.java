@@ -72,4 +72,10 @@ public class MainActivity extends BaseActivity {
         findViewById(R.id.calcOpenButton).setOnClickListener(btnListener4); //Calculator
         findViewById(R.id.ghOpenButton).setOnClickListener(btnListener5);   //GameHub
     }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        //TODO : Add a do you really want to leave dialog
+    }
 }

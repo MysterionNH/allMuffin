@@ -12,8 +12,7 @@
         android:id="@+id/outputWrapper"
         android:layout_width="match_parent"
         android:layout_height="200dp"
-        android:backgroundTint="#DDCB6E"
-        android:backgroundTintMode="screen"
+        android:background="#DDCB6E"
         android:orientation="vertical">
 
         <RelativeLayout
@@ -24,7 +23,7 @@
                 android:id="@+id/lastProblem"
                 style="@android:style/TextAppearance.Holo.Large"
                 android:layout_width="fill_parent"
-                android:layout_height="fill_parent"
+                android:layout_height="wrap_content"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentTop="true"
                 android:height="20dp"
