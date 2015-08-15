@@ -72,7 +72,7 @@ public class TickTackToeActivity extends BaseActivity {
 
         mMainFrame = (RelativeLayout) findViewById(R.id.MainFrame);
 
-        mQuestionView = (TextView) findViewById(R.id.questionView);
+        mQuestionView = (TextView) findViewById(R.id.tttSettingsTitle);
 
         mTableRows = new TableRow[]{(TableRow) findViewById(R.id.playerCountWrapper)};
 

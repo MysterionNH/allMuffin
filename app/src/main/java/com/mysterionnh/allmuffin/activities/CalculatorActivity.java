@@ -389,21 +389,38 @@ public class CalculatorActivity extends BaseActivity {
             if (primariesExisting(primaryOperatorLocations) && numbers[0] == null && operators[0] == '-' && numbers[1] != null) {
                 numbers[1] = (0 - numbers[1]);
             }
+            Integer lastL = null;
             // If there were any, calculate with them
             for (int l = 0; l < primaryOperatorLocations.length; l++) {
                 if (primaryOperatorLocations[l] >= 0) {
                     switch (operators[primaryOperatorLocations[l]]) {
                         case '*': {
-                            primarySolution = numbers[primaryOperatorLocations[l]] * numbers[primaryOperatorLocations[l] + 1];
+                            if (lastL == null) {
+                                lastL = l;
+                            }
+                            if (Math.abs(lastL - l) < 2) {
+                                primarySolution = numbers[primaryOperatorLocations[l]] * numbers[primaryOperatorLocations[l] + 1];
+                            } else {
+                                primarySolution += numbers[primaryOperatorLocations[l]] * numbers[primaryOperatorLocations[l] + 1];
+                            }
                             numbers[primaryOperatorLocations[l] + 1] = primarySolution;
                             allowReset[l] = true;
+                            lastL = l;
                             break;
                         }
                         case '÷': {
                             if (numbers[primaryOperatorLocations[l] + 1] != 0) {
-                                primarySolution = numbers[primaryOperatorLocations[l]] / numbers[primaryOperatorLocations[l] + 1];
+                                if (lastL == null) {
+                                    lastL = l;
+                                }
+                                if (Math.abs(lastL - l) < 2) {
+                                    primarySolution = numbers[primaryOperatorLocations[l]] / numbers[primaryOperatorLocations[l] + 1];
+                                } else {
+                                    primarySolution += numbers[primaryOperatorLocations[l]] / numbers[primaryOperatorLocations[l] + 1];
+                                }
                                 numbers[primaryOperatorLocations[l] + 1] = primarySolution;
                                 allowReset[l] = true;
+                                lastL = l;
                             } else {
                                 Errors.errorToast(mContext,
                                         getResources().getString(R.string.invalid_entry));

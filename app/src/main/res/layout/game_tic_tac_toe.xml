@@ -8,7 +8,7 @@
     android:paddingTop="@dimen/activity_vertical_margin">
 
     <TextView
-        android:id="@+id/questionView"
+        android:id="@+id/tttSettingsTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
@@ -20,7 +20,7 @@
         android:id="@+id/tttTitleSpacer"
         android:layout_width="fill_parent"
         android:layout_height="25dp"
-        android:layout_below="@+id/questionView" />
+        android:layout_below="@+id/tttSettingsTitle" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -42,37 +42,107 @@
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
 
-                <Button
-                    android:id="@+id/buttonOnePlayer"
-                    android:layout_width="wrap_content"
+                <TextView
+                    android:id="@+id/playerCountView"
+                    android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
-                    android:layout_toLeftOf="@+id/spacerPlayerCount"
-                    android:text="@string/game_ttt_button_one_player"
-                    android:theme="@style/CustomButton" />
+                    android:gravity="center_vertical|center|center_horizontal"
+                    android:text="Medium Text"
+                    android:textAppearance="?android:attr/textAppearanceMedium" />
 
-                <Space
-                    android:id="@+id/spacerPlayerCount"
-                    android:layout_width="50dp"
-                    android:layout_height="20dp"
-                    android:layout_centerHorizontal="true" />
-
-                <Button
-                    android:id="@+id/buttonTwoPlayer"
-                    android:layout_width="wrap_content"
+                <FrameLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_toRightOf="@+id/spacerPlayerCount"
-                    android:text="@string/game_ttt_button_two_player"
-                    android:theme="@style/CustomButton" />
+                    android:layout_below="@+id/playerCountView">
+
+                    <RelativeLayout
+                        android:id="@+id/playerCountChoices"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_alignLeft="@+id/playerCountView">
+
+                        <Button
+                            android:id="@+id/buttonOnePlayer"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_toLeftOf="@+id/spacerPlayerCount"
+                            android:text="@string/game_ttt_button_one_player"
+                            android:theme="@style/CustomButton" />
+
+                        <Space
+                            android:id="@+id/spacerPlayerCount"
+                            android:layout_width="50dp"
+                            android:layout_height="20dp"
+                            android:layout_centerHorizontal="true" />
+
+                        <Button
+                            android:id="@+id/buttonTwoPlayer"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_toRightOf="@+id/spacerPlayerCount"
+                            android:text="@string/game_ttt_button_two_player"
+                            android:theme="@style/CustomButton" />
+                    </RelativeLayout>
+                </FrameLayout>
 
             </RelativeLayout>
 
-            <TextView
-                android:id="@+id/textView2"
-                android:layout_width="wrap_content"
+        </TableRow>
+
+        <TableRow
+            android:id="@+id/tableRow"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <RelativeLayout
+                android:id="@+id/relativeLayout4"
+                android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:gravity="center_vertical"
-                android:text="Medium Text"
-                android:textAppearance="?android:attr/textAppearanceMedium" />
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/textView2"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical|center|center_horizontal"
+                    android:text="Medium Text"
+                    android:textAppearance="?android:attr/textAppearanceMedium" />
+
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/textView2">
+
+                    <RelativeLayout
+                        android:id="@+id/relativeLayout3"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_alignLeft="@+id/textView2">
+
+                        <Button
+                            android:id="@+id/button"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_toLeftOf="@+id/space"
+                            android:text="@string/game_ttt_button_one_player"
+                            android:theme="@style/CustomButton" />
+
+                        <Space
+                            android:id="@+id/space"
+                            android:layout_width="50dp"
+                            android:layout_height="20dp"
+                            android:layout_centerHorizontal="true" />
+
+                        <Button
+                            android:id="@+id/button2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_toRightOf="@+id/space"
+                            android:text="@string/game_ttt_button_two_player"
+                            android:theme="@style/CustomButton" />
+                    </RelativeLayout>
+                </FrameLayout>
+            </RelativeLayout>
         </TableRow>
 
     </LinearLayout>
