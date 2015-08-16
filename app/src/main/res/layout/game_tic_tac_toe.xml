@@ -18,7 +18,7 @@
 
         <TextView
             android:id="@+id/aiLevelTitle"
-            android:layout_width="65dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
             android:editable="false"
@@ -112,6 +112,7 @@
                 android:layout_centerHorizontal="true"
                 android:layout_gravity="center"
                 android:alignmentMode="alignBounds"
+                android:background="#000"
                 android:columnCount="3"
                 android:columnOrderPreserved="true"
                 android:rowCount="3"
@@ -120,10 +121,11 @@
 
                 <TextView
                     android:id="@+id/grid00"
-                    android:layout_width="65dp"
-                    android:layout_height="65dp"
+                    android:layout_width="80dp"
+                    android:layout_height="wrap_content"
                     android:layout_column="0"
                     android:layout_row="0"
+                    android:background="#FFFFFF"
                     android:clickable="false"
                     android:editable="false"
                     android:enabled="true"
@@ -137,15 +139,16 @@
 
                 <TextView
                     android:id="@+id/gird10"
-                    android:layout_width="65dp"
-                    android:layout_height="65dp"
+                    android:layout_width="80dp"
+                    android:layout_height="wrap_content"
                     android:layout_column="1"
+                    android:background="#FFFFFF"
                     android:clickable="false"
                     android:editable="false"
                     android:enabled="true"
                     android:focusable="false"
                     android:focusableInTouchMode="false"
-                    android:gravity="center_vertical|center|center_horizontal"
+                    android:gravity="top|center_horizontal"
                     android:text="×"
                     android:textAppearance="?android:attr/textAppearanceLarge"
                     android:textIsSelectable="false"
@@ -153,9 +156,10 @@
 
                 <TextView
                     android:id="@+id/gird20"
-                    android:layout_width="65dp"
-                    android:layout_height="65dp"
+                    android:layout_width="80dp"
+                    android:layout_height="wrap_content"
                     android:layout_column="2"
+                    android:background="#FFFFFF"
                     android:clickable="false"
                     android:editable="false"
                     android:enabled="true"
@@ -169,10 +173,11 @@
 
                 <TextView
                     android:id="@+id/grid01"
-                    android:layout_width="65dp"
-                    android:layout_height="65dp"
+                    android:layout_width="80dp"
+                    android:layout_height="wrap_content"
                     android:layout_column="0"
                     android:layout_row="1"
+                    android:background="#FFFFFF"
                     android:clickable="false"
                     android:editable="false"
                     android:enabled="true"
@@ -186,9 +191,10 @@
 
                 <TextView
                     android:id="@+id/grid11"
-                    android:layout_width="65dp"
-                    android:layout_height="65dp"
+                    android:layout_width="80dp"
+                    android:layout_height="wrap_content"
                     android:layout_column="1"
+                    android:background="#FFFFFF"
                     android:clickable="false"
                     android:editable="false"
                     android:enabled="true"
@@ -202,9 +208,10 @@
 
                 <TextView
                     android:id="@+id/grid21"
-                    android:layout_width="65dp"
-                    android:layout_height="65dp"
+                    android:layout_width="80dp"
+                    android:layout_height="wrap_content"
                     android:layout_column="2"
+                    android:background="#FFFFFF"
                     android:clickable="false"
                     android:editable="false"
                     android:enabled="true"
@@ -218,10 +225,11 @@
 
                 <TextView
                     android:id="@+id/grid02"
-                    android:layout_width="65dp"
-                    android:layout_height="65dp"
+                    android:layout_width="80dp"
+                    android:layout_height="wrap_content"
                     android:layout_column="0"
                     android:layout_row="2"
+                    android:background="#FFFFFF"
                     android:clickable="false"
                     android:editable="false"
                     android:enabled="true"
@@ -235,9 +243,10 @@
 
                 <TextView
                     android:id="@+id/grid12"
-                    android:layout_width="65dp"
-                    android:layout_height="65dp"
+                    android:layout_width="80dp"
+                    android:layout_height="wrap_content"
                     android:layout_column="1"
+                    android:background="#FFFFFF"
                     android:clickable="false"
                     android:editable="false"
                     android:enabled="true"
@@ -251,9 +260,10 @@
 
                 <TextView
                     android:id="@+id/grid22"
-                    android:layout_width="65dp"
-                    android:layout_height="65dp"
+                    android:layout_width="80dp"
+                    android:layout_height="wrap_content"
                     android:layout_column="2"
+                    android:background="#FFFFFF"
                     android:clickable="false"
                     android:editable="false"
                     android:enabled="true"
@@ -280,7 +290,8 @@
                 android:layout_below="@+id/space7"
                 android:layout_centerHorizontal="true"
                 android:gravity="center"
-                android:text="@string/game_ttt_replay_button" />
+                android:text="@string/game_ttt_replay_button"
+                android:visibility="gone" />
 
         </RelativeLayout>
     </FrameLayout>

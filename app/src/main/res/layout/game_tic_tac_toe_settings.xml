@@ -243,6 +243,7 @@
                                 android:layout_gravity="center"
                                 android:layout_row="0"
                                 android:background="#000"
+                                android:gravity="center|center_horizontal|center_vertical"
                                 android:textColor="@android:color/white" />
 
                             <Space
@@ -259,6 +260,7 @@
                                 android:layout_gravity="center"
                                 android:layout_row="0"
                                 android:background="#FFD800"
+                                android:gravity="center|center_horizontal|center_vertical"
                                 android:textColor="@android:color/black" />
 
                             <Space
@@ -275,6 +277,7 @@
                                 android:layout_gravity="center"
                                 android:layout_row="0"
                                 android:background="#FF0000"
+                                android:gravity="center|center_horizontal|center_vertical"
                                 android:textColor="@android:color/black" />
 
                             <Space
@@ -291,6 +294,7 @@
                                 android:layout_gravity="center"
                                 android:layout_row="0"
                                 android:background="#00FF21"
+                                android:gravity="center|center_horizontal|center_vertical"
                                 android:textColor="@android:color/black" />
                         </GridLayout>
 
@@ -342,6 +346,7 @@
                                 android:layout_gravity="center"
                                 android:layout_row="0"
                                 android:background="#FF00DC"
+                                android:gravity="center|center_horizontal|center_vertical"
                                 android:textColor="@android:color/black" />
 
                             <Space
@@ -358,6 +363,7 @@
                                 android:layout_gravity="center"
                                 android:layout_row="0"
                                 android:background="#004EFF"
+                                android:gravity="center|center_horizontal|center_vertical"
                                 android:textColor="@android:color/black" />
 
                             <Space
@@ -374,6 +380,7 @@
                                 android:layout_gravity="center"
                                 android:layout_row="0"
                                 android:background="#A0A0A0"
+                                android:gravity="center|center_horizontal|center_vertical"
                                 android:textColor="@android:color/black" />
 
                             <Space
@@ -390,6 +397,7 @@
                                 android:layout_gravity="center"
                                 android:layout_row="0"
                                 android:background="#7FFFFF"
+                                android:gravity="center|center_horizontal|center_vertical"
                                 android:textColor="@android:color/black" />
                         </GridLayout>
                     </RelativeLayout>
