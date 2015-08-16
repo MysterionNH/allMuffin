@@ -73,7 +73,18 @@
     <string name="game_ttt_button_one_player">Ein Spieler</string>
     <string name="game_ttt_button_two_player">Zwei Spieler</string>
     <string name="pref_onchange_calc">Nachkommastellen: </string>
-    <string name="title_view">Starte ein neues Spiel</string>
     <string name="pref_button_reset_title">Zurücksetzen</string>
     <string name="pref_button_reset_summary">Setzt alle Einstellungen auf Standarteinstellungen zurück</string>
+    <string name="game_ttt_settings_player_count">Einzel oder Mehrspieler?</string>
+    <string name="game_ttt_settings_player_one_color">Wähle deine Farbe, %1$s.</string>
+    <string name="game_ttt_settings_player_one_name">Gib deinem Namen ein, Spieler Eins.</string>
+    <string name="game_ttt_settings_player_two_color">Wähle deine Farbe, %1$s.</string>
+    <string name="game_ttt_settings_player_two_color_ai">Wähle die Farbe deines Gegners, %1$s.</string>
+    <string name="game_ttt_settings_player_two_name">Gib deinen Namen ein, Spieler Zwei.</string>
+    <string name="game_ttt_settings_player_two_name_ai">Gib den Namen deines Gegners ein, %1$s</string>
+    <string name="game_ttt_start_button">Los!</string>
+    <string name="game_ttt_ai_level_easy">Einfach</string>
+    <string name="game_ttt_ai_level_hard">Schwer</string>
+    <string name="game_ttt_ai_level_medium">Normal</string>
+    <string name="game_ttt_ai_level_title">Wähle die Stärke deines Gegners.</string>
 </resources>

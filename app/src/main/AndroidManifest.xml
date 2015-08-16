@@ -59,7 +59,7 @@
 
         <!-- Game: TicTacToe -->
         <activity
-            android:name=".activities.games.TickTackToeActivity"
+            android:name=".activities.games.TicTacToeActivity"
             android:label="@string/game_ttt_title"
             android:parentActivityName=".activities.GameHubActivity" />
     </application>

@@ -22,166 +22,414 @@
         android:layout_height="25dp"
         android:layout_below="@+id/tttSettingsTitle" />
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_alignParentTop="false"
-        android:layout_below="@+id/tttTitleSpacer"
-        android:measureWithLargestChild="false"
-        android:orientation="vertical"
-        android:visibility="visible">
+    <ScrollView
+        android:id="@+id/scrollView"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_below="@+id/tttTitleSpacer">
 
-        <TableRow
-            android:id="@+id/playerCountWrapper"
+        <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
-            <RelativeLayout
-                android:id="@+id/playerCount"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
 
-                <TextView
-                    android:id="@+id/playerCountView"
-                    android:layout_width="fill_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="center_vertical|center|center_horizontal"
-                    android:text="@string/game_ttt_settings_player_count"
-                    android:textAppearance="?android:attr/textAppearanceMedium" />
-
-                <FrameLayout
+                <TableRow
+                    android:id="@+id/playerCountWrapper"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_below="@+id/playerCountView">
+                    android:layout_marginLeft="0dp"
+                    android:layout_marginTop="0dp">
 
                     <RelativeLayout
-                        android:id="@+id/playerCountChoices"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
+                        android:id="@+id/playerCount"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
 
-                        <Button
-                            android:id="@+id/buttonOnePlayer"
-                            android:layout_width="wrap_content"
+                        <TextView
+                            android:id="@+id/playerCountView"
+                            android:layout_width="fill_parent"
                             android:layout_height="wrap_content"
-                            android:layout_toLeftOf="@+id/spacerPlayerCount"
-                            android:text="@string/game_ttt_button_one_player"
-                            android:theme="@style/CustomButton" />
+                            android:gravity="center_vertical|center|center_horizontal"
+                            android:text="@string/game_ttt_settings_player_count"
+                            android:textAppearance="?android:attr/textAppearanceMedium" />
 
-                        <Space
-                            android:id="@+id/spacerPlayerCount"
-                            android:layout_width="50dp"
-                            android:layout_height="20dp"
-                            android:layout_centerHorizontal="true" />
-
-                        <Button
-                            android:id="@+id/buttonTwoPlayer"
-                            android:layout_width="wrap_content"
+                        <FrameLayout
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_toRightOf="@+id/spacerPlayerCount"
-                            android:text="@string/game_ttt_button_two_player"
-                            android:theme="@style/CustomButton" />
+                            android:layout_below="@+id/playerCountView">
+
+                            <RelativeLayout
+                                android:id="@+id/playerCountChoices"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content">
+
+                                <Button
+                                    android:id="@+id/buttonOnePlayer"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_toLeftOf="@+id/spacerPlayerCount"
+                                    android:text="@string/game_ttt_button_one_player"
+                                    android:theme="@style/CustomButton" />
+
+                                <Space
+                                    android:id="@+id/spacerPlayerCount"
+                                    android:layout_width="50dp"
+                                    android:layout_height="20dp"
+                                    android:layout_centerHorizontal="true" />
+
+                                <Button
+                                    android:id="@+id/buttonTwoPlayer"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_toRightOf="@+id/spacerPlayerCount"
+                                    android:text="@string/game_ttt_button_two_player"
+                                    android:theme="@style/CustomButton" />
+                            </RelativeLayout>
+                        </FrameLayout>
+
                     </RelativeLayout>
-                </FrameLayout>
 
-            </RelativeLayout>
+                </TableRow>
 
-        </TableRow>
-
-        <Space
-            android:layout_width="fill_parent"
-            android:layout_height="25dp" />
-
-        <TableRow
-            android:id="@+id/namePlayerOne"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:visibility="gone">
-
-            <RelativeLayout
-                android:id="@+id/relativeLayout4"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:id="@+id/namePlayerOneView"
+                <Space
                     android:layout_width="fill_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="center_vertical|center|center_horizontal"
-                    android:text="@string/game_ttt_settings_player_one_name"
-                    android:textAppearance="?android:attr/textAppearanceMedium" />
+                    android:layout_height="25dp"
+                    android:layout_marginLeft="0dp"
+                    android:layout_marginTop="0dp" />
 
-                <FrameLayout
+                <TableRow
+                    android:id="@+id/namePlayerOne"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_below="@+id/namePlayerOneView">
+                    android:layout_marginLeft="0dp"
+                    android:layout_marginTop="0dp"
+                    android:visibility="gone">
 
                     <RelativeLayout
-                        android:id="@+id/relativeLayout3"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
+                        android:id="@+id/relativeLayout4"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
 
-                        <EditText
-                            android:id="@+id/playerOneName"
+                        <TextView
+                            android:id="@+id/namePlayerOneView"
+                            android:layout_width="fill_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center_vertical|center|center_horizontal"
+                            android:text="@string/game_ttt_settings_player_one_name"
+                            android:textAppearance="?android:attr/textAppearanceMedium" />
+
+                        <FrameLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/namePlayerOneView">
+
+                            <RelativeLayout
+                                android:id="@+id/relativeLayout3"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content">
+
+                                <EditText
+                                    android:id="@+id/playerOneName"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_centerInParent="true"
+                                    android:ems="10"
+                                    android:inputType="textPersonName" />
+                            </RelativeLayout>
+                        </FrameLayout>
+                    </RelativeLayout>
+                </TableRow>
+
+                <Space
+                    android:id="@+id/space4"
+                    android:layout_width="fill_parent"
+                    android:layout_height="25dp"
+                    android:layout_marginLeft="0dp"
+                    android:layout_marginTop="0dp" />
+
+                <TableRow
+                    android:id="@+id/namePlayerTwo"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="0dp"
+                    android:layout_marginTop="0dp"
+                    android:visibility="gone">
+
+                    <RelativeLayout
+                        android:id="@+id/relativeLayout6"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/namePlayerTwoView"
+                            android:layout_width="fill_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center_vertical|center|center_horizontal"
+                            android:text="@string/game_ttt_settings_player_two_name"
+                            android:textAppearance="?android:attr/textAppearanceMedium" />
+
+                        <FrameLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/namePlayerTwoView">
+
+                            <RelativeLayout
+                                android:id="@+id/relativeLayout5"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content">
+
+                                <EditText
+                                    android:id="@+id/playerTwoName"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_centerInParent="true"
+                                    android:ems="10"
+                                    android:inputType="textPersonName" />
+                            </RelativeLayout>
+                        </FrameLayout>
+                    </RelativeLayout>
+                </TableRow>
+
+                <Space
+                    android:id="@+id/space"
+                    android:layout_width="fill_parent"
+                    android:layout_height="25dp"
+                    android:layout_marginLeft="0dp"
+                    android:layout_marginTop="0dp" />
+
+                <TableRow
+                    android:id="@+id/colorPlayerOne"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="0dp"
+                    android:layout_marginTop="0dp"
+                    android:visibility="gone">
+
+                    <RelativeLayout
+                        android:id="@+id/relativeLayout8"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/colorPlayerOneView"
+                            android:layout_width="fill_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center_vertical|center|center_horizontal"
+                            android:text="@string/game_ttt_settings_player_one_color"
+                            android:textAppearance="?android:attr/textAppearanceMedium" />
+
+                        <GridLayout
+                            android:id="@+id/colorPicker"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/colorPlayerOneView"
+                            android:layout_centerInParent="true"
+                            android:columnCount="7"
+                            android:rowCount="1">
+
+                            <Button
+                                android:id="@+id/colorBlack"
+                                android:layout_width="50dp"
+                                android:layout_height="50dp"
+                                android:layout_column="0"
+                                android:layout_gravity="center"
+                                android:layout_row="0"
+                                android:background="#000"
+                                android:textColor="@android:color/white" />
+
+                            <Space
+                                android:layout_width="30dp"
+                                android:layout_height="fill_parent"
+                                android:layout_column="1"
+                                android:layout_row="0" />
+
+                            <Button
+                                android:id="@+id/colorYellow"
+                                android:layout_width="50dp"
+                                android:layout_height="50dp"
+                                android:layout_column="2"
+                                android:layout_gravity="center"
+                                android:layout_row="0"
+                                android:background="#FFD800"
+                                android:textColor="@android:color/black" />
+
+                            <Space
+                                android:layout_width="30dp"
+                                android:layout_height="fill_parent"
+                                android:layout_column="3"
+                                android:layout_row="0" />
+
+                            <Button
+                                android:id="@+id/colorRed"
+                                android:layout_width="50dp"
+                                android:layout_height="50dp"
+                                android:layout_column="4"
+                                android:layout_gravity="center"
+                                android:layout_row="0"
+                                android:background="#FF0000"
+                                android:textColor="@android:color/black" />
+
+                            <Space
+                                android:layout_width="30dp"
+                                android:layout_height="fill_parent"
+                                android:layout_column="5"
+                                android:layout_row="0" />
+
+                            <Button
+                                android:id="@+id/colorGreen"
+                                android:layout_width="50dp"
+                                android:layout_height="50dp"
+                                android:layout_column="6"
+                                android:layout_gravity="center"
+                                android:layout_row="0"
+                                android:background="#00FF21"
+                                android:textColor="@android:color/black" />
+                        </GridLayout>
+
+                    </RelativeLayout>
+                </TableRow>
+
+                <Space
+                    android:id="@+id/space2"
+                    android:layout_width="fill_parent"
+                    android:layout_height="25dp"
+                    android:layout_marginLeft="0dp"
+                    android:layout_marginTop="0dp" />
+
+                <TableRow
+                    android:id="@+id/colorPlayerTwo"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:visibility="gone">
+
+                    <RelativeLayout
+                        android:id="@+id/relativeLayout7"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/colorPlayerTwoView"
+                            android:layout_width="fill_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center_vertical|center|center_horizontal"
+                            android:text="@string/game_ttt_settings_player_two_color"
+                            android:textAppearance="?android:attr/textAppearanceMedium" />
+
+                        <GridLayout
+                            android:id="@+id/colorPicker2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/colorPlayerTwoView"
+                            android:layout_centerInParent="true"
+                            android:columnCount="7"
+                            android:rowCount="1">
+
+                            <Button
+                                android:id="@+id/colorMagenta"
+                                android:layout_width="50dp"
+                                android:layout_height="50dp"
+                                android:layout_column="0"
+                                android:layout_gravity="center"
+                                android:layout_row="0"
+                                android:background="#FF00DC"
+                                android:textColor="@android:color/black" />
+
+                            <Space
+                                android:layout_width="30dp"
+                                android:layout_height="fill_parent"
+                                android:layout_column="1"
+                                android:layout_row="0" />
+
+                            <Button
+                                android:id="@+id/colorBlue"
+                                android:layout_width="50dp"
+                                android:layout_height="50dp"
+                                android:layout_column="2"
+                                android:layout_gravity="center"
+                                android:layout_row="0"
+                                android:background="#004EFF"
+                                android:textColor="@android:color/black" />
+
+                            <Space
+                                android:layout_width="30dp"
+                                android:layout_height="fill_parent"
+                                android:layout_column="3"
+                                android:layout_row="0" />
+
+                            <Button
+                                android:id="@+id/colorLTGray"
+                                android:layout_width="50dp"
+                                android:layout_height="50dp"
+                                android:layout_column="4"
+                                android:layout_gravity="center"
+                                android:layout_row="0"
+                                android:background="#A0A0A0"
+                                android:textColor="@android:color/black" />
+
+                            <Space
+                                android:layout_width="30dp"
+                                android:layout_height="fill_parent"
+                                android:layout_column="5"
+                                android:layout_row="0" />
+
+                            <Button
+                                android:id="@+id/colorCyan"
+                                android:layout_width="50dp"
+                                android:layout_height="50dp"
+                                android:layout_column="6"
+                                android:layout_gravity="center"
+                                android:layout_row="0"
+                                android:background="#7FFFFF"
+                                android:textColor="@android:color/black" />
+                        </GridLayout>
+                    </RelativeLayout>
+                </TableRow>
+
+                <Space
+                    android:id="@+id/space3"
+                    android:layout_width="fill_parent"
+                    android:layout_height="25dp"
+                    android:layout_marginLeft="0dp"
+                    android:layout_marginTop="0dp" />
+
+                <TableRow
+                    android:id="@+id/startRow"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:visibility="gone">
+
+                    <RelativeLayout
+                        android:id="@+id/relativeLayout9"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <Button
+                            android:id="@+id/startTTTButton"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_centerInParent="true"
-                            android:ems="10"
-                            android:inputType="textPersonName" />
+                            android:text="@string/game_ttt_start_button"
+                            android:textColor="#000"
+                            android:theme="@style/CustomButton" />
                     </RelativeLayout>
-                </FrameLayout>
-            </RelativeLayout>
-        </TableRow>
+                </TableRow>
 
-        <Space
-            android:id="@+id/space4"
-            android:layout_width="fill_parent"
-            android:layout_height="25dp" />
+            </LinearLayout>
+        </RelativeLayout>
+    </ScrollView>
 
-        <TableRow
-            android:id="@+id/namePlayerTwo"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:visibility="gone">
-
-            <RelativeLayout
-                android:id="@+id/relativeLayout6"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:id="@+id/namePlayerTwoView"
-                    android:layout_width="fill_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="center_vertical|center|center_horizontal"
-                    android:text="@string/game_ttt_settings_player_two_name"
-                    android:textAppearance="?android:attr/textAppearanceMedium" />
-
-                <FrameLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@+id/namePlayerTwoView">
-
-                    <RelativeLayout
-                        android:id="@+id/relativeLayout5"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
-
-                        <EditText
-                            android:id="@+id/playerTwoName"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_centerInParent="true"
-                            android:ems="10"
-                            android:inputType="textPersonName" />
-                    </RelativeLayout>
-                </FrameLayout>
-            </RelativeLayout>
-        </TableRow>
-
-    </LinearLayout>
 </RelativeLayout>
 
     

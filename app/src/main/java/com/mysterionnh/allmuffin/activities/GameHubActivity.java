@@ -6,7 +6,7 @@ import android.os.Bundle;
 import android.view.View;
 
 import com.mysterionnh.allmuffin.R;
-import com.mysterionnh.allmuffin.activities.games.TickTackToeActivity;
+import com.mysterionnh.allmuffin.activities.games.TicTacToeActivity;
 
 /**
  * The GameHub, from here all games are accessible
@@ -17,7 +17,7 @@ public class GameHubActivity extends BaseActivity {
     private final View.OnClickListener btnListener = new View.OnClickListener() {
 
         public void onClick(View v) {
-            startActivity(new Intent(_context, TickTackToeActivity.class));
+            startActivity(new Intent(_context, TicTacToeActivity.class));
         }
     };
 
