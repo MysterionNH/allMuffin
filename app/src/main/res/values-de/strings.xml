@@ -92,4 +92,22 @@
     <string name="game_ttt_replay_button">Nächste Runde!</string>
     <string name="game_ttt_turn">%1$s ist dran!</string>
     <string name="game_ttt_draw">Unentschieden!</string>
+    <string-array name="pref_calc_entries">
+        <item>App standart (2)</item>
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+        <item>6</item>
+    </string-array>
+    <string-array name="pref_calc_values">
+        <item>2</item>
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+        <item>6</item>
+    </string-array>
 </resources>

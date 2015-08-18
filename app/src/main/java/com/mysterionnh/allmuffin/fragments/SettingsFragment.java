@@ -18,7 +18,7 @@ public class SettingsFragment extends PreferenceFragment implements SharedPrefer
     public static final String KEY_PREF_BG_COLOR = "pref_key_bg_color";
     public static final String KEY_PREF_ALLOW_LANG_CHANGE = "pref_key_allow_lang_change";
     public static final String KEY_PREF_LANG = "pref_key_lang";
-    public static final String KEY_PREF_CALC = "pref_key_calc";
+    private static final String KEY_PREF_CALC = "pref_key_calc";
     private Context mContext;
     private SharedPreferences mSharedPreferences;
 

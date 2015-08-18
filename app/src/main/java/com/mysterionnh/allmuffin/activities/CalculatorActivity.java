@@ -22,11 +22,11 @@ public class CalculatorActivity extends BaseActivity {
      * As always, storing context, easier and safer to access
      */
     private final Context mContext = (Context) this;
-    SharedPreferences mSharedPrefs;
+    private SharedPreferences mSharedPrefs;
     /**
      * The value with we use for rounding, change regarding to settings
      */
-    double mRoundingValue;
+    private double mRoundingValue;
     /**
      * The View Button that was clicked
      */
