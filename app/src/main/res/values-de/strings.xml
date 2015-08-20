@@ -91,7 +91,7 @@
     <string name="game_ttt_player_won">%1$s hat gewonnen!</string>
     <string name="game_ttt_replay_button">Nächste Runde!</string>
     <string name="game_ttt_turn">%1$s ist dran!</string>
-    <string name="game_ttt_draw">Unentschieden!</string>
+    <string name="game_ttt_draw">Unentschieden...</string>
     <string-array name="pref_calc_entries">
         <item>App standart (2)</item>
         <item>1</item>

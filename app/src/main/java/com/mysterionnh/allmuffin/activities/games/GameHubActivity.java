@@ -1,4 +1,4 @@
-package com.mysterionnh.allmuffin.activities;
+package com.mysterionnh.allmuffin.activities.games;
 
 import android.content.Context;
 import android.content.Intent;
@@ -6,7 +6,7 @@ import android.os.Bundle;
 import android.view.View;
 
 import com.mysterionnh.allmuffin.R;
-import com.mysterionnh.allmuffin.activities.games.TicTacToeActivity;
+import com.mysterionnh.allmuffin.activities.BaseActivity;
 
 /**
  * The GameHub, from here all games are accessible

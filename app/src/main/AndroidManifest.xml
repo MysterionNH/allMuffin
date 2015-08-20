@@ -53,7 +53,7 @@
 
         <!-- GameHub -->
         <activity
-            android:name=".activities.GameHubActivity"
+            android:name=".activities.games.GameHubActivity"
             android:label="@string/gh_title"
             android:parentActivityName=".activities.MainActivity" />
 
@@ -61,6 +61,7 @@
         <activity
             android:name=".activities.games.TicTacToeActivity"
             android:label="@string/game_ttt_title"
-            android:parentActivityName=".activities.GameHubActivity" />
+            android:parentActivityName=".activities.games.GameHubActivity"
+            android:screenOrientation="portrait" />
     </application>
 </manifest>

@@ -130,7 +130,7 @@
     <string name="game_ttt_player_won">%1$s won!</string>
     <string name="game_ttt_already_filled">Someone already placed his/hers sign there!</string>
 
-    <string name="game_ttt_draw">Draw!</string>
+    <string name="game_ttt_draw">Draw...</string>
 
     <!-- StatusBarNotification (Template) -->
 

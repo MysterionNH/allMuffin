@@ -8,6 +8,7 @@ import android.preference.PreferenceManager;
 import android.view.View;
 
 import com.mysterionnh.allmuffin.R;
+import com.mysterionnh.allmuffin.activities.games.GameHubActivity;
 import com.mysterionnh.allmuffin.fragments.SettingsFragment;
 import com.mysterionnh.allmuffin.helper.NewMessagePopup;
 
