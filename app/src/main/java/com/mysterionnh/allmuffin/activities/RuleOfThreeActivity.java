@@ -51,7 +51,9 @@ public class RuleOfThreeActivity extends BaseActivity {
     private void updateFields(String[] texts, TextView[] eTexts) {
 
         for (int i = 0; i < texts.length; i++) {
-            eTexts[i].setText(String.valueOf(Math.round(Double.valueOf(texts[i]) * 1000.0) / 1000.0));
+            if (!texts[i].equals("")) {
+                eTexts[i].setText(String.valueOf(Math.round(Double.valueOf(texts[i]) * 1000.0) / 1000.0));
+            }
         }
     }
 
