@@ -16,13 +16,17 @@
         actual App. Thank you for going through the trouble off installing this, if you have tips,
         criticism or found a bug/mistake, I would be happy to here from you. :)
     </string>
-    <string name="popup_btnText" translatable="false">OKAY</string>
+    <string name="popup_positive_button_text" translatable="false">Okay</string>
+    <string name="popup_negative_button_text">No</string>
 
     <!-- For MainActivity -->
 
     <string name="main_open">OPEN</string>
 
     <string name="main_info">Hello and welcome to \"allMuffin\", a Project were all my AndroidProjects are put together! Whatever you are doing here when you aren\'t me, but whatever, here are all my current projects in oder:</string>
+
+    <string name="leave_title">Exit Application</string>
+    <string name="leave_message">Do you really want to exit the Application?</string>
 
     <!-- For RuleOfThreeActivity -->
 
@@ -130,7 +134,9 @@
     <string name="game_ttt_player_won">%1$s won!</string>
     <string name="game_ttt_already_filled">Someone already placed his/hers sign there!</string>
 
-    <string name="game_ttt_draw">Draw...</string>
+    <string name="game_ttt_draw">Draw…</string>
+
+    <string name="game_ttt_leave_message">Do you really want to leave the game?</string>
 
     <!-- StatusBarNotification (Template) -->
 
@@ -237,4 +243,5 @@
     <string name="pref_button_reset_key" translatable="false">pref_button_reset_key</string>
     <string name="pref_button_reset_title">Reset</string>
     <string name="pref_button_reset_summary">Reset settings to defaults</string>
+    <string name="game_ttt_leave_title">Exit Game</string>
 </resources>

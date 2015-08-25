@@ -11,7 +11,6 @@ import android.widget.GridLayout;
 import android.widget.TextView;
 
 import com.mysterionnh.allmuffin.R;
-import com.mysterionnh.allmuffin.fragments.SettingsFragment;
 import com.mysterionnh.allmuffin.helper.Errors;
 
 import java.util.Locale;
@@ -64,16 +63,15 @@ public class CalculatorActivity extends BaseActivity {
                     break;
                 }
                 case R.id.periodButton: {
-                    //if (!mOutputText.equals("")) {
-                    //    if (lastCharIsNumeric(mOutputText) && currentNumIsNotDecimal(mOutputText)) {
-                    //        mOutputText += ".";
-                    //    } else {
-                    //        Errors.errorToast(mContext, getResources().getString(R.string.invalid_entry));
-                    //    }
-                    //} else {
-                    //    mOutputText = "0.";
-                    //}
-                    putSign(mClickedButton);
+                    if (!mOutputText.equals("")) {
+                        if (lastCharIsNumeric(mOutputText) && !currentNumIsDecimal(mOutputText)) {
+                            mOutputText += ".";
+                        } else {
+                            Errors.errorToast(mContext, getResources().getString(R.string.invalid_entry));
+                        }
+                    } else {
+                        mOutputText = "0.";
+                    }
                     break;
                 }
                 case R.id.timesButton: {
@@ -524,7 +522,7 @@ public class CalculatorActivity extends BaseActivity {
     }
 
     private void updateOutput(String outputText) {
-        mOutputView.setText(outputText);
+        mOutputView.setText(formatStringAccordingToLanguage(outputText));
         mOutputText = "";
     }
 
@@ -581,20 +579,17 @@ public class CalculatorActivity extends BaseActivity {
     }
 
     private String formatStringAccordingToLanguage(String problem) {
-        SharedPreferences shPref = PreferenceManager.getDefaultSharedPreferences(mContext);
-        if (shPref.getBoolean(SettingsFragment.KEY_PREF_ALLOW_LANG_CHANGE,
-                Boolean.valueOf(mContext.getResources().getString(R.string.pref_default_value_allow_lang_change)))) {
-            Locale loc = new Locale(shPref.getString(SettingsFragment.KEY_PREF_LANG,
-                    mContext.getResources().getString(R.string.pref_default_lang)));
-            if (loc.getDisplayLanguage().equals("Deutsch")) {
-                char[] problemArray = problem.toCharArray();
-                for (int i = 0; i < problemArray.length - 1; i++) {
-                    if (problemArray[i] == '.') {
-                        problemArray[i] = ',';
-                    }
+        // Get the *APP* setting
+        Locale loc = Locale.getDefault();
+        // When german, put a ',' instead of a '.'
+        if (loc.getDisplayLanguage().equals("Deutsch")) {
+            char[] problemArray = problem.toCharArray();
+            for (int i = 0; i <= problemArray.length - 1; i++) {
+                if (problemArray[i] == '.') {
+                    problemArray[i] = ',';
                 }
-                problem = String.valueOf(problemArray);
             }
+            problem = String.valueOf(problemArray);
         }
         return problem;
     }
@@ -616,17 +611,15 @@ public class CalculatorActivity extends BaseActivity {
         }
     }
 
-    /* Was used once, maybe need it again later
     private boolean currentNumIsDecimal(String string) {
         char[] text = string.toCharArray();
         for (int i = text.length - 1; i >= 0; i--) {
             if (!lastCharIsNumeric(String.valueOf(text[i]))) {
-                return text[i] == '.';
+                return text[i] == '.' || text[i] == ',';
             }
         }
         return false;
     }
-    */
 
     private String reverseNum(String string) {
         char[] text = string.toCharArray();

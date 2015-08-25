@@ -91,7 +91,7 @@
     <string name="game_ttt_player_won">%1$s hat gewonnen!</string>
     <string name="game_ttt_replay_button">Nächste Runde!</string>
     <string name="game_ttt_turn">%1$s ist dran!</string>
-    <string name="game_ttt_draw">Unentschieden...</string>
+    <string name="game_ttt_draw">Unentschieden…</string>
     <string-array name="pref_calc_entries">
         <item>App standart (2)</item>
         <item>1</item>
@@ -110,4 +110,9 @@
         <item>5</item>
         <item>6</item>
     </string-array>
+    <string name="popup_negative_button_text">Nein</string>
+    <string name="game_ttt_leave_message">Möchtest du das Spiel wirklich verlassen?</string>
+    <string name="game_ttt_leave_title">Verlasse Spiel</string>
+    <string name="leave_message">Möchten Sie die App wirklich schließen?</string>
+    <string name="leave_title">App Schließen</string>
 </resources>

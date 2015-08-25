@@ -1,8 +1,11 @@
 package com.mysterionnh.allmuffin.activities;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.res.Resources;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.view.View;
@@ -74,9 +77,24 @@ public class MainActivity extends BaseActivity {
         findViewById(R.id.ghOpenButton).setOnClickListener(btnListener5);   //GameHub
     }
 
+    /**
+     * Open a confirmation dialog on back press and close it properly if wanted
+     */
     @Override
     public void onBackPressed() {
-        super.onBackPressed();
-        //TODO : Add a do you really want to leave dialog
+        Resources res = mContext.getResources();
+        new AlertDialog.Builder(this)
+                .setIcon(R.mipmap.ic_launcher)
+                .setTitle(res.getString(R.string.leave_title))
+                .setMessage(res.getString(R.string.leave_message))
+                .setPositiveButton(res.getString(R.string.popup_positive_button_text), new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        finish();
+                    }
+
+                })
+                .setNegativeButton(R.string.popup_negative_button_text, null)
+                .show();
     }
 }

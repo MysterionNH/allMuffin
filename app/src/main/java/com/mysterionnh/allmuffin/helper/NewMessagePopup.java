@@ -97,7 +97,7 @@ public class NewMessagePopup {
         //Shows the finished popup
         AlertDialog dialog = builder.show();
 
-        // I don't completely understand this, but it seems like I'm looking up how it has to look..
+        // I don't know. It is after the .show(), so it should not change anything anymore.. idk
         TextView messageText = (TextView) dialog.findViewById(android.R.id.message);
 
         messageText.setGravity(align);
@@ -116,7 +116,7 @@ public class NewMessagePopup {
         myMsg.setTextSize(20);
         builder.setCustomTitle(myMsg);
         builder.setMessage(R.string.popup_body);
-        builder.setPositiveButton(R.string.popup_btnText, null);
+        builder.setPositiveButton(R.string.popup_positive_button_text, null);
         AlertDialog dialog = builder.show();
         TextView messageText = (TextView) dialog.findViewById(android.R.id.message);
         messageText.setGravity(Gravity.FILL_HORIZONTAL);

@@ -1,6 +1,9 @@
 package com.mysterionnh.allmuffin.activities.games;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
+import android.content.res.Resources;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.text.Html;
@@ -40,75 +43,6 @@ public class TicTacToeActivity extends BaseActivity {
     private int mPlayerTwoWeakColor;
     private int mPlayersTurn;
     private int mStage = 0;
-    private final View.OnClickListener colorListenerOne = new View.OnClickListener() {
-        public void onClick(View v) {
-            switch (v.getId()) {
-                case R.id.colorBlack: {
-                    mPlayerOneColor = 0xFF000000;
-                    mPlayerOneWeakColor = 0xFFA0A0A0; // Gray, because black with less alpha is still black
-                    changeState();
-                    TextView colorPlayerTwoView = (TextView) findViewById(R.id.colorPlayerTwoView);
-                    if (mMultiplayer) {
-                        colorPlayerTwoView.setText(mContext.getString(R.string.game_ttt_settings_player_two_color, mNamePlayerTwo));
-                    } else {
-                        colorPlayerTwoView.setText(mContext.getString(R.string.game_ttt_settings_player_two_color_ai, mNamePlayerOne));
-                    }
-                    ((Button) v).setText("X");
-                    break;
-                }
-                case R.id.colorYellow: {
-                    mPlayerOneColor = 0xFFFFD800;
-                    mPlayerOneWeakColor = 0xAAFFD800;
-                    changeState();
-                    TextView colorPlayerTwoView = (TextView) findViewById(R.id.colorPlayerTwoView);
-                    if (mMultiplayer) {
-                        colorPlayerTwoView.setText(mContext.getString(R.string.game_ttt_settings_player_two_color, mNamePlayerTwo));
-                    } else {
-                        colorPlayerTwoView.setText(mContext.getString(R.string.game_ttt_settings_player_two_color_ai, mNamePlayerOne));
-                    }
-                    ((Button) v).setText("X");
-                    break;
-                }
-                case R.id.colorRed: {
-                    mPlayerOneColor = 0xFFFF0000;
-                    mPlayerOneWeakColor = 0xAAFF0000;
-                    changeState();
-                    TextView colorPlayerTwoView = (TextView) findViewById(R.id.colorPlayerTwoView);
-                    if (mMultiplayer) {
-                        colorPlayerTwoView.setText(mContext.getString(R.string.game_ttt_settings_player_two_color, mNamePlayerTwo));
-                    } else {
-                        colorPlayerTwoView.setText(mContext.getString(R.string.game_ttt_settings_player_two_color_ai, mNamePlayerOne));
-                    }
-                    ((Button) v).setText("X");
-                    break;
-                }
-                case R.id.colorGreen: {
-                    mPlayerOneColor = 0xFF00FF21;
-                    mPlayerOneWeakColor = 0xAA00FF21;
-                    changeState();
-                    TextView colorPlayerTwoView = (TextView) findViewById(R.id.colorPlayerTwoView);
-                    if (mMultiplayer) {
-                        colorPlayerTwoView.setText(mContext.getString(R.string.game_ttt_settings_player_two_color, mNamePlayerTwo));
-                    } else {
-                        colorPlayerTwoView.setText(mContext.getString(R.string.game_ttt_settings_player_two_color_ai, mNamePlayerOne));
-                    }
-                    ((Button) v).setText("X");
-                    break;
-                }
-            }
-            Button[] buttons = {(Button) findViewById(R.id.colorBlack), (Button) findViewById(R.id.colorYellow), (Button) findViewById(R.id.colorRed), (Button) findViewById(R.id.colorGreen)};
-            for (Button b : buttons) {
-                b.setEnabled(false);
-                b.setClickable(false);
-                b.setOnClickListener(null);
-            }
-
-            Button[] buttons2 = {(Button) findViewById(R.id.colorMagenta), (Button) findViewById(R.id.colorBlue), (Button) findViewById(R.id.colorLTGray), (Button) findViewById(R.id.colorCyan)};
-            for (Button b : buttons2) {
-                b.setOnClickListener(colorListenerTwo);
-            }
-        }
-    };
     private final View.OnClickListener btnListener = new View.OnClickListener() {
 
         public void onClick(View v) {
@@ -203,39 +137,6 @@ public class TicTacToeActivity extends BaseActivity {
             findViewById(R.id.buttonTwoPlayer).setClickable(false);
         }
     };
-    private int mAiLevel;
-    private TextView[] mGrid;
-    private final View.OnClickListener setAiLevelListener = new View.OnClickListener() {
-        @Override
-        public void onClick(View v) {
-            switch (v.getId()) {
-                case R.id.aiLevelEasy: {
-                    mAiLevel = EASY;
-                }
-                case R.id.aiLevelMedium: {
-                    mAiLevel = NORMAL;
-                }
-                case R.id.aiLevelHard: {
-                    mAiLevel = HARD;
-                }
-            }
-            iniGame();
-        }
-    };
-    private final View.OnClickListener startListener = new View.OnClickListener() {
-        public void onClick(View v) {
-            setContentView(R.layout.game_tic_tac_toe);
-            if (!mMultiplayer) {
-                findViewById(R.id.lastSettingWrapper).setVisibility(View.VISIBLE);
-                View[] views = {findViewById(R.id.aiLevelEasy), findViewById(R.id.aiLevelMedium), findViewById(R.id.aiLevelHard)};
-                for (View v2 : views) {
-                    v2.setOnClickListener(setAiLevelListener);
-                }
-            } else {
-                iniGame();
-            }
-        }
-    };
     private final View.OnClickListener colorListenerTwo = new View.OnClickListener() {
         public void onClick(View v) {
             switch (v.getId()) {
@@ -277,6 +178,77 @@ public class TicTacToeActivity extends BaseActivity {
             findViewById(R.id.startTTTButton).setOnClickListener(startListener);
         }
     };
+    private final View.OnClickListener colorListenerOne = new View.OnClickListener() {
+        public void onClick(View v) {
+            switch (v.getId()) {
+                case R.id.colorBlack: {
+                    mPlayerOneColor = 0xFF000000;
+                    mPlayerOneWeakColor = 0xFFA0A0A0; // Gray, because black with less alpha is still black
+                    changeState();
+                    TextView colorPlayerTwoView = (TextView) findViewById(R.id.colorPlayerTwoView);
+                    if (mMultiplayer) {
+                        colorPlayerTwoView.setText(mContext.getString(R.string.game_ttt_settings_player_two_color, mNamePlayerTwo));
+                    } else {
+                        colorPlayerTwoView.setText(mContext.getString(R.string.game_ttt_settings_player_two_color_ai, mNamePlayerOne));
+                    }
+                    ((Button) v).setText("X");
+                    break;
+                }
+                case R.id.colorYellow: {
+                    mPlayerOneColor = 0xFFFFD800;
+                    mPlayerOneWeakColor = 0xAAFFD800;
+                    changeState();
+                    TextView colorPlayerTwoView = (TextView) findViewById(R.id.colorPlayerTwoView);
+                    if (mMultiplayer) {
+                        colorPlayerTwoView.setText(mContext.getString(R.string.game_ttt_settings_player_two_color, mNamePlayerTwo));
+                    } else {
+                        colorPlayerTwoView.setText(mContext.getString(R.string.game_ttt_settings_player_two_color_ai, mNamePlayerOne));
+                    }
+                    ((Button) v).setText("X");
+                    break;
+                }
+                case R.id.colorRed: {
+                    mPlayerOneColor = 0xFFFF0000;
+                    mPlayerOneWeakColor = 0xAAFF0000;
+                    changeState();
+                    TextView colorPlayerTwoView = (TextView) findViewById(R.id.colorPlayerTwoView);
+                    if (mMultiplayer) {
+                        colorPlayerTwoView.setText(mContext.getString(R.string.game_ttt_settings_player_two_color, mNamePlayerTwo));
+                    } else {
+                        colorPlayerTwoView.setText(mContext.getString(R.string.game_ttt_settings_player_two_color_ai, mNamePlayerOne));
+                    }
+                    ((Button) v).setText("X");
+                    break;
+                }
+                case R.id.colorGreen: {
+                    mPlayerOneColor = 0xFF00FF21;
+                    mPlayerOneWeakColor = 0xAA00FF21;
+                    changeState();
+                    TextView colorPlayerTwoView = (TextView) findViewById(R.id.colorPlayerTwoView);
+                    if (mMultiplayer) {
+                        colorPlayerTwoView.setText(mContext.getString(R.string.game_ttt_settings_player_two_color, mNamePlayerTwo));
+                    } else {
+                        colorPlayerTwoView.setText(mContext.getString(R.string.game_ttt_settings_player_two_color_ai, mNamePlayerOne));
+                    }
+                    ((Button) v).setText("X");
+                    break;
+                }
+            }
+            Button[] buttons = {(Button) findViewById(R.id.colorBlack), (Button) findViewById(R.id.colorYellow), (Button) findViewById(R.id.colorRed), (Button) findViewById(R.id.colorGreen)};
+            for (Button b : buttons) {
+                b.setEnabled(false);
+                b.setClickable(false);
+                b.setOnClickListener(null);
+            }
+
+            Button[] buttons2 = {(Button) findViewById(R.id.colorMagenta), (Button) findViewById(R.id.colorBlue), (Button) findViewById(R.id.colorLTGray), (Button) findViewById(R.id.colorCyan)};
+            for (Button b : buttons2) {
+                b.setOnClickListener(colorListenerTwo);
+            }
+        }
+    };
+    private int mAiLevel;
+    private TextView[] mGrid;
     private final View.OnClickListener gridListener = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
@@ -306,6 +278,37 @@ public class TicTacToeActivity extends BaseActivity {
                 }
             } else {
                 Errors.errorToast(mContext, mContext.getString(R.string.game_ttt_already_filled));
+            }
+        }
+    };
+    private final View.OnClickListener setAiLevelListener = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            switch (v.getId()) {
+                case R.id.aiLevelEasy: {
+                    mAiLevel = EASY;
+                }
+                case R.id.aiLevelMedium: {
+                    mAiLevel = NORMAL;
+                }
+                case R.id.aiLevelHard: {
+                    mAiLevel = HARD;
+                }
+            }
+            iniGame();
+        }
+    };
+    private final View.OnClickListener startListener = new View.OnClickListener() {
+        public void onClick(View v) {
+            setContentView(R.layout.game_tic_tac_toe);
+            if (!mMultiplayer) {
+                findViewById(R.id.lastSettingWrapper).setVisibility(View.VISIBLE);
+                View[] views = {findViewById(R.id.aiLevelEasy), findViewById(R.id.aiLevelMedium), findViewById(R.id.aiLevelHard)};
+                for (View v2 : views) {
+                    v2.setOnClickListener(setAiLevelListener);
+                }
+            } else {
+                iniGame();
             }
         }
     };
@@ -448,11 +451,30 @@ public class TicTacToeActivity extends BaseActivity {
 
     @Override
     public void onBackPressed() {
-        if (mStage == 0 || mStage >= 5) {
+        if (mStage == 0) {
             super.onBackPressed();
+        } else if (mStage >= 5) {
+            Resources res = mContext.getResources();
+            new AlertDialog.Builder(this)
+                    .setIcon(R.mipmap.ic_launcher)
+                    .setTitle(res.getString(R.string.game_ttt_leave_title))
+                    .setMessage(res.getString(R.string.game_ttt_leave_message))
+                    .setPositiveButton(res.getString(R.string.popup_positive_button_text), new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            stupidHelperBecauseOfStuff();
+                        }
+
+                    })
+                    .setNegativeButton(R.string.popup_negative_button_text, null)
+                    .show();
         } else {
             revertOneStep();
         }
+    }
+
+    private void stupidHelperBecauseOfStuff() {
+        super.onBackPressed();
     }
 
     private void revertOneStep() {
