@@ -13,22 +13,20 @@ import com.mysterionnh.allmuffin.activities.BaseActivity;
  */
 public class GameHubActivity extends BaseActivity {
 
-    private final Context _context = (Context) this;
-    private final View.OnClickListener btnListener = new View.OnClickListener() {
-
-        public void onClick(View v) {
-            startActivity(new Intent(_context, TicTacToeSettings.class));
-        }
-    };
+    private final Context mContext = (Context) this;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setAppLanguageAccordingToSettings(_context);
+        setAppLanguageAccordingToSettings(mContext);
         setContentView(R.layout.activity_game_hub);
-        setBGColorAccordingToSettings(_context);
+        setBGColorAccordingToSettings(mContext);
 
         // Sets up the button listeners for the open buttons
-        findViewById(R.id.drOpenButton).setOnClickListener(btnListener);    //TickTackToe
+        findViewById(R.id.drOpenButton).setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                startActivity(new Intent(mContext, TicTacToeSettings.class));
+            }
+        });    //TickTackToe
     }
 }

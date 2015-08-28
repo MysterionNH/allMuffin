@@ -22,21 +22,7 @@ public class RuleOfThreeActivity extends BaseActivity {
     // Initializes the arrays used here
     private final String[] texts = new String[INPUT_FIELD_COUNT];
     private final boolean[] empty = new boolean[INPUT_FIELD_COUNT];
-    private final View.OnClickListener btnListener;
     private EditText[] eTexts;
-
-    {
-        btnListener = new View.OnClickListener() {
-
-            public void onClick(View v) {
-                // Magic Stuff, don't touch
-                getTexts();
-                areInputsEmpty();
-                calculate();
-                updateFields(texts, eTexts);
-            }
-        };
-    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,6 +33,16 @@ public class RuleOfThreeActivity extends BaseActivity {
         // Sets up the button listener for the submit button
         findViewById(R.id.submitBtn).setOnClickListener(btnListener);
     }
+
+    private final View.OnClickListener btnListener = new View.OnClickListener() {
+        public void onClick(View v) {
+            // Magic Stuff, don't touch
+            getTexts();
+            areInputsEmpty();
+            calculate();
+            updateFields(texts, eTexts);
+        }
+    };
 
     private void updateFields(String[] texts, TextView[] eTexts) {
 

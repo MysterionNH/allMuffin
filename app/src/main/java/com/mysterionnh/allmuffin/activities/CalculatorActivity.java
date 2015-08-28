@@ -4,7 +4,6 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
-import android.support.annotation.NonNull;
 import android.view.View;
 import android.widget.Button;
 import android.widget.GridLayout;
@@ -17,11 +16,8 @@ import java.util.Locale;
 
 public class CalculatorActivity extends BaseActivity {
 
-    /**
-     * As always, storing context, easier and safer to access
-     */
     private final Context mContext = (Context) this;
-    private SharedPreferences mSharedPrefs;
+
     /**
      * The value with we use for rounding, change regarding to settings
      */
@@ -50,6 +46,54 @@ public class CalculatorActivity extends BaseActivity {
      * This stores whether the solution was rounded or not
      */
     private boolean mRounded = false;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        // Initializing the activity
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_calculator);
+        setBGColorAccordingToSettings(mContext);
+
+        SharedPreferences mSharedPrefs = PreferenceManager.getDefaultSharedPreferences(mContext);
+        mRoundingValue = Math.pow(10.0, Double.valueOf(mSharedPrefs.getString(mContext.getResources().getString(R.string.pref_key_calc), "2")));
+
+        mLastProblemView = (TextView) findViewById(R.id.lastProblem);
+        // Get the TextView were everything gets displayed
+        mOutputView = (TextView) findViewById(R.id.outputView);
+        // Gets the grid in which all buttons are, then extracts all buttons, and sort them (not-/displayable)
+        // Add onClickListener according to sorting
+        GridLayout inputWrapper = (GridLayout) findViewById(R.id.inputGrid);
+        int buttonCount = inputWrapper.getChildCount();
+        Button[] buttons = new Button[buttonCount];
+        boolean isDisplayable;
+
+        for (int i = 0; i < buttonCount; i++) {
+            buttons[i] = (Button) inputWrapper.getChildAt(i);
+            switch (buttons[i].getId()) {
+                case R.id.delButton: {
+                    isDisplayable = false;
+                    break;
+                }
+                case R.id.clrButton: {
+                    isDisplayable = false;
+                    break;
+                }
+                case R.id.equalsButton: {
+                    isDisplayable = false;
+                    break;
+                }
+                default: {
+                    isDisplayable = true;
+                    break;
+                }
+            }
+            if (isDisplayable) {
+                buttons[i].setOnClickListener(buttonListener);
+            } else {
+                buttons[i].setOnClickListener(buttonListener1);
+            }
+        }
+    }
 
     private final View.OnClickListener buttonListener = new View.OnClickListener() {
         @Override
@@ -162,6 +206,7 @@ public class CalculatorActivity extends BaseActivity {
             updateOutput(mOutputText);
         }
     };
+
     /**
      * The OnClickListener for all buttons that have an action and doesn't get displayed directly
      */
@@ -212,53 +257,7 @@ public class CalculatorActivity extends BaseActivity {
         }
     };
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        // Initializing the activity
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_calculator);
-        setBGColorAccordingToSettings(mContext);
 
-        mSharedPrefs = PreferenceManager.getDefaultSharedPreferences(mContext);
-        mRoundingValue = Math.pow(10.0, Double.valueOf(mSharedPrefs.getString(mContext.getResources().getString(R.string.pref_key_calc), "2")));
-
-        mLastProblemView = (TextView) findViewById(R.id.lastProblem);
-        // Get the TextView were everything gets displayed
-        mOutputView = (TextView) findViewById(R.id.outputView);
-        // Gets the grid in which all buttons are, then extracts all buttons, and sort them (not-/displayable)
-        // Add onClickListener according to sorting
-        GridLayout inputWrapper = (GridLayout) findViewById(R.id.inputGrid);
-        int buttonCount = inputWrapper.getChildCount();
-        Button[] buttons = new Button[buttonCount];
-        boolean isDisplayable;
-
-        for (int i = 0; i < buttonCount; i++) {
-            buttons[i] = (Button) inputWrapper.getChildAt(i);
-            switch (buttons[i].getId()) {
-                case R.id.delButton: {
-                    isDisplayable = false;
-                    break;
-                }
-                case R.id.clrButton: {
-                    isDisplayable = false;
-                    break;
-                }
-                case R.id.equalsButton: {
-                    isDisplayable = false;
-                    break;
-                }
-                default: {
-                    isDisplayable = true;
-                    break;
-                }
-            }
-            if (isDisplayable) {
-                buttons[i].setOnClickListener(buttonListener);
-            } else {
-                buttons[i].setOnClickListener(buttonListener1);
-            }
-        }
-    }
 
     /**
      * Does the calculation of the problem
@@ -478,13 +477,17 @@ public class CalculatorActivity extends BaseActivity {
         }
     }
 
-    private boolean primariesExisting(int[] pO) {
-        for (int i : pO) {
-            if (i >= 0) {
-                return true;
-            }
-        }
-        return false;
+    private boolean problemIsValid(String problem) {
+        problem = problem.toLowerCase();
+        char[] problemArray = problem.toCharArray();
+        return !problem.equals("") && !problem.equals("+") && !problem.equals("-") &&
+                !problem.equals("*") && !problem.equals("÷") && !problem.equals("(") &&
+                !problem.contains("i") && !problem.contains("n") && !problem.contains("f") &&
+                !problem.contains("t") && !problem.contains("y") && !problem.contains("a") &&
+                !(problemArray[problemArray.length - 1] == '*') &&
+                !(problemArray[problemArray.length - 1] == '+') &&
+                !(problemArray[problemArray.length - 1] == '÷') &&
+                !(problemArray[problemArray.length - 1] == '-');
     }
 
     private String roundAndDeleteUnusedNumbers(Double solution) {
@@ -521,25 +524,6 @@ public class CalculatorActivity extends BaseActivity {
         return tempNum;
     }
 
-    private void updateOutput(String outputText) {
-        mOutputView.setText(formatStringAccordingToLanguage(outputText));
-        mOutputText = "";
-    }
-
-    private boolean problemIsValid(String problem) {
-        problem = problem.toLowerCase();
-        char[] problemArray = problem.toCharArray();
-        return !problem.equals("") && !problem.equals("+") && !problem.equals("-") &&
-                !problem.equals("*") && !problem.equals("÷") && !problem.equals("(") &&
-                !problem.contains("i") && !problem.contains("n") && !problem.contains("f") &&
-                !problem.contains("t") && !problem.contains("y") && !problem.contains("a") &&
-                !(problemArray[problemArray.length - 1] == '*') &&
-                !(problemArray[problemArray.length - 1] == '+') &&
-                !(problemArray[problemArray.length - 1] == '÷') &&
-                !(problemArray[problemArray.length - 1] == '-');
-    }
-
-    @NonNull
     /**
      * Just in case the user was to lazy to close all thous stupid parentheses it opened, we close
      * them
@@ -569,7 +553,6 @@ public class CalculatorActivity extends BaseActivity {
         return problem;
     }
 
-    @NonNull
     private String fixDecimals(String problem) {
 
         if (problem.charAt(problem.length() - 1) == '.') {
@@ -592,6 +575,20 @@ public class CalculatorActivity extends BaseActivity {
             problem = String.valueOf(problemArray);
         }
         return problem;
+    }
+
+    private boolean primariesExisting(int[] pO) {
+        for (int i : pO) {
+            if (i >= 0) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    private void updateOutput(String outputText) {
+        mOutputView.setText(formatStringAccordingToLanguage(outputText));
+        mOutputText = "";
     }
 
     private void putSign(Button btn) {

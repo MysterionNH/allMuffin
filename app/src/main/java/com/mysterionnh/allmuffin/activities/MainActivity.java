@@ -22,36 +22,6 @@ import com.mysterionnh.allmuffin.helper.NewMessagePopup;
 public class MainActivity extends BaseActivity {
 
     private final Context mContext = (Context) this;
-    private final View.OnClickListener btnListener = new View.OnClickListener() {
-
-        public void onClick(View v) {
-            startActivity(new Intent(mContext, RuleOfThreeActivity.class));
-        }
-    };
-    private final View.OnClickListener btnListener2 = new View.OnClickListener() {
-
-        public void onClick(View v) {
-            startActivity(new Intent(mContext, TimerActivity.class));
-        }
-    };
-    private final View.OnClickListener btnListener3 = new View.OnClickListener() {
-
-        public void onClick(View v) {
-            startActivity(new Intent(mContext, PlaygroundActivity.class));
-        }
-    };
-    private final View.OnClickListener btnListener4 = new View.OnClickListener() {
-
-        public void onClick(View v) {
-            startActivity(new Intent(mContext, CalculatorActivity.class));
-        }
-    };
-    private final View.OnClickListener btnListener5 = new View.OnClickListener() {
-        @Override
-        public void onClick(View v) {
-            startActivity(new Intent(mContext, GameHubActivity.class));
-        }
-    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -77,6 +47,41 @@ public class MainActivity extends BaseActivity {
         findViewById(R.id.calcOpenButton).setOnClickListener(btnListener4); //Calculator
         findViewById(R.id.ghOpenButton).setOnClickListener(btnListener5);   //GameHub
     }
+
+    private final View.OnClickListener btnListener = new View.OnClickListener() {
+
+        public void onClick(View v) {
+            startActivity(new Intent(mContext, RuleOfThreeActivity.class));
+        }
+    };
+
+    private final View.OnClickListener btnListener2 = new View.OnClickListener() {
+
+        public void onClick(View v) {
+            startActivity(new Intent(mContext, TimerActivity.class));
+        }
+    };
+
+    private final View.OnClickListener btnListener3 = new View.OnClickListener() {
+
+        public void onClick(View v) {
+            startActivity(new Intent(mContext, PlaygroundActivity.class));
+        }
+    };
+
+    private final View.OnClickListener btnListener4 = new View.OnClickListener() {
+
+        public void onClick(View v) {
+            startActivity(new Intent(mContext, CalculatorActivity.class));
+        }
+    };
+
+    private final View.OnClickListener btnListener5 = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            startActivity(new Intent(mContext, GameHubActivity.class));
+        }
+    };
 
     /**
      * Open a confirmation dialog on back press and close it properly if wanted

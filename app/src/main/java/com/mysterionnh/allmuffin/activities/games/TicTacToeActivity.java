@@ -21,13 +21,8 @@ import com.mysterionnh.allmuffin.helper.Errors;
 public class TicTacToeActivity extends BaseActivity {
 
     private final Context mContext = (Context) this;
+
     private final int DRAW = -1;
-    private final View.OnClickListener nullListener = new View.OnClickListener() {
-        @Override
-        public void onClick(View v) {
-            // Do nothing. Just in case we ain't able to disable something, but want to make it unusable
-        }
-    };
     private TextView[] mGrid;
     private Button mNewGameButton;
     private TextView mTurnView;
@@ -38,45 +33,6 @@ public class TicTacToeActivity extends BaseActivity {
     private int mPlayerTwoColor;
     private int mPlayerTwoWeakColor;
     private int mPlayersTurn;
-    private final View.OnClickListener startListener = new View.OnClickListener() {
-        public void onClick(View v) {
-            iniGame();
-        }
-    };
-    private final View.OnClickListener gridListener = new View.OnClickListener() {
-        @Override
-        public void onClick(View v) {
-            if (((TextView) v).getText().toString().equals("")) {
-                if (mPlayersTurn == 1) {
-                    ((TextView) v).setTextColor(mPlayerOneColor);
-                    ((TextView) v).setText("×");
-                    String htmlText = String.format(mContext.getString(R.string.game_ttt_turn),
-                            String.format("<font color=%s>%s</font>", convertIntegerToHTMLColorCode(mPlayerTwoColor), mPlayerTwoName));
-                    mTurnView.setText(Html.fromHtml(htmlText), TextView.BufferType.SPANNABLE);
-                    mPlayersTurn = 2;
-                } else if (mPlayersTurn == 2) {
-                    String htmlText = String.format(mContext.getString(R.string.game_ttt_turn),
-                            String.format("<font color=%s>%s</font>", convertIntegerToHTMLColorCode(mPlayerOneColor), mPlayerOneName));
-                    mTurnView.setText(Html.fromHtml(htmlText), TextView.BufferType.SPANNABLE);
-                    ((TextView) v).setTextColor(mPlayerTwoColor);
-                    ((TextView) v).setText("O");
-                    mPlayersTurn = 1;
-                } else {
-                    mTurnView.setText(mContext.getString(R.string.game_ttt_draw));
-
-                    findViewById(R.id.replayButton).setVisibility(View.VISIBLE);
-                    findViewById(R.id.replayButton).setOnClickListener(startListener);
-                }
-                if (checkWin()) {
-                    endGame("win");
-                } else if (mPlayersTurn == DRAW) {
-                    endGame("draw");
-                }
-            } else {
-                Errors.errorToast(mContext, mContext.getString(R.string.game_ttt_already_filled));
-            }
-        }
-    };
     private boolean mMultiplayer;
 
     @Override
@@ -86,7 +42,11 @@ public class TicTacToeActivity extends BaseActivity {
 
         mTurnView = ((TextView) findViewById(R.id.turnView));
         mNewGameButton = (Button) findViewById(R.id.replayButton);
-        mNewGameButton.setOnClickListener(startListener);
+        mNewGameButton.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                iniGame();
+            }
+        });
 
         SharedPreferences gameSettings = getSharedPreferences(mContext.getString(R.string.ttt_prefs_key), Context.MODE_PRIVATE);
 
@@ -105,7 +65,6 @@ public class TicTacToeActivity extends BaseActivity {
             mPlayerTwoColor = gameSettings.getInt(mContext.getString(R.string.ttt_pref_player_two_color), 0xFF000000);
             mPlayerTwoWeakColor = gameSettings.getInt(mContext.getString(R.string.ttt_pref_player_two_color_weak), 0xFFA0A0A0);
         }
-
         iniGame();
     }
 
@@ -139,6 +98,40 @@ public class TicTacToeActivity extends BaseActivity {
             mGrid[i].setOnClickListener(gridListener);
         }
     }
+
+    private final View.OnClickListener gridListener = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            if (((TextView) v).getText().toString().equals("")) {
+                if (mPlayersTurn == 1) {
+                    ((TextView) v).setTextColor(mPlayerOneColor);
+                    ((TextView) v).setText("×");
+                    String htmlText = String.format(mContext.getString(R.string.game_ttt_turn),
+                            String.format("<font color=%s>%s</font>", convertIntegerToHTMLColorCode(mPlayerTwoColor), mPlayerTwoName));
+                    mTurnView.setText(Html.fromHtml(htmlText), TextView.BufferType.SPANNABLE);
+                    mPlayersTurn = 2;
+                } else if (mPlayersTurn == 2) {
+                    String htmlText = String.format(mContext.getString(R.string.game_ttt_turn),
+                            String.format("<font color=%s>%s</font>", convertIntegerToHTMLColorCode(mPlayerOneColor), mPlayerOneName));
+                    mTurnView.setText(Html.fromHtml(htmlText), TextView.BufferType.SPANNABLE);
+                    ((TextView) v).setTextColor(mPlayerTwoColor);
+                    ((TextView) v).setText("O");
+                    mPlayersTurn = 1;
+                } else {
+                    mTurnView.setText(mContext.getString(R.string.game_ttt_draw));
+
+                    mNewGameButton.setVisibility(View.VISIBLE);
+                }
+                if (checkWin()) {
+                    endGame("win");
+                } else if (mPlayersTurn == DRAW) {
+                    endGame("draw");
+                }
+            } else {
+                Errors.errorToast(mContext, mContext.getString(R.string.game_ttt_already_filled));
+            }
+        }
+    };
 
     private boolean checkWin() {
         char[] gridSigns = new char[9];
@@ -218,7 +211,12 @@ public class TicTacToeActivity extends BaseActivity {
         // Disable the game area
         for (TextView tv : mGrid) {
             tv.setEnabled(false);
-            tv.setOnClickListener(nullListener);
+            tv.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    // Do nothing. Just in case we ain't able to disable something, but want to make it unusable
+                }
+            });
         }
         // Enable the new game button
         mNewGameButton.setVisibility(View.VISIBLE);
