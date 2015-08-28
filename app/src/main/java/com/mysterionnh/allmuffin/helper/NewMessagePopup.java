@@ -97,7 +97,7 @@ public class NewMessagePopup {
         //Shows the finished popup
         AlertDialog dialog = builder.show();
 
-        // I don't know. It is after the .show(), so it should not change anything anymore.. idk
+        // Sets the gravity of the message view in the finished (hence why we do it after show()) dialog
         TextView messageText = (TextView) dialog.findViewById(android.R.id.message);
 
         messageText.setGravity(align);

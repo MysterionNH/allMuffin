@@ -8,6 +8,7 @@ import android.content.SharedPreferences;
 import android.content.res.Resources;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.view.ContextThemeWrapper;
 import android.view.View;
 
 import com.mysterionnh.allmuffin.R;
@@ -83,7 +84,8 @@ public class MainActivity extends BaseActivity {
     @Override
     public void onBackPressed() {
         Resources res = mContext.getResources();
-        new AlertDialog.Builder(this)
+        AlertDialog.Builder builder = new AlertDialog.Builder(new ContextThemeWrapper(mContext, R.style.CustomPopup));
+        builder
                 .setIcon(R.mipmap.ic_launcher)
                 .setTitle(res.getString(R.string.leave_title))
                 .setMessage(res.getString(R.string.leave_message))
