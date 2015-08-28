@@ -9,6 +9,8 @@
 
     <string name="default_hint" translatable="false">Text</string>
 
+    <string name="missing_hint">If you read this, you are in a project that is no longer supported or not yet done, maybe even abandoned.</string>
+
     <!-- For Information Popup, will be removed in the future -->
 
     <string name="popup_title">Information</string>
@@ -59,11 +61,6 @@
     <string name="timer_title" translatable="false">Timer</string>
 
     <string name="time_template" translatable="false">hh:MM:ss,SSS</string>
-
-    <!-- For PlaygroundActivity -->
-
-    <string name="pg_title">Playground!</string>
-    <string name="submitBtn">SUBMIT</string>
 
     <!-- CalculatorActivity -->
 

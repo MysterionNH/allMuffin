@@ -41,47 +41,31 @@ public class MainActivity extends BaseActivity {
         setBGColorAccordingToSettings(mContext);
 
         // Sets up the button listeners for the open buttons
-        findViewById(R.id.drOpenButton).setOnClickListener(btnListener);    //RuleOfThree
-        findViewById(R.id.tiOpenButton).setOnClickListener(btnListener2);   //Timer
-        findViewById(R.id.pgOpenButton).setOnClickListener(btnListener3);   //Playground
-        findViewById(R.id.calcOpenButton).setOnClickListener(btnListener4); //Calculator
-        findViewById(R.id.ghOpenButton).setOnClickListener(btnListener5);   //GameHub
+        findViewById(R.id.drOpenButton).setOnClickListener(new View.OnClickListener() {
+
+            public void onClick(View v) {
+                startActivity(new Intent(mContext, RuleOfThreeActivity.class));
+            }
+        });    //RuleOfThree
+        findViewById(R.id.tiOpenButton).setOnClickListener(new View.OnClickListener() {
+
+            public void onClick(View v) {
+                startActivity(new Intent(mContext, TimerActivity.class));
+            }
+        });   //Timer
+        findViewById(R.id.calcOpenButton).setOnClickListener(new View.OnClickListener() {
+
+            public void onClick(View v) {
+                startActivity(new Intent(mContext, CalculatorActivity.class));
+            }
+        }); //Calculator
+        findViewById(R.id.ghOpenButton).setOnClickListener(new View.OnClickListener() {
+
+            public void onClick(View v) {
+                startActivity(new Intent(mContext, GameHubActivity.class));
+            }
+        });   //GameHub
     }
-
-    private final View.OnClickListener btnListener = new View.OnClickListener() {
-
-        public void onClick(View v) {
-            startActivity(new Intent(mContext, RuleOfThreeActivity.class));
-        }
-    };
-
-    private final View.OnClickListener btnListener2 = new View.OnClickListener() {
-
-        public void onClick(View v) {
-            startActivity(new Intent(mContext, TimerActivity.class));
-        }
-    };
-
-    private final View.OnClickListener btnListener3 = new View.OnClickListener() {
-
-        public void onClick(View v) {
-            startActivity(new Intent(mContext, PlaygroundActivity.class));
-        }
-    };
-
-    private final View.OnClickListener btnListener4 = new View.OnClickListener() {
-
-        public void onClick(View v) {
-            startActivity(new Intent(mContext, CalculatorActivity.class));
-        }
-    };
-
-    private final View.OnClickListener btnListener5 = new View.OnClickListener() {
-        @Override
-        public void onClick(View v) {
-            startActivity(new Intent(mContext, GameHubActivity.class));
-        }
-    };
 
     /**
      * Open a confirmation dialog on back press and close it properly if wanted

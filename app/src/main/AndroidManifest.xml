@@ -39,12 +39,6 @@
             android:label="@string/timer_title"
             android:parentActivityName=".activities.MainActivity" />
 
-        <!-- PlaygroundActivity -->
-        <activity
-            android:name=".activities.PlaygroundActivity"
-            android:label="@string/pg_title"
-            android:parentActivityName=".activities.MainActivity" />
-
         <!-- CalculatorActivity -->
         <activity
             android:name=".activities.CalculatorActivity"

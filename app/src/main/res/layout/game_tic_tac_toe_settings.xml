@@ -26,7 +26,8 @@
         android:id="@+id/scrollView"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
-        android:layout_below="@+id/tttTitleSpacer">
+        android:layout_below="@+id/tttTitleSpacer"
+        android:visibility="visible">
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -153,262 +154,381 @@
                     android:layout_marginLeft="0dp"
                     android:layout_marginTop="0dp" />
 
-                <TableRow
-                    android:id="@+id/namePlayerTwo"
+                <LinearLayout
+                    android:orientation="vertical"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="0dp"
-                    android:layout_marginTop="0dp"
+                    android:layout_height="match_parent"
+                    android:id="@+id/singleplayerWrapper"
                     android:visibility="gone">
 
-                    <RelativeLayout
-                        android:id="@+id/relativeLayout6"
-                        android:layout_width="fill_parent"
+                    <TableRow
+                        android:id="@+id/coloPlayerOneSP"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:orientation="horizontal">
+                        android:layout_marginLeft="0dp"
+                        android:layout_marginTop="0dp"
+                        android:visibility="visible">
 
-                        <TextView
-                            android:id="@+id/namePlayerTwoView"
+                        <RelativeLayout
+                            android:id="@+id/relativeLayout12"
                             android:layout_width="fill_parent"
                             android:layout_height="wrap_content"
-                            android:gravity="center_vertical|center|center_horizontal"
-                            android:text="@string/game_ttt_settings_player_two_name"
-                            android:textAppearance="?android:attr/textAppearanceMedium" />
+                            android:orientation="horizontal">
 
-                        <FrameLayout
-                            android:layout_width="match_parent"
+                            <TextView
+                                android:id="@+id/colorPlayerOneViewSP"
+                                android:layout_width="fill_parent"
+                                android:layout_height="wrap_content"
+                                android:gravity="center_vertical|center|center_horizontal"
+                                android:text="@string/game_ttt_settings_player_one_color"
+                                android:textAppearance="?android:attr/textAppearanceMedium" />
+
+                            <GridLayout
+                                android:id="@+id/gridLayout"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_below="@+id/colorPlayerOneViewSP"
+                                android:layout_centerInParent="true"
+                                android:columnCount="7"
+                                android:rowCount="1">
+
+                                <Button
+                                    android:id="@+id/colorBlack"
+                                    android:layout_width="50dp"
+                                    android:layout_height="50dp"
+                                    android:layout_column="0"
+                                    android:layout_gravity="center"
+                                    android:layout_row="0"
+                                    android:background="#000"
+                                    android:gravity="center|center_horizontal|center_vertical"
+                                    android:textColor="@android:color/white" />
+
+                                <Button
+                                    android:id="@+id/colorYellow"
+                                    android:layout_width="50dp"
+                                    android:layout_height="50dp"
+                                    android:layout_column="2"
+                                    android:layout_gravity="center"
+                                    android:layout_row="0"
+                                    android:background="#FFD800"
+                                    android:gravity="center|center_horizontal|center_vertical"
+                                    android:textColor="@android:color/black" />
+
+                                <Button
+                                    android:id="@+id/colorRed"
+                                    android:layout_width="50dp"
+                                    android:layout_height="50dp"
+                                    android:layout_column="4"
+                                    android:layout_gravity="center"
+                                    android:layout_row="0"
+                                    android:background="#FF0000"
+                                    android:gravity="center|center_horizontal|center_vertical"
+                                    android:textColor="@android:color/black" />
+
+                                <Space
+                                    android:layout_width="30dp"
+                                    android:layout_height="fill_parent"
+                                    android:layout_column="1"
+                                    android:layout_row="0" />
+
+                                <Space
+                                    android:layout_width="30dp"
+                                    android:layout_height="fill_parent"
+                                    android:layout_column="3"
+                                    android:layout_row="0" />
+
+                                <Space
+                                    android:layout_width="30dp"
+                                    android:layout_height="fill_parent"
+                                    android:layout_column="5"
+                                    android:layout_row="0" />
+
+                                <Button
+                                    android:id="@+id/colorGreen"
+                                    android:layout_width="50dp"
+                                    android:layout_height="50dp"
+                                    android:layout_column="6"
+                                    android:layout_gravity="center"
+                                    android:layout_row="0"
+                                    android:background="#00FF21"
+                                    android:gravity="center|center_horizontal|center_vertical"
+                                    android:textColor="@android:color/black" />
+                            </GridLayout>
+                        </RelativeLayout>
+                    </TableRow>
+
+                    <Space
+                        android:id="@+id/space8"
+                        android:layout_width="fill_parent"
+                        android:layout_height="25dp"
+                        android:layout_marginLeft="0dp"
+                        android:layout_marginTop="0dp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:id="@+id/multiplayerWrapper"
+                    android:visibility="gone">
+
+                    <TableRow
+                        android:id="@+id/namePlayerTwo"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="0dp"
+                        android:layout_marginTop="0dp"
+                        android:visibility="visible">
+
+                        <RelativeLayout
+                            android:id="@+id/relativeLayout6"
+                            android:layout_width="fill_parent"
                             android:layout_height="wrap_content"
-                            android:layout_below="@+id/namePlayerTwoView">
+                            android:orientation="horizontal">
 
-                            <RelativeLayout
-                                android:id="@+id/relativeLayout5"
+                            <TextView
+                                android:id="@+id/namePlayerTwoView"
+                                android:layout_width="fill_parent"
+                                android:layout_height="wrap_content"
+                                android:gravity="center_vertical|center|center_horizontal"
+                                android:text="@string/game_ttt_settings_player_two_name"
+                                android:textAppearance="?android:attr/textAppearanceMedium" />
+
+                            <FrameLayout
                                 android:layout_width="match_parent"
-                                android:layout_height="wrap_content">
+                                android:layout_height="wrap_content"
+                                android:layout_below="@+id/namePlayerTwoView">
 
-                                <EditText
-                                    android:id="@+id/playerTwoName"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_centerInParent="true"
-                                    android:ems="10"
-                                    android:inputType="textPersonName" />
-                            </RelativeLayout>
-                        </FrameLayout>
-                    </RelativeLayout>
-                </TableRow>
+                                <RelativeLayout
+                                    android:id="@+id/relativeLayout5"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content">
 
-                <Space
-                    android:id="@+id/space"
-                    android:layout_width="fill_parent"
-                    android:layout_height="25dp"
-                    android:layout_marginLeft="0dp"
-                    android:layout_marginTop="0dp" />
+                                    <EditText
+                                        android:id="@+id/playerTwoName"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_centerInParent="true"
+                                        android:ems="10"
+                                        android:inputType="textPersonName" />
+                                </RelativeLayout>
+                            </FrameLayout>
+                        </RelativeLayout>
+                    </TableRow>
 
-                <TableRow
-                    android:id="@+id/colorPlayerOne"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="0dp"
-                    android:layout_marginTop="0dp"
-                    android:visibility="gone">
-
-                    <RelativeLayout
-                        android:id="@+id/relativeLayout8"
+                    <Space
+                        android:id="@+id/space"
                         android:layout_width="fill_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal">
+                        android:layout_height="25dp"
+                        android:layout_marginLeft="0dp"
+                        android:layout_marginTop="0dp" />
 
-                        <TextView
-                            android:id="@+id/colorPlayerOneView"
+                    <TableRow
+                        android:id="@+id/colorPlayerOne"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="0dp"
+                        android:layout_marginTop="0dp"
+                        android:visibility="gone">
+
+                        <RelativeLayout
+                            android:id="@+id/relativeLayout8"
                             android:layout_width="fill_parent"
                             android:layout_height="wrap_content"
-                            android:gravity="center_vertical|center|center_horizontal"
-                            android:text="@string/game_ttt_settings_player_one_color"
-                            android:textAppearance="?android:attr/textAppearanceMedium" />
+                            android:orientation="horizontal">
 
-                        <GridLayout
-                            android:id="@+id/colorPicker"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_below="@+id/colorPlayerOneView"
-                            android:layout_centerInParent="true"
-                            android:columnCount="7"
-                            android:rowCount="1">
+                            <TextView
+                                android:id="@+id/colorPlayerOneView"
+                                android:layout_width="fill_parent"
+                                android:layout_height="wrap_content"
+                                android:gravity="center_vertical|center|center_horizontal"
+                                android:text="@string/game_ttt_settings_player_one_color"
+                                android:textAppearance="?android:attr/textAppearanceMedium" />
 
-                            <Button
-                                android:id="@+id/colorBlack"
-                                android:layout_width="50dp"
-                                android:layout_height="50dp"
-                                android:layout_column="0"
-                                android:layout_gravity="center"
-                                android:layout_row="0"
-                                android:background="#000"
-                                android:gravity="center|center_horizontal|center_vertical"
-                                android:textColor="@android:color/white" />
+                            <GridLayout
+                                android:id="@+id/colorPicker"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_below="@+id/colorPlayerOneView"
+                                android:layout_centerInParent="true"
+                                android:columnCount="7"
+                                android:rowCount="1">
 
-                            <Space
-                                android:layout_width="30dp"
-                                android:layout_height="fill_parent"
-                                android:layout_column="1"
-                                android:layout_row="0" />
+                                <Button
+                                    android:id="@+id/colorBlack"
+                                    android:layout_width="50dp"
+                                    android:layout_height="50dp"
+                                    android:layout_column="0"
+                                    android:layout_gravity="center"
+                                    android:layout_row="0"
+                                    android:background="#000"
+                                    android:gravity="center|center_horizontal|center_vertical"
+                                    android:textColor="@android:color/white" />
 
-                            <Button
-                                android:id="@+id/colorYellow"
-                                android:layout_width="50dp"
-                                android:layout_height="50dp"
-                                android:layout_column="2"
-                                android:layout_gravity="center"
-                                android:layout_row="0"
-                                android:background="#FFD800"
-                                android:gravity="center|center_horizontal|center_vertical"
-                                android:textColor="@android:color/black" />
+                                <Space
+                                    android:layout_width="30dp"
+                                    android:layout_height="fill_parent"
+                                    android:layout_column="1"
+                                    android:layout_row="0" />
 
-                            <Space
-                                android:layout_width="30dp"
-                                android:layout_height="fill_parent"
-                                android:layout_column="3"
-                                android:layout_row="0" />
+                                <Button
+                                    android:id="@+id/colorYellow"
+                                    android:layout_width="50dp"
+                                    android:layout_height="50dp"
+                                    android:layout_column="2"
+                                    android:layout_gravity="center"
+                                    android:layout_row="0"
+                                    android:background="#FFD800"
+                                    android:gravity="center|center_horizontal|center_vertical"
+                                    android:textColor="@android:color/black" />
 
-                            <Button
-                                android:id="@+id/colorRed"
-                                android:layout_width="50dp"
-                                android:layout_height="50dp"
-                                android:layout_column="4"
-                                android:layout_gravity="center"
-                                android:layout_row="0"
-                                android:background="#FF0000"
-                                android:gravity="center|center_horizontal|center_vertical"
-                                android:textColor="@android:color/black" />
+                                <Space
+                                    android:layout_width="30dp"
+                                    android:layout_height="fill_parent"
+                                    android:layout_column="3"
+                                    android:layout_row="0" />
 
-                            <Space
-                                android:layout_width="30dp"
-                                android:layout_height="fill_parent"
-                                android:layout_column="5"
-                                android:layout_row="0" />
+                                <Button
+                                    android:id="@+id/colorRed"
+                                    android:layout_width="50dp"
+                                    android:layout_height="50dp"
+                                    android:layout_column="4"
+                                    android:layout_gravity="center"
+                                    android:layout_row="0"
+                                    android:background="#FF0000"
+                                    android:gravity="center|center_horizontal|center_vertical"
+                                    android:textColor="@android:color/black" />
 
-                            <Button
-                                android:id="@+id/colorGreen"
-                                android:layout_width="50dp"
-                                android:layout_height="50dp"
-                                android:layout_column="6"
-                                android:layout_gravity="center"
-                                android:layout_row="0"
-                                android:background="#00FF21"
-                                android:gravity="center|center_horizontal|center_vertical"
-                                android:textColor="@android:color/black" />
-                        </GridLayout>
+                                <Space
+                                    android:layout_width="30dp"
+                                    android:layout_height="fill_parent"
+                                    android:layout_column="5"
+                                    android:layout_row="0" />
 
-                    </RelativeLayout>
-                </TableRow>
+                                <Button
+                                    android:id="@+id/colorGreen"
+                                    android:layout_width="50dp"
+                                    android:layout_height="50dp"
+                                    android:layout_column="6"
+                                    android:layout_gravity="center"
+                                    android:layout_row="0"
+                                    android:background="#00FF21"
+                                    android:gravity="center|center_horizontal|center_vertical"
+                                    android:textColor="@android:color/black" />
+                            </GridLayout>
 
-                <Space
-                    android:id="@+id/space2"
-                    android:layout_width="fill_parent"
-                    android:layout_height="25dp"
-                    android:layout_marginLeft="0dp"
-                    android:layout_marginTop="0dp" />
+                        </RelativeLayout>
+                    </TableRow>
 
-                <TableRow
-                    android:id="@+id/colorPlayerTwo"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:visibility="gone">
-
-                    <RelativeLayout
-                        android:id="@+id/relativeLayout7"
+                    <Space
+                        android:id="@+id/space2"
                         android:layout_width="fill_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal">
+                        android:layout_height="25dp"
+                        android:layout_marginLeft="0dp"
+                        android:layout_marginTop="0dp" />
 
-                        <TextView
-                            android:id="@+id/colorPlayerTwoView"
+                    <TableRow
+                        android:id="@+id/colorPlayerTwo"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:visibility="gone">
+
+                        <RelativeLayout
+                            android:id="@+id/relativeLayout7"
                             android:layout_width="fill_parent"
                             android:layout_height="wrap_content"
-                            android:gravity="center_vertical|center|center_horizontal"
-                            android:text="@string/game_ttt_settings_player_two_color"
-                            android:textAppearance="?android:attr/textAppearanceMedium" />
+                            android:orientation="horizontal">
 
-                        <GridLayout
-                            android:id="@+id/colorPicker2"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_below="@+id/colorPlayerTwoView"
-                            android:layout_centerInParent="true"
-                            android:columnCount="7"
-                            android:rowCount="1">
+                            <TextView
+                                android:id="@+id/colorPlayerTwoView"
+                                android:layout_width="fill_parent"
+                                android:layout_height="wrap_content"
+                                android:gravity="center_vertical|center|center_horizontal"
+                                android:text="@string/game_ttt_settings_player_two_color"
+                                android:textAppearance="?android:attr/textAppearanceMedium" />
 
-                            <Button
-                                android:id="@+id/colorMagenta"
-                                android:layout_width="50dp"
-                                android:layout_height="50dp"
-                                android:layout_column="0"
-                                android:layout_gravity="center"
-                                android:layout_row="0"
-                                android:background="#FF00DC"
-                                android:gravity="center|center_horizontal|center_vertical"
-                                android:textColor="@android:color/black" />
+                            <GridLayout
+                                android:id="@+id/colorPicker2"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_below="@+id/colorPlayerTwoView"
+                                android:layout_centerInParent="true"
+                                android:columnCount="7"
+                                android:rowCount="1">
 
-                            <Space
-                                android:layout_width="30dp"
-                                android:layout_height="fill_parent"
-                                android:layout_column="1"
-                                android:layout_row="0" />
+                                <Button
+                                    android:id="@+id/colorMagenta"
+                                    android:layout_width="50dp"
+                                    android:layout_height="50dp"
+                                    android:layout_column="0"
+                                    android:layout_gravity="center"
+                                    android:layout_row="0"
+                                    android:background="#FF00DC"
+                                    android:gravity="center|center_horizontal|center_vertical"
+                                    android:textColor="@android:color/black" />
 
-                            <Button
-                                android:id="@+id/colorBlue"
-                                android:layout_width="50dp"
-                                android:layout_height="50dp"
-                                android:layout_column="2"
-                                android:layout_gravity="center"
-                                android:layout_row="0"
-                                android:background="#004EFF"
-                                android:gravity="center|center_horizontal|center_vertical"
-                                android:textColor="@android:color/black" />
+                                <Space
+                                    android:layout_width="30dp"
+                                    android:layout_height="fill_parent"
+                                    android:layout_column="1"
+                                    android:layout_row="0" />
 
-                            <Space
-                                android:layout_width="30dp"
-                                android:layout_height="fill_parent"
-                                android:layout_column="3"
-                                android:layout_row="0" />
+                                <Button
+                                    android:id="@+id/colorBlue"
+                                    android:layout_width="50dp"
+                                    android:layout_height="50dp"
+                                    android:layout_column="2"
+                                    android:layout_gravity="center"
+                                    android:layout_row="0"
+                                    android:background="#004EFF"
+                                    android:gravity="center|center_horizontal|center_vertical"
+                                    android:textColor="@android:color/black" />
 
-                            <Button
-                                android:id="@+id/colorLTGray"
-                                android:layout_width="50dp"
-                                android:layout_height="50dp"
-                                android:layout_column="4"
-                                android:layout_gravity="center"
-                                android:layout_row="0"
-                                android:background="#A0A0A0"
-                                android:gravity="center|center_horizontal|center_vertical"
-                                android:textColor="@android:color/black" />
+                                <Space
+                                    android:layout_width="30dp"
+                                    android:layout_height="fill_parent"
+                                    android:layout_column="3"
+                                    android:layout_row="0" />
 
-                            <Space
-                                android:layout_width="30dp"
-                                android:layout_height="fill_parent"
-                                android:layout_column="5"
-                                android:layout_row="0" />
+                                <Button
+                                    android:id="@+id/colorLTGray"
+                                    android:layout_width="50dp"
+                                    android:layout_height="50dp"
+                                    android:layout_column="4"
+                                    android:layout_gravity="center"
+                                    android:layout_row="0"
+                                    android:background="#A0A0A0"
+                                    android:gravity="center|center_horizontal|center_vertical"
+                                    android:textColor="@android:color/black" />
 
-                            <Button
-                                android:id="@+id/colorCyan"
-                                android:layout_width="50dp"
-                                android:layout_height="50dp"
-                                android:layout_column="6"
-                                android:layout_gravity="center"
-                                android:layout_row="0"
-                                android:background="#7FFFFF"
-                                android:gravity="center|center_horizontal|center_vertical"
-                                android:textColor="@android:color/black" />
-                        </GridLayout>
-                    </RelativeLayout>
-                </TableRow>
+                                <Space
+                                    android:layout_width="30dp"
+                                    android:layout_height="fill_parent"
+                                    android:layout_column="5"
+                                    android:layout_row="0" />
 
-                <Space
-                    android:id="@+id/space3"
-                    android:layout_width="fill_parent"
-                    android:layout_height="25dp"
-                    android:layout_marginLeft="0dp"
-                    android:layout_marginTop="0dp" />
+                                <Button
+                                    android:id="@+id/colorCyan"
+                                    android:layout_width="50dp"
+                                    android:layout_height="50dp"
+                                    android:layout_column="6"
+                                    android:layout_gravity="center"
+                                    android:layout_row="0"
+                                    android:background="#7FFFFF"
+                                    android:gravity="center|center_horizontal|center_vertical"
+                                    android:textColor="@android:color/black" />
+                            </GridLayout>
+                        </RelativeLayout>
+                    </TableRow>
+
+                    <Space
+                        android:id="@+id/space3"
+                        android:layout_width="fill_parent"
+                        android:layout_height="25dp"
+                        android:layout_marginLeft="0dp"
+                        android:layout_marginTop="0dp" />
+                </LinearLayout>
 
                 <TableRow
                     android:id="@+id/startRow"
@@ -421,7 +541,8 @@
                         android:id="@+id/relativeLayout9"
                         android:layout_width="fill_parent"
                         android:layout_height="wrap_content"
-                        android:orientation="horizontal">
+                        android:orientation="horizontal"
+                        android:visibility="visible">
 
                         <Button
                             android:id="@+id/startTTTButton"
@@ -430,7 +551,8 @@
                             android:layout_centerInParent="true"
                             android:text="@string/game_ttt_start_button"
                             android:textColor="#000"
-                            android:theme="@style/CustomButton" />
+                            android:theme="@style/CustomButton"
+                            android:visibility="visible" />
                     </RelativeLayout>
                 </TableRow>
 
