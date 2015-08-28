@@ -9,81 +9,10 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin">
 
-    <RelativeLayout
-        android:id="@+id/lastSettingWrapper"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:longClickable="false"
-        android:visibility="gone">
-
-        <TextView
-            android:id="@+id/aiLevelTitle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:editable="false"
-            android:text="@string/game_ttt_ai_level_title"
-            android:textAppearance="?android:attr/textAppearanceLarge"
-            android:textColor="#000" />
-
-        <Space
-            android:id="@+id/spacer80"
-            android:layout_width="fill_parent"
-            android:layout_height="20dp"
-            android:layout_below="@+id/aiLevelTitle"
-            android:layout_centerHorizontal="true" />
-
-        <Button
-            android:id="@+id/aiLevelEasy"
-            android:layout_width="100dp"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/spacer80"
-            android:layout_centerHorizontal="true"
-            android:text="@string/game_ttt_ai_level_easy"
-            android:textColor="#000"
-            android:theme="@style/CustomButton" />
-
-        <Space
-            android:id="@+id/space5"
-            android:layout_width="fill_parent"
-            android:layout_height="10dp"
-            android:layout_below="@+id/aiLevelEasy"
-            android:layout_centerHorizontal="true" />
-
-        <Button
-            android:id="@+id/aiLevelMedium"
-            android:layout_width="100dp"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/space5"
-            android:layout_centerHorizontal="true"
-            android:text="@string/game_ttt_ai_level_medium"
-            android:textColor="#000"
-            android:theme="@style/CustomButton" />
-
-        <Space
-            android:id="@+id/space6"
-            android:layout_width="fill_parent"
-            android:layout_height="10dp"
-            android:layout_below="@+id/aiLevelMedium"
-            android:layout_centerHorizontal="true" />
-
-        <Button
-            android:id="@+id/aiLevelHard"
-            android:layout_width="100dp"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/space6"
-            android:layout_centerHorizontal="true"
-            android:text="@string/game_ttt_ai_level_hard"
-            android:textColor="#000"
-            android:theme="@style/CustomButton" />
-
-    </RelativeLayout>
-
     <FrameLayout
         android:id="@+id/gameWrapper"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/lastSettingWrapper">
+        android:layout_height="wrap_content">
 
         <RelativeLayout
             android:layout_width="match_parent"

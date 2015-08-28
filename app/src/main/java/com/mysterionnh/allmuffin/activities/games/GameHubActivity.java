@@ -17,7 +17,7 @@ public class GameHubActivity extends BaseActivity {
     private final View.OnClickListener btnListener = new View.OnClickListener() {
 
         public void onClick(View v) {
-            startActivity(new Intent(_context, TicTacToeActivity.class));
+            startActivity(new Intent(_context, TicTacToeSettings.class));
         }
     };
 

@@ -61,7 +61,12 @@
         <activity
             android:name=".activities.games.TicTacToeActivity"
             android:label="@string/game_ttt_title"
-            android:parentActivityName=".activities.games.GameHubActivity"
-            android:screenOrientation="portrait" />
+            android:parentActivityName=".activities.games.TicTacToeSettings" />
+
+        <!-- Settings: TicTacToe -->
+        <activity
+            android:name=".activities.games.TicTacToeSettings"
+            android:label="@string/game_ttt_title"
+            android:parentActivityName=".activities.games.GameHubActivity" />
     </application>
 </manifest>

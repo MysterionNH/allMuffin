@@ -104,6 +104,8 @@
 
     <!-- Games -->
 
+    <!-- TicTacToe - Settings -->
+
     <string name="game_ttt_title" translatable="false">Tic Tac Toe</string>
 
     <string name="game_ttt_title_view">Start a new game!</string>
@@ -127,6 +129,19 @@
     <string name="game_ttt_ai_level_easy">EASY</string>
     <string name="game_ttt_ai_level_medium">NORMAL</string>
     <string name="game_ttt_ai_level_hard">HARD</string>
+
+    <!-- TicTacToe - Prefs -->
+
+    <string name="ttt_prefs_key" translatable="false">com.mysterionnh.allmuffin.GAME_TTT_PREFS</string>
+    <string name="ttt_pref_player_one_name" translatable="false">playerOneName</string>
+    <string name="ttt_pref_player_two_name" translatable="false">playerTwoName</string>
+    <string name="ttt_pref_player_one_color" translatable="false">playerOneColor</string>
+    <string name="ttt_pref_player_one_color_weak" translatable="false">playerOneColorWeak</string>
+    <string name="ttt_pref_player_two_color" translatable="false">playerTwoColor</string>
+    <string name="ttt_pref_player_two_color_weak" translatable="false">playerTwoColorWeak</string>
+    <string name="ttt_pref_multiplayer" translatable="false">multiplayer</string>
+
+    <!-- TicTacToe - Game -->
 
     <string name="game_ttt_turn">It\'s %1$s\'s turn!</string>
     <string name="game_ttt_replay_button">Next round!</string>
@@ -153,7 +168,7 @@
 
     <!-- Preferences (Settings) -->
 
-    <string name="pref_file_key" translatable="false" tools:ignore="UnusedResources">io.github.mysterionnh.allmuffin.allSharedPrefMuffins</string>
+    <string name="pref_file_key" translatable="false" tools:ignore="UnusedResources">com.mysterionnh.allmuffin.allSharedPrefMuffins</string>
 
     <string name="pref_general_title">General Settings</string>
     <string name="pref_key_general_settings" translatable="false">pref_key_general_settings</string>

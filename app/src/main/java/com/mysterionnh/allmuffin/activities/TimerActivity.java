@@ -92,6 +92,4 @@ public class TimerActivity extends BaseActivity {
 // other way round, so give timer and calculate and, otherwise same as above
 //
 // conclusion:
-// TODO:       learn about threads, you will definitely need them this time
-
-// TODO:       DAMN GRAPHICS!!!!!! mep .-.
+// TODO: Start/Continue/Finish(/End?) this project
