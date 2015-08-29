@@ -108,7 +108,7 @@ public class CalculatorActivity extends BaseActivity {
                 }
                 case R.id.periodButton: {
                     if (!mOutputText.equals("")) {
-                        if (lastCharIsNumeric(mOutputText) && !currentNumIsDecimal(mOutputText)) {
+                        if (lastCharIsNumeric(mOutputText) && currentNumIsNotDecimal(mOutputText)) {
                             mOutputText += ".";
                         } else {
                             Errors.errorToast(mContext, getResources().getString(R.string.invalid_entry));
@@ -256,7 +256,6 @@ public class CalculatorActivity extends BaseActivity {
             }
         }
     };
-
 
 
     /**
@@ -608,14 +607,14 @@ public class CalculatorActivity extends BaseActivity {
         }
     }
 
-    private boolean currentNumIsDecimal(String string) {
+    private boolean currentNumIsNotDecimal(String string) {
         char[] text = string.toCharArray();
         for (int i = text.length - 1; i >= 0; i--) {
             if (!lastCharIsNumeric(String.valueOf(text[i]))) {
-                return text[i] == '.' || text[i] == ',';
+                return text[i] != '.' && text[i] != ',';
             }
         }
-        return false;
+        return true;
     }
 
     private String reverseNum(String string) {

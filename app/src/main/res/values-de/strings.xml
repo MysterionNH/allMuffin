@@ -78,12 +78,7 @@
     <string name="game_ttt_settings_player_one_name">Gib deinem Namen ein, Spieler Eins.</string>
     <string name="game_ttt_settings_player_two_color">Wähle deine Farbe, %1$s.</string>
     <string name="game_ttt_settings_player_two_name">Gib deinen Namen ein, Spieler Zwei.</string>
-    <string name="game_ttt_settings_player_two_name_ai">Gib den Namen deines Gegners ein, %1$s</string>
     <string name="game_ttt_start_button">Los!</string>
-    <string name="game_ttt_ai_level_easy">Einfach</string>
-    <string name="game_ttt_ai_level_hard">Schwer</string>
-    <string name="game_ttt_ai_level_medium">Normal</string>
-    <string name="game_ttt_ai_level_title">Wähle die Stärke deines Gegners.</string>
     <string name="game_ttt_already_filled">Jemand hat hier schon sein/ihr Zeichnen platziert.</string>
     <string name="game_ttt_player_won">%1$s hat gewonnen!</string>
     <string name="game_ttt_replay_button">Nächste Runde!</string>

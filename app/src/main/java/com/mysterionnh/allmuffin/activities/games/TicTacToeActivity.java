@@ -168,6 +168,7 @@ public class TicTacToeActivity extends BaseActivity {
         mPlayersTurn = 1;
     }
 
+    @SuppressWarnings("ConstantConditions")
     private boolean checkWin() {
         boolean gameOver = false;
         char[] gridSigns = new char[9];

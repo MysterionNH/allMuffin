@@ -7,8 +7,6 @@
     <string name="action_restart">Restart</string>
     <string name="app_name" translatable="false">allMuffin</string>
 
-    <string name="default_hint" translatable="false">Text</string>
-
     <string name="missing_hint">If you read this, you are in a project that is no longer supported or not yet done, maybe even abandoned.</string>
 
     <!-- For Information Popup, will be removed in the future -->
@@ -114,17 +112,11 @@
     <string name="game_ttt_settings_player_one_name">Enter your Name, Player One.</string>
 
     <string name="game_ttt_settings_player_two_name">Enter your Name, Player Two.</string>
-    <string name="game_ttt_settings_player_two_name_ai">Enter the Name of your opponent, %1$s.</string>
 
     <string name="game_ttt_settings_player_one_color">Choose your Color, %1$s.</string>
     <string name="game_ttt_settings_player_two_color">Choose your Color, %1$s.</string>
 
     <string name="game_ttt_start_button">Go!</string>
-
-    <string name="game_ttt_ai_level_title">Choose your opponents strength.</string>
-    <string name="game_ttt_ai_level_easy">EASY</string>
-    <string name="game_ttt_ai_level_medium">NORMAL</string>
-    <string name="game_ttt_ai_level_hard">HARD</string>
 
     <!-- TicTacToe - Prefs -->
 

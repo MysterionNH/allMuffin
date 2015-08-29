@@ -19,7 +19,7 @@ import com.mysterionnh.allmuffin.helper.Errors;
 
 public class TicTacToeSettings extends BaseActivity {
 
-    private Context mContext = (Context) this;
+    private final Context mContext = (Context) this;
 
     private TableRow countRow;
     private TableRow oneNameRow;
@@ -30,7 +30,6 @@ public class TicTacToeSettings extends BaseActivity {
 
     private Button singlePlayer;
     private Button multiPlayer;
-    private Button newGame;
 
     private Button[] oneColorButtons;
     private Button[] twoColorButtons;
@@ -41,8 +40,8 @@ public class TicTacToeSettings extends BaseActivity {
     private TextView twoColorView;
     private TextView oneColorView;
 
-    private float DISABLED = 0.3f;
-    private float ENABLED = 1.0f;
+    private final float DISABLED = 0.3f;
+    private final float ENABLED = 1.0f;
 
     private int mStage;
     private boolean mMultiplayer;
@@ -80,7 +79,7 @@ public class TicTacToeSettings extends BaseActivity {
 
             singlePlayer = (Button) findViewById(R.id.buttonOnePlayer);
             multiPlayer = (Button) findViewById(R.id.buttonTwoPlayer);
-            newGame = (Button) findViewById(R.id.startTTTButton);
+            Button newGame = (Button) findViewById(R.id.startTTTButton);
 
             singlePlayer.setOnClickListener(btnListener);
             multiPlayer.setOnClickListener(btnListener);
@@ -134,7 +133,7 @@ public class TicTacToeSettings extends BaseActivity {
         }
     };
 
-    TextView.OnEditorActionListener onEnter = new TextView.OnEditorActionListener() {
+    private final TextView.OnEditorActionListener onEnter = new TextView.OnEditorActionListener() {
         @Override
         public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
             if (v.getId() == R.id.playerOneName && ((event != null && event.getKeyCode() == KeyEvent.KEYCODE_ENTER) || (actionId == EditorInfo.IME_ACTION_DONE))) {
@@ -288,7 +287,7 @@ public class TicTacToeSettings extends BaseActivity {
             super.onBackPressed();
     }
 
-    private void revertOneStep() { // TODO: Completely broken due to the changes on how stuff is made visible
+    private void revertOneStep() {
         switch (mStage) {
             case 1: {
                 oneNameRow.setVisibility(View.GONE);

@@ -58,7 +58,7 @@ public class BaseActivity extends Activity {
         return super.onOptionsItemSelected(item);
     }
 
-    public void setBGColorAccordingToSettings(Context con) {
+    protected void setBGColorAccordingToSettings(Context con) {
         // Creating the SharedPreferences, the key-value file used for settings
 
         String color = con.getResources().getString(R.string.pref_default_value_bg_color);
@@ -75,7 +75,7 @@ public class BaseActivity extends Activity {
         }
     }
 
-    public void setAppLanguageAccordingToSettings(Context con) {
+    protected void setAppLanguageAccordingToSettings(Context con) {
         SharedPreferences shPref = PreferenceManager.getDefaultSharedPreferences(con);
 
         // This should be dangerous, but apparently isn't
