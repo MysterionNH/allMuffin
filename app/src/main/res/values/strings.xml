@@ -118,7 +118,6 @@
 
     <string name="game_ttt_settings_player_one_color">Choose your Color, %1$s.</string>
     <string name="game_ttt_settings_player_two_color">Choose your Color, %1$s.</string>
-    <string name="game_ttt_settings_player_two_color_ai">Choose the Color of your opponent, %1$s.</string>
 
     <string name="game_ttt_start_button">Go!</string>
 

@@ -18,11 +18,9 @@
     <string name="message_wrong_input">Eine oder mehrere Eingaben waren fehlerhaft oder leer. Bitte überprüfe deine Eingaben und versuche es erneut!</string>
     <string name="button_wrong_input">OKAY, das werde ich und es tut mir leid</string>
     <string name="sa_title">Einstellungen</string>
-    <string name="submitBtn">OKAY</string>
     <string name="action_share">Teilen</string>
     <string name="new_message_notification_placeholder_text_template" tools:ignore="Typos">Bla bla bla, zu faul zum übersetzen bala bla.. hier dein Text: \"%1$s\".</string>
     <string name="new_message_notification_title_template">Neue Nachricht: \"%1$s\"</string>
-    <string name="pg_title">Biesbatz!</string>
     <string name="action_reply">Antworten</string>
     <string name="pref_general_title">Allgemeine Einstellungen</string>
     <string name="pref_summary_allow_bg_color_change">Erlaubt das ändern der Hintergrundfarbe (macher Seiten)</string>
@@ -79,7 +77,6 @@
     <string name="game_ttt_settings_player_one_color">Wähle deine Farbe, %1$s.</string>
     <string name="game_ttt_settings_player_one_name">Gib deinem Namen ein, Spieler Eins.</string>
     <string name="game_ttt_settings_player_two_color">Wähle deine Farbe, %1$s.</string>
-    <string name="game_ttt_settings_player_two_color_ai">Wähle die Farbe deines Gegners, %1$s.</string>
     <string name="game_ttt_settings_player_two_name">Gib deinen Namen ein, Spieler Zwei.</string>
     <string name="game_ttt_settings_player_two_name_ai">Gib den Namen deines Gegners ein, %1$s</string>
     <string name="game_ttt_start_button">Los!</string>
@@ -115,4 +112,5 @@
     <string name="game_ttt_leave_title">Verlasse Spiel</string>
     <string name="leave_message">Möchten Sie die App wirklich schließen?</string>
     <string name="leave_title">App Schließen</string>
+    <string name="missing_hint">Wenn du dies liest befindest du dich in einem Project welches derzeit entweder auf Eis gelegt ist oder noch nicht fertig ist. Eventuell beides.</string>
 </resources>

@@ -9,21 +9,41 @@ import android.view.KeyEvent;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
 import android.widget.Button;
-import android.widget.LinearLayout;
+import android.widget.EditText;
 import android.widget.TableRow;
 import android.widget.TextView;
 
 import com.mysterionnh.allmuffin.R;
 import com.mysterionnh.allmuffin.activities.BaseActivity;
+import com.mysterionnh.allmuffin.helper.Errors;
 
 public class TicTacToeSettings extends BaseActivity {
 
     private Context mContext = (Context) this;
 
-    private TableRow[] mTableRows;
-    private Button[] mButtons;
-    private LinearLayout mMPWrapper;
-    private LinearLayout mSPWrapper;
+    private TableRow countRow;
+    private TableRow oneNameRow;
+    private TableRow oneColorRow;
+    private TableRow twoNameRow;
+    private TableRow twoColorRow;
+    private TableRow startRow;
+
+    private Button singlePlayer;
+    private Button multiPlayer;
+    private Button newGame;
+
+    private Button[] oneColorButtons;
+    private Button[] twoColorButtons;
+
+    private EditText oneNameView;
+    private EditText twoNameView;
+
+    private TextView twoColorView;
+    private TextView oneColorView;
+
+    private float DISABLED = 0.3f;
+    private float ENABLED = 1.0f;
+
     private int mStage;
     private boolean mMultiplayer;
     private String mPlayerOneName;
@@ -33,6 +53,8 @@ public class TicTacToeSettings extends BaseActivity {
     private int mPlayerTwoColor;
     private int mPlayerTwoWeakColor;
 
+    private boolean initialized = false;
+
     // TODO : Clean up everything here. I made this and I have real problems to understand what's happening. Fix asap
 
     @Override
@@ -40,110 +62,97 @@ public class TicTacToeSettings extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.game_tic_tac_toe_settings);
 
-        mMPWrapper = ((LinearLayout) findViewById(R.id.multiplayerWrapper));
-        mSPWrapper = ((LinearLayout) findViewById(R.id.singleplayerWrapper));
+        iniActivity();
+    }
 
-        mTableRows = new TableRow[]{(TableRow) findViewById(R.id.playerCountWrapper),
-                (TableRow) findViewById(R.id.namePlayerOne),
-                (TableRow) findViewById(R.id.namePlayerTwo),
-                (TableRow) findViewById(R.id.colorPlayerOne),
-                (TableRow) findViewById(R.id.colorPlayerTwo),
-                (TableRow) findViewById(R.id.startRow)};
+    private void iniActivity() {
+        if (!initialized) {
+            initialized = true;
 
-        mButtons = new Button[]{(Button) findViewById(R.id.buttonOnePlayer),
-                (Button) findViewById(R.id.buttonTwoPlayer)};
+            mStage = 0;
 
-        for (Button b : mButtons) {
-            b.setOnClickListener(btnListener);
-        }
+            countRow = (TableRow) findViewById(R.id.tttCountRow);
+            oneNameRow = (TableRow) findViewById(R.id.tttOneNameRow);
+            oneColorRow = (TableRow) findViewById(R.id.tttOneColorRow);
+            twoNameRow = (TableRow) findViewById(R.id.tttTwoNameRow);
+            twoColorRow = (TableRow) findViewById(R.id.tttTwoColorRow);
+            startRow = (TableRow) findViewById(R.id.tttStartRow);
 
-        // Register the start game button
-        findViewById(R.id.startTTTButton).setOnClickListener(startListener);
+            singlePlayer = (Button) findViewById(R.id.buttonOnePlayer);
+            multiPlayer = (Button) findViewById(R.id.buttonTwoPlayer);
+            newGame = (Button) findViewById(R.id.startTTTButton);
+
+            singlePlayer.setOnClickListener(btnListener);
+            multiPlayer.setOnClickListener(btnListener);
+            newGame.setOnClickListener(startListener);
+
+            oneColorButtons = new Button[]{(Button) findViewById(R.id.colorBlack),
+                    (Button) findViewById(R.id.colorYellow),
+                    (Button) findViewById(R.id.colorRed),
+                    (Button) findViewById(R.id.colorGreen)};
+
+            for (Button b : oneColorButtons) {
+                b.setOnClickListener(colorListenerOne);
+            }
+
+            twoColorButtons = new Button[]{(Button) findViewById(R.id.colorMagenta),
+                    (Button) findViewById(R.id.colorBlue),
+                    (Button) findViewById(R.id.colorGray),
+                    (Button) findViewById(R.id.colorCyan)};
+
+            for (Button b : twoColorButtons) {
+                b.setOnClickListener(colorListenerTwo);
+            }
+
+            oneNameView = (EditText) findViewById(R.id.playerOneName);
+            twoNameView = (EditText) findViewById(R.id.playerTwoName);
+
+            oneNameView.setOnEditorActionListener(onEnter);
+            twoNameView.setOnEditorActionListener(onEnter);
+
+            oneColorView = (TextView) findViewById(R.id.colorPlayerOneView);
+            twoColorView = (TextView) findViewById(R.id.colorPlayerTwoView);
+
+        } else
+            Errors.logWarning(mContext, "Activity was already initialized!");
     }
 
     private final View.OnClickListener btnListener = new View.OnClickListener() {
 
         public void onClick(View v) {
-            switch (v.getId()) {
-                case R.id.buttonOnePlayer: {
-                    v.setBackgroundColor(Color.TRANSPARENT);
-                    mTableRows[mStage].setAlpha(0.3f);
-                    mTableRows[mStage].setClickable(false);
-                    v.setClickable(false);
-                    v.setEnabled(false);
-                    mStage++;
-                    mTableRows[mStage].setVisibility(View.VISIBLE);
-                    mMultiplayer = false;
-                    final TextView tv = (TextView) findViewById(R.id.playerOneName);
-                    tv.setOnEditorActionListener(new TextView.OnEditorActionListener() {
-                        @Override
-                        public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
-                            if ((event != null && event.getKeyCode() == KeyEvent.KEYCODE_ENTER) || (actionId == EditorInfo.IME_ACTION_DONE)) {
-                                mPlayerOneName = tv.getText().toString();
-                                tv.setEnabled(false);
-                                tv.setClickable(false);
-                                TextView colorPlayerOneView = (TextView) findViewById(R.id.colorPlayerOneViewSP);
-                                colorPlayerOneView.setText(mContext.getString(R.string.game_ttt_settings_player_one_color, mPlayerOneName));
-                                Button[] colorButtonsOne = {(Button) findViewById(R.id.colorBlack), (Button) findViewById(R.id.colorYellow),
-                                        (Button) findViewById(R.id.colorRed), (Button) findViewById(R.id.colorGreen)};
-                                for (Button b : colorButtonsOne) {
-                                    b.setOnClickListener(colorListenerOne);
-                                }
-                                mSPWrapper.setVisibility(View.VISIBLE);
-                            }
-                            return false;
-                        }
-                    });
-                    break;
-                }
-                case R.id.buttonTwoPlayer: {
-                    v.setBackgroundColor(Color.TRANSPARENT);
-                    v.setClickable(false);
-                    v.setEnabled(false);
-                    changeState();
-                    mMultiplayer = true;
-                    final TextView tv = (TextView) findViewById(R.id.playerOneName);
-                    tv.setOnEditorActionListener(onEnter);
-                    break;
-                }
-            }
-            findViewById(R.id.buttonOnePlayer).setClickable(false);
-            findViewById(R.id.buttonTwoPlayer).setClickable(false);
+            mMultiplayer = (v.getId() == R.id.buttonTwoPlayer);
+
+            v.setBackgroundColor(Color.TRANSPARENT);
+            countRow.setAlpha(DISABLED);
+            // countRow.setClickable(false);
+
+            oneNameRow.setVisibility(View.VISIBLE);
+
+            singlePlayer.setClickable(false);
+            multiPlayer.setClickable(false);
+            mStage++;
         }
     };
 
     TextView.OnEditorActionListener onEnter = new TextView.OnEditorActionListener() {
         @Override
         public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
-            if (v.getId() == R.id.playerOneName) {
-                if ((event != null && event.getKeyCode() == KeyEvent.KEYCODE_ENTER) || (actionId == EditorInfo.IME_ACTION_DONE)) {
-                    mPlayerOneName = v.getText().toString();
-                    v.setEnabled(false);
-                    v.setClickable(false);
-                    mTableRows[mStage].setAlpha(0.3f);
-                    mTableRows[mStage].setClickable(false);
-                    mTableRows[mStage].setEnabled(false);
-                    mStage++;
-                    mMPWrapper.setVisibility(View.VISIBLE);
-                    final TextView tv = (TextView) findViewById(R.id.playerTwoName);
-                    tv.setOnEditorActionListener(onEnter);
-                }
+            if (v.getId() == R.id.playerOneName && ((event != null && event.getKeyCode() == KeyEvent.KEYCODE_ENTER) || (actionId == EditorInfo.IME_ACTION_DONE))) {
+                mPlayerOneName = v.getText().toString();
+                oneNameRow.setAlpha(DISABLED);
+                oneColorView.setText(mContext.getString(R.string.game_ttt_settings_player_one_color, mPlayerOneName));
+                oneColorRow.setVisibility(View.VISIBLE);
             } else {
                 if ((event != null && event.getKeyCode() == KeyEvent.KEYCODE_ENTER) || (actionId == EditorInfo.IME_ACTION_DONE)) {
                     mPlayerTwoName = v.getText().toString();
-                    v.setEnabled(false);
-                    v.setClickable(false);
-                    changeState();
-                    TextView colorPlayerOneView = (TextView) findViewById(R.id.colorPlayerOneView);
-                    colorPlayerOneView.setText(mContext.getString(R.string.game_ttt_settings_player_one_color, mPlayerOneName));
-                    Button[] colorButtonsOne = {(Button) findViewById(R.id.colorBlack), (Button) findViewById(R.id.colorYellow),
-                            (Button) findViewById(R.id.colorRed), (Button) findViewById(R.id.colorGreen)};
-                    for (Button b : colorButtonsOne) {
-                        b.setOnClickListener(colorListenerOne);
-                    }
+                    twoNameRow.setAlpha(DISABLED);
+                    twoColorView.setText(mContext.getString(R.string.game_ttt_settings_player_two_color, mPlayerTwoName));
+                    twoColorRow.setVisibility(View.VISIBLE);
                 }
-                return false;
             }
+            v.setEnabled(false);
+            v.setClickable(false);
+            mStage++;
             return false;
         }
     };
@@ -154,77 +163,43 @@ public class TicTacToeSettings extends BaseActivity {
                 case R.id.colorBlack: {
                     mPlayerOneColor = 0xFF000000;
                     mPlayerOneWeakColor = 0xFFA0A0A0; // Gray, because black with less alpha is still black
-                    changeState();
-                    TextView colorPlayerTwoView = (TextView) findViewById(R.id.colorPlayerTwoView);
-                    if (mMultiplayer) {
-                        colorPlayerTwoView.setText(mContext.getString(R.string.game_ttt_settings_player_two_color, mPlayerTwoName));
-                    } else {
-                        colorPlayerTwoView.setText(mContext.getString(R.string.game_ttt_settings_player_two_color_ai, mPlayerOneName));
-                    }
-                    ((Button) v).setText("X");
                     break;
                 }
                 case R.id.colorYellow: {
                     mPlayerOneColor = 0xFFFFD800;
                     mPlayerOneWeakColor = 0xAAFFD800;
-                    changeState();
-                    TextView colorPlayerTwoView = (TextView) findViewById(R.id.colorPlayerTwoView);
-                    if (mMultiplayer) {
-                        colorPlayerTwoView.setText(mContext.getString(R.string.game_ttt_settings_player_two_color, mPlayerTwoName));
-                    } else {
-                        colorPlayerTwoView.setText(mContext.getString(R.string.game_ttt_settings_player_two_color_ai, mPlayerOneName));
-                    }
-                    ((Button) v).setText("X");
                     break;
                 }
                 case R.id.colorRed: {
                     mPlayerOneColor = 0xFFFF0000;
                     mPlayerOneWeakColor = 0xAAFF0000;
-                    changeState();
-                    TextView colorPlayerTwoView = (TextView) findViewById(R.id.colorPlayerTwoView);
-                    if (mMultiplayer) {
-                        colorPlayerTwoView.setText(mContext.getString(R.string.game_ttt_settings_player_two_color, mPlayerTwoName));
-                    } else {
-                        colorPlayerTwoView.setText(mContext.getString(R.string.game_ttt_settings_player_two_color_ai, mPlayerOneName));
-                    }
-                    ((Button) v).setText("X");
                     break;
                 }
                 case R.id.colorGreen: {
                     mPlayerOneColor = 0xFF00FF21;
                     mPlayerOneWeakColor = 0xAA00FF21;
-                    changeState();
-                    TextView colorPlayerTwoView = (TextView) findViewById(R.id.colorPlayerTwoView);
-                    if (mMultiplayer) {
-                        colorPlayerTwoView.setText(mContext.getString(R.string.game_ttt_settings_player_two_color, mPlayerTwoName));
-                    } else {
-                        colorPlayerTwoView.setText(mContext.getString(R.string.game_ttt_settings_player_two_color_ai, mPlayerOneName));
-                    }
-                    ((Button) v).setText("X");
                     break;
                 }
             }
-            Button[] buttons = {(Button) findViewById(R.id.colorBlack), (Button) findViewById(R.id.colorYellow), (Button) findViewById(R.id.colorRed), (Button) findViewById(R.id.colorGreen)};
-            for (Button b : buttons) {
+
+            for (Button b : oneColorButtons) {
                 b.setEnabled(false);
                 b.setClickable(false);
-                b.setOnClickListener(null);
+                b.setText("");
             }
+
+            ((Button) v).setText("X");
+            oneColorRow.setAlpha(DISABLED);
 
             if (mMultiplayer) {
-                Button[] buttons2 = {(Button) findViewById(R.id.colorMagenta), (Button) findViewById(R.id.colorBlue), (Button) findViewById(R.id.colorLTGray), (Button) findViewById(R.id.colorCyan)};
-                for (Button b : buttons2) {
-                    b.setOnClickListener(colorListenerTwo);
-                }
+                twoNameRow.setVisibility(View.VISIBLE);
             } else {
-                startNow();
+                // Start now
+                startRow.setVisibility(View.VISIBLE);
             }
+            mStage++;
         }
     };
-
-    private void startNow() {
-        (findViewById(R.id.startRow)).setVisibility(View.VISIBLE);
-    }
 
     private final View.OnClickListener colorListenerTwo = new View.OnClickListener() {
         public void onClick(View v) {
@@ -232,38 +207,36 @@ public class TicTacToeSettings extends BaseActivity {
                 case R.id.colorMagenta: {
                     mPlayerTwoColor = 0xFFFF00DC;
                     mPlayerTwoWeakColor = 0xAAFF00DC;
-                    changeState();
-                    ((Button) v).setText("O");
                     break;
                 }
                 case R.id.colorBlue: {
                     mPlayerTwoColor = 0xFF004EFF;
                     mPlayerTwoWeakColor = 0xAA004EFF;
-                    changeState();
-                    ((Button) v).setText("O");
                     break;
                 }
-                case R.id.colorLTGray: {
+                case R.id.colorGray: {
                     mPlayerTwoColor = 0xFFA0A0A0;
                     mPlayerTwoWeakColor = 0xAAA0A0A0;
-                    changeState();
-                    ((Button) v).setText("O");
                     break;
                 }
                 case R.id.colorCyan: {
                     mPlayerTwoColor = 0xFF7FFFFF;
                     mPlayerTwoWeakColor = 0xAA7FFFFF;
-                    changeState();
-                    ((Button) v).setText("O");
                     break;
                 }
             }
-            Button[] buttons2 = {(Button) findViewById(R.id.colorMagenta), (Button) findViewById(R.id.colorBlue), (Button) findViewById(R.id.colorLTGray), (Button) findViewById(R.id.colorCyan)};
-            for (Button b : buttons2) {
+
+            for (Button b : twoColorButtons) {
+                b.setText("");
                 b.setEnabled(false);
                 b.setClickable(false);
-                b.setOnClickListener(null);
             }
+
+            ((Button) v).setText("O");
+            twoColorRow.setAlpha(DISABLED);
+            startRow.setVisibility(View.VISIBLE);
+
+            mStage++;
         }
     };
 
@@ -285,6 +258,25 @@ public class TicTacToeSettings extends BaseActivity {
             // Commit
             tttSettings.commit();
             startActivity(new Intent(mContext, TicTacToeActivity.class));
+
+            startRow.setVisibility(View.GONE);
+
+            // Re-enable last changed setting
+            if (mMultiplayer) {
+                twoColorRow.setAlpha(ENABLED);
+                for (Button b : twoColorButtons) {
+                    b.setEnabled(true);
+                    b.setClickable(true);
+                }
+                mStage--;
+            } else {
+                oneColorRow.setAlpha(ENABLED);
+                for (Button b : oneColorButtons) {
+                    b.setEnabled(true);
+                    b.setClickable(true);
+                }
+                mStage = 2;
+            }
         }
     };
 
@@ -297,44 +289,50 @@ public class TicTacToeSettings extends BaseActivity {
     }
 
     private void revertOneStep() { // TODO: Completely broken due to the changes on how stuff is made visible
-        mTableRows[mStage].setVisibility(View.GONE);
-        mStage--;
-        mTableRows[mStage].setAlpha(1.0f);
         switch (mStage) {
-            case 0: {
-                for (Button b : mButtons) {
-                    b.setBackgroundColor(Color.TRANSPARENT);
-                    b.setEnabled(true);
-                    b.setClickable(true);
-                }
-            }
             case 1: {
-                TextView tv = (TextView) findViewById(R.id.playerOneName);
-                tv.setText("");
-                tv.setEnabled(true);
-                tv.setClickable(true);
-                mPlayerOneName = "";
+                oneNameRow.setVisibility(View.GONE);
+
+                countRow.setAlpha(ENABLED);
+                singlePlayer.setClickable(true);
+                singlePlayer.setBackgroundColor(Color.TRANSPARENT);
+                multiPlayer.setClickable(true);
+                multiPlayer.setBackgroundColor(Color.TRANSPARENT);
+                mStage--;
+                break;
             }
             case 2: {
-                TextView tv = (TextView) findViewById(R.id.playerTwoName);
-                tv.setText("");
-                tv.setEnabled(true);
-                tv.setClickable(true);
-                mPlayerTwoName = "";
+                oneColorRow.setVisibility(View.GONE);
+
+                oneNameRow.setAlpha(ENABLED);
+                oneNameView.setEnabled(true);
+                oneNameView.setClickable(true);
+                mStage--;
+                break;
             }
             case 3: {
-                Button[] buttons = {(Button) findViewById(R.id.colorBlack), (Button) findViewById(R.id.colorYellow), (Button) findViewById(R.id.colorRed), (Button) findViewById(R.id.colorGreen)};
-                for (Button b : buttons) {
+                twoNameRow.setVisibility(View.GONE);
+
+                for (Button b : twoColorButtons) {
+                    b.setText("");
+                }
+
+                oneColorRow.setAlpha(ENABLED);
+                for (Button b : oneColorButtons) {
                     b.setEnabled(true);
                     b.setClickable(true);
-                    b.setText("");
                 }
+                mStage--;
+                break;
             }
             case 4: {
-                Button[] buttons = {(Button) findViewById(R.id.colorMagenta), (Button) findViewById(R.id.colorBlue), (Button) findViewById(R.id.colorLTGray), (Button) findViewById(R.id.colorCyan)};
-                for (Button b : buttons) {
-                    b.setText("");
-                }
+                twoColorRow.setVisibility(View.GONE);
+
+                twoNameRow.setAlpha(ENABLED);
+                twoNameView.setEnabled(true);
+                twoNameView.setClickable(true);
+                mStage--;
+                break;
             }
         }
     }
@@ -347,13 +345,5 @@ public class TicTacToeSettings extends BaseActivity {
             return true;
         }
         return super.onKeyLongPress(keyCode, event);
-    }
-
-    private void changeState() {
-        mTableRows[mStage].setAlpha(0.3f);
-        mTableRows[mStage].setClickable(false);
-        mTableRows[mStage].setEnabled(false);
-        mStage++;
-        mTableRows[mStage].setVisibility(View.VISIBLE);
     }
 }
