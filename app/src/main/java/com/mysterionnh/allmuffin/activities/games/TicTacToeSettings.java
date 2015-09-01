@@ -220,7 +220,7 @@ public class TicTacToeSettings extends BaseActivity {
                 }
                 case R.id.colorCyan: {
                     mPlayerTwoColor = 0xFF7FFFFF;
-                    mPlayerTwoWeakColor = 0xAA7FFFFF;
+                    mPlayerTwoWeakColor = 0xFF18C2FF; // Is more a baby blue, but the other ones simply not visible on white
                     break;
                 }
             }

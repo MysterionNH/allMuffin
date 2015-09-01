@@ -67,7 +67,6 @@ public class TicTacToeActivity extends BaseActivity {
             mPlayerOneName = gameSettings.getString(mContext.getString(R.string.ttt_pref_player_one_name), "Player 1");
             mPlayerOneColor = gameSettings.getInt(mContext.getString(R.string.ttt_pref_player_one_color), 0xFF000000);
             mPlayerOneWeakColor = gameSettings.getInt(mContext.getString(R.string.ttt_pref_player_one_color_weak), 0xFFA0A0A0);
-            // TODO: Here we can hook in and start separate games for singleplayer/multiplayer
             if (mMultiplayer) {
                 mPlayerTwoName = gameSettings.getString(mContext.getString(R.string.ttt_pref_player_two_name), "Player 2");
                 mPlayerTwoColor = gameSettings.getInt(mContext.getString(R.string.ttt_pref_player_two_color), 0xFF000000);
@@ -75,7 +74,7 @@ public class TicTacToeActivity extends BaseActivity {
             } else {
                 mPlayerTwoName = gameSettings.getString(mContext.getString(R.string.ttt_pref_player_two_name), "COM");
                 mPlayerTwoColor = gameSettings.getInt(mContext.getString(R.string.ttt_pref_player_two_color), 0xFF7FFFFF);
-                mPlayerTwoWeakColor = gameSettings.getInt(mContext.getString(R.string.ttt_pref_player_two_color_weak), 0xAA7FFFFF);
+                mPlayerTwoWeakColor = gameSettings.getInt(mContext.getString(R.string.ttt_pref_player_two_color_weak), 0xFF18C2FF);
             }
             iniGame();
         } else
