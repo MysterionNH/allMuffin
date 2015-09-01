@@ -215,7 +215,7 @@ public class CalculatorActivity extends BaseActivity {
         public void onClick(View v) {
 
             updateGlobals(v);
-            boolean isUpdated = false;
+            boolean allowUpdate = true;
 
             switch (mClickedButton.getId()) {
                 case R.id.clrButton: {
@@ -247,13 +247,13 @@ public class CalculatorActivity extends BaseActivity {
                     break;
                 }
                 case R.id.equalsButton: {
-                    updateOutput(formatStringAccordingToLanguage(calculate(mOutputView.getText().toString(), true)));
-                    isUpdated = true;
+                    mOutputText = (formatStringAccordingToLanguage(calculate(mOutputView.getText().toString(), true)));
+                    if (mOutputText.equals(""))
+                        allowUpdate = false;
                 }
             }
-            if (!isUpdated) {
+            if (allowUpdate)
                 updateOutput(formatStringAccordingToLanguage(mOutputText));
-            }
         }
     };
 
@@ -263,8 +263,8 @@ public class CalculatorActivity extends BaseActivity {
      *
      * @param problem           The problem to calculate, usually mOutputText
      * @param updateLastProblem true if you lastProblemView to show your problem
-     * @return Returns the solution of the problem as string or, if problem was
-     * invalid, the problem itself
+     * @return Returns the solution of the problem as string or, if  the problem was invalid, an
+     *          empty string ("")
      */
     private String calculate(String problem, boolean updateLastProblem) {
         if (problemIsValid(problem)) {
@@ -334,7 +334,10 @@ public class CalculatorActivity extends BaseActivity {
                         }
                     }
                     for (int n = i + 1; openedParentheses > closedParentheses; n++) {
-                        if (outputArray[n] == ')') {
+                        if (outputArray[n] == ')' && outputArray[n - 1] == '(') {
+                            Errors.errorToast(mContext, mContext.getString(R.string.warning_empty_parentheses));
+                            return ""; // Jump out and tell the caller something went terribly wrong
+                        } else if (outputArray[n] == ')') {
                             closedParentheses++;
                         }
                         inParentheses[n - (i + 1)] = outputArray[n];
@@ -472,7 +475,7 @@ public class CalculatorActivity extends BaseActivity {
         } else {
             // Noob
             Errors.errorToast(mContext, getResources().getString(R.string.invalid_entry));
-            return problem;
+            return "";
         }
     }
 

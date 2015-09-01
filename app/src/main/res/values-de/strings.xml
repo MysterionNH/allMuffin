@@ -108,4 +108,5 @@
     <string name="leave_message">Möchten Sie die App wirklich schließen?</string>
     <string name="leave_title">App Schließen</string>
     <string name="missing_hint">Wenn du dies liest befindest du dich in einem Project welches derzeit entweder auf Eis gelegt ist oder noch nicht fertig ist. Eventuell beides.</string>
+    <string name="warning_empty_parentheses">Minedestens eine der von Ihnen plazierten Klammern ist leer!</string>
 </resources>

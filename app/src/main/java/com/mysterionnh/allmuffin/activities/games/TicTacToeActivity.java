@@ -3,6 +3,7 @@ package com.mysterionnh.allmuffin.activities.games;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Resources;
 import android.graphics.Color;
@@ -137,6 +138,7 @@ public class TicTacToeActivity extends BaseActivity {
             mTurnView.setText(Html.fromHtml(htmlText), TextView.BufferType.SPANNABLE);
             mPlayersTurn = 2;
             if (!mMultiplayer && !(mTurnCount > 8) && !checkWin()) {
+                // Add delay for a little more "game like" feeling
                 aiTurn();
                 mTurnCount++;
             }
@@ -293,11 +295,10 @@ public class TicTacToeActivity extends BaseActivity {
                 .show();
     }
 
-    // When the back button is hold, return to the game hub
     @Override
     public boolean onKeyLongPress(int keyCode, KeyEvent event) {
         if (keyCode == KeyEvent.KEYCODE_BACK) {
-            super.onBackPressed();
+            startActivity(new Intent(mContext, GameHubActivity.class)); // Return to game hub
             return true;
         }
         return super.onKeyLongPress(keyCode, event);

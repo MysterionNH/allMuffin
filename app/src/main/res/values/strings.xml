@@ -86,8 +86,8 @@
     <string name="button_num_nine" translatable="false">9</string>
 
     <string name="warning_output_empty">Nothing to delete!</string>
-
     <string name="invalid_entry">Invalid entry!</string>
+    <string name="warning_empty_parentheses">At least one of your placed parentheses is empty!</string>
 
     <!-- GameHubActivity -->
 
