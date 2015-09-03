@@ -50,7 +50,7 @@ public class TicTacToeActivity extends BaseActivity {
     }
 
     private void iniActivity() {
-        if (!initialized) {
+        if (!initialized) { // TODO: This is not the correct way to to this (also it doesn't work) Fix
             initialized = true; // Make sure this only happens once, because onCreate is always called when the screen rotates
             mTurnView = ((TextView) findViewById(R.id.turnView));
             mNewGameButton = (Button) findViewById(R.id.replayButton);
@@ -157,6 +157,7 @@ public class TicTacToeActivity extends BaseActivity {
 
     private void aiTurn() {
         int fieldOfRandomChoice = new Random(System.currentTimeMillis()).nextInt(9);
+        // TODO: Add a real ai, reacting to what the player does and what it did before, maybe with different difficulties
         if (mGrid[fieldOfRandomChoice].getText().toString().equals("")) {
             mGrid[fieldOfRandomChoice].setTextColor(mPlayerTwoColor);
             mGrid[fieldOfRandomChoice].setText("O");

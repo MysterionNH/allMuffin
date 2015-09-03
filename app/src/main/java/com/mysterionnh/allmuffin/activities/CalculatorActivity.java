@@ -436,7 +436,7 @@ public class CalculatorActivity extends BaseActivity {
                 if (allowReset[m]) {
                     numbers[primaryOperatorLocations[m]] = 0.0;
                     numbers[primaryOperatorLocations[m] + 1] = 0.0;
-                    operators[primaryOperatorLocations[m]] = ' ';
+                    operators[primaryOperatorLocations[m]] = '\u0000';
                 }
             }
             // The first number is our starting point
@@ -454,6 +454,11 @@ public class CalculatorActivity extends BaseActivity {
                         break;
                     }
                     case '-': {
+                        // Tried a fix for the case that we want to subtract the primary solution WORKS!!! :D ---- DO NOT TOUCH. I SWEAR I WILL FIND YOU. DO. NOT. CHANGE. THIS.
+                        if (numbers[j + 1] == 0.0 && primarySolution != 0.0) {
+                            numbers[j + 1] = primarySolution;
+                            primarySolution = 0.0;
+                        }
                         solution -= numbers[j + 1];
                         break;
                     }

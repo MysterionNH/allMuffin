@@ -52,9 +52,7 @@ public class TicTacToeSettings extends BaseActivity {
     private int mPlayerTwoColor;
     private int mPlayerTwoWeakColor;
 
-    private boolean initialized = false;
-
-    // TODO : Clean up everything here. I made this and I have real problems to understand what's happening. Fix asap
+    private static boolean initialized = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,7 +63,7 @@ public class TicTacToeSettings extends BaseActivity {
     }
 
     private void iniActivity() {
-        if (!initialized) {
+        if (!initialized) { // TODO: This is not the correct way to to this (also it doesn't work) Fix
             initialized = true;
 
             mStage = 0;
