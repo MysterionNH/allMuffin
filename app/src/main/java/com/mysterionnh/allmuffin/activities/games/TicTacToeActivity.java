@@ -39,8 +39,6 @@ public class TicTacToeActivity extends BaseActivity {
     private boolean mMultiplayer;
     private int mTurnCount;
 
-    private boolean initialized = false;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -50,35 +48,31 @@ public class TicTacToeActivity extends BaseActivity {
     }
 
     private void iniActivity() {
-        if (!initialized) { // TODO: This is not the correct way to to this (also it doesn't work) Fix
-            initialized = true; // Make sure this only happens once, because onCreate is always called when the screen rotates
-            mTurnView = ((TextView) findViewById(R.id.turnView));
-            mNewGameButton = (Button) findViewById(R.id.replayButton);
-            mNewGameButton.setOnClickListener(new View.OnClickListener() {
-                public void onClick(View v) {
-                    iniGame();
-                }
-            });
-
-            SharedPreferences gameSettings = getSharedPreferences(mContext.getString(R.string.ttt_prefs_key), Context.MODE_PRIVATE);
-
-            mMultiplayer = gameSettings.getBoolean(mContext.getString(R.string.ttt_pref_multiplayer), false);
-
-            mPlayerOneName = gameSettings.getString(mContext.getString(R.string.ttt_pref_player_one_name), "Player 1");
-            mPlayerOneColor = gameSettings.getInt(mContext.getString(R.string.ttt_pref_player_one_color), 0xFF000000);
-            mPlayerOneWeakColor = gameSettings.getInt(mContext.getString(R.string.ttt_pref_player_one_color_weak), 0xFFA0A0A0);
-            if (mMultiplayer) {
-                mPlayerTwoName = gameSettings.getString(mContext.getString(R.string.ttt_pref_player_two_name), "Player 2");
-                mPlayerTwoColor = gameSettings.getInt(mContext.getString(R.string.ttt_pref_player_two_color), 0xFF000000);
-                mPlayerTwoWeakColor = gameSettings.getInt(mContext.getString(R.string.ttt_pref_player_two_color_weak), 0xFFA0A0A0);
-            } else {
-                mPlayerTwoName = gameSettings.getString(mContext.getString(R.string.ttt_pref_player_two_name), "COM");
-                mPlayerTwoColor = gameSettings.getInt(mContext.getString(R.string.ttt_pref_player_two_color), 0xFF7FFFFF);
-                mPlayerTwoWeakColor = gameSettings.getInt(mContext.getString(R.string.ttt_pref_player_two_color_weak), 0xFF18C2FF);
+        mTurnView = ((TextView) findViewById(R.id.turnView));
+        mNewGameButton = (Button) findViewById(R.id.replayButton);
+        mNewGameButton.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                iniGame();
             }
-            iniGame();
-        } else
-            Errors.logWarning(mContext, "Activity was already initialized!");
+        });
+
+        SharedPreferences gameSettings = getSharedPreferences(mContext.getString(R.string.ttt_prefs_key), Context.MODE_PRIVATE);
+
+        mMultiplayer = gameSettings.getBoolean(mContext.getString(R.string.ttt_pref_multiplayer), false);
+
+        mPlayerOneName = gameSettings.getString(mContext.getString(R.string.ttt_pref_player_one_name), "Player 1");
+        mPlayerOneColor = gameSettings.getInt(mContext.getString(R.string.ttt_pref_player_one_color), 0xFF000000);
+        mPlayerOneWeakColor = gameSettings.getInt(mContext.getString(R.string.ttt_pref_player_one_color_weak), 0xFFA0A0A0);
+        if (mMultiplayer) {
+            mPlayerTwoName = gameSettings.getString(mContext.getString(R.string.ttt_pref_player_two_name), "Player 2");
+            mPlayerTwoColor = gameSettings.getInt(mContext.getString(R.string.ttt_pref_player_two_color), 0xFF000000);
+            mPlayerTwoWeakColor = gameSettings.getInt(mContext.getString(R.string.ttt_pref_player_two_color_weak), 0xFFA0A0A0);
+        } else {
+            mPlayerTwoName = gameSettings.getString(mContext.getString(R.string.ttt_pref_player_two_name), "COM");
+            mPlayerTwoColor = gameSettings.getInt(mContext.getString(R.string.ttt_pref_player_two_color), 0xFF7FFFFF);
+            mPlayerTwoWeakColor = gameSettings.getInt(mContext.getString(R.string.ttt_pref_player_two_color_weak), 0xFF18C2FF);
+        }
+        iniGame();
     }
 
     private void iniGame() {

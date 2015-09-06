@@ -15,7 +15,6 @@ import android.widget.TextView;
 
 import com.mysterionnh.allmuffin.R;
 import com.mysterionnh.allmuffin.activities.BaseActivity;
-import com.mysterionnh.allmuffin.helper.Errors;
 
 public class TicTacToeSettings extends BaseActivity {
 
@@ -52,8 +51,6 @@ public class TicTacToeSettings extends BaseActivity {
     private int mPlayerTwoColor;
     private int mPlayerTwoWeakColor;
 
-    private static boolean initialized = false;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -63,55 +60,49 @@ public class TicTacToeSettings extends BaseActivity {
     }
 
     private void iniActivity() {
-        if (!initialized) { // TODO: This is not the correct way to to this (also it doesn't work) Fix
-            initialized = true;
+        mStage = 0;
 
-            mStage = 0;
+        countRow = (TableRow) findViewById(R.id.tttCountRow);
+        oneNameRow = (TableRow) findViewById(R.id.tttOneNameRow);
+        oneColorRow = (TableRow) findViewById(R.id.tttOneColorRow);
+        twoNameRow = (TableRow) findViewById(R.id.tttTwoNameRow);
+        twoColorRow = (TableRow) findViewById(R.id.tttTwoColorRow);
+        startRow = (TableRow) findViewById(R.id.tttStartRow);
 
-            countRow = (TableRow) findViewById(R.id.tttCountRow);
-            oneNameRow = (TableRow) findViewById(R.id.tttOneNameRow);
-            oneColorRow = (TableRow) findViewById(R.id.tttOneColorRow);
-            twoNameRow = (TableRow) findViewById(R.id.tttTwoNameRow);
-            twoColorRow = (TableRow) findViewById(R.id.tttTwoColorRow);
-            startRow = (TableRow) findViewById(R.id.tttStartRow);
+        singlePlayer = (Button) findViewById(R.id.buttonOnePlayer);
+        multiPlayer = (Button) findViewById(R.id.buttonTwoPlayer);
+        Button newGame = (Button) findViewById(R.id.startTTTButton);
 
-            singlePlayer = (Button) findViewById(R.id.buttonOnePlayer);
-            multiPlayer = (Button) findViewById(R.id.buttonTwoPlayer);
-            Button newGame = (Button) findViewById(R.id.startTTTButton);
+        singlePlayer.setOnClickListener(btnListener);
+        multiPlayer.setOnClickListener(btnListener);
+        newGame.setOnClickListener(startListener);
 
-            singlePlayer.setOnClickListener(btnListener);
-            multiPlayer.setOnClickListener(btnListener);
-            newGame.setOnClickListener(startListener);
+        oneColorButtons = new Button[]{(Button) findViewById(R.id.colorBlack),
+                (Button) findViewById(R.id.colorYellow),
+                (Button) findViewById(R.id.colorRed),
+                (Button) findViewById(R.id.colorGreen)};
 
-            oneColorButtons = new Button[]{(Button) findViewById(R.id.colorBlack),
-                    (Button) findViewById(R.id.colorYellow),
-                    (Button) findViewById(R.id.colorRed),
-                    (Button) findViewById(R.id.colorGreen)};
+        for (Button b : oneColorButtons) {
+            b.setOnClickListener(colorListenerOne);
+        }
 
-            for (Button b : oneColorButtons) {
-                b.setOnClickListener(colorListenerOne);
-            }
+        twoColorButtons = new Button[]{(Button) findViewById(R.id.colorMagenta),
+                (Button) findViewById(R.id.colorBlue),
+                (Button) findViewById(R.id.colorGray),
+                (Button) findViewById(R.id.colorCyan)};
 
-            twoColorButtons = new Button[]{(Button) findViewById(R.id.colorMagenta),
-                    (Button) findViewById(R.id.colorBlue),
-                    (Button) findViewById(R.id.colorGray),
-                    (Button) findViewById(R.id.colorCyan)};
+        for (Button b : twoColorButtons) {
+            b.setOnClickListener(colorListenerTwo);
+        }
 
-            for (Button b : twoColorButtons) {
-                b.setOnClickListener(colorListenerTwo);
-            }
+        oneNameView = (EditText) findViewById(R.id.playerOneName);
+        twoNameView = (EditText) findViewById(R.id.playerTwoName);
 
-            oneNameView = (EditText) findViewById(R.id.playerOneName);
-            twoNameView = (EditText) findViewById(R.id.playerTwoName);
+        oneNameView.setOnEditorActionListener(onEnter);
+        twoNameView.setOnEditorActionListener(onEnter);
 
-            oneNameView.setOnEditorActionListener(onEnter);
-            twoNameView.setOnEditorActionListener(onEnter);
-
-            oneColorView = (TextView) findViewById(R.id.colorPlayerOneView);
-            twoColorView = (TextView) findViewById(R.id.colorPlayerTwoView);
-
-        } else
-            Errors.logWarning(mContext, "Activity was already initialized!");
+        oneColorView = (TextView) findViewById(R.id.colorPlayerOneView);
+        twoColorView = (TextView) findViewById(R.id.colorPlayerTwoView);
     }
 
     private final View.OnClickListener btnListener = new View.OnClickListener() {

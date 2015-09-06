@@ -14,7 +14,7 @@ import com.mysterionnh.allmuffin.helper.Errors;
 
 import java.util.Locale;
 
-public class CalculatorActivity extends BaseActivity {
+public class CalculatorActivity extends BaseActivity { // TODO: Fix numbers get displayed like 1.0E9 and also not calculated correctly after that
 
     private final Context mContext = (Context) this;
 
@@ -473,6 +473,7 @@ public class CalculatorActivity extends BaseActivity {
                 } else {
                     mLastProblemView.setText(formatStringAccordingToLanguage(fixDecimals(problem) + "="));
                 }
+                mRounded = false; // If we press "=" again, the sign changes accordingly
             }
 
             // Everything went well, here comes the solution
