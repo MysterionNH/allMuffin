@@ -269,6 +269,7 @@ public class CalculatorActivity extends BaseActivity { // TODO: Fix numbers get 
     private String calculate(String problem, boolean updateLastProblem) {
         if (problemIsValid(problem)) {
             problem = fixProblem(problem);
+
             /**
              * The solution of the primary problems (e.g. multiplication and division) are stored here
              */
@@ -319,12 +320,13 @@ public class CalculatorActivity extends BaseActivity { // TODO: Fix numbers get 
 
             for (int i = 0; i < PROBLEM_LENGTH; i++) {
                 // Here the numbers get build
-                if (lastCharIsNumeric(String.valueOf(outputArray[i])) || outputArray[i] == '.' || outputArray[i] == '.') {
+                if (lastCharIsNumeric(String.valueOf(outputArray[i])) || outputArray[i] == '.') {
                     tempNum += outputArray[i];
                 } else if (outputArray[i] == '(') {
                     if (!tempNum.equals("")) {
                         numbers[numAndOperatorCount] = Double.valueOf(tempNum);
                         numAndOperatorCount++;
+                        tempNum = "";
                     }
                     int openedParentheses = 0;
                     int closedParentheses = 0;
@@ -342,7 +344,6 @@ public class CalculatorActivity extends BaseActivity { // TODO: Fix numbers get 
                         }
                         inParentheses[n - (i + 1)] = outputArray[n];
                     }
-                    tempNum = "";
                     for (char c : inParentheses) {
                         if (c != '\u0000') {
                             tempNum += c;
@@ -352,6 +353,18 @@ public class CalculatorActivity extends BaseActivity { // TODO: Fix numbers get 
                     numAndOperatorCount++;
                     i += tempNum.length(); // Once was +1, don't remember why, but it caused a bug, hence I took it out
                     tempNum = "";
+                } else if (outputArray[i] == '-' && lastCharIsNumeric(String.valueOf(outputArray[i + 1]))) {
+                    if (i == 0 || outputArray[i - 1] == '(') {
+                        tempNum += outputArray[i];
+                    } else {
+                        if (!tempNum.equals("")) {
+                            numbers[numAndOperatorCount] = Double.valueOf(tempNum);
+                            tempNum = "";
+                        }
+
+                        operators[numAndOperatorCount] = outputArray[i];
+                        numAndOperatorCount++;
+                    }
                 } else {
                     // Okay, it isn't a number anymore, if we haven't build the number before this
                     // already, do it now
@@ -388,6 +401,7 @@ public class CalculatorActivity extends BaseActivity { // TODO: Fix numbers get 
             if (primariesExisting(primaryOperatorLocations) && numbers[0] == null && operators[0] == '-' && numbers[1] != null) {
                 numbers[1] = (0 - numbers[1]);
             }
+
             Integer lastL = null;
             // If there were any, calculate with them
             for (int l = 0; l < primaryOperatorLocations.length; l++) {
