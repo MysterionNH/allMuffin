@@ -317,6 +317,11 @@ public class CalculatorActivity extends BaseActivity { // TODO: Fix numbers get 
              * Everything in between parentheses, so this can be calculated beforehand
              */
             char[] inParentheses = new char[PROBLEM_LENGTH];
+            /**
+             * Currently only used once to determine wether we are done with the problem within
+             * parentheses ot not
+             */
+            boolean done = false;
 
             for (int i = 0; i < PROBLEM_LENGTH; i++) {
                 // Here the numbers get build
@@ -328,31 +333,53 @@ public class CalculatorActivity extends BaseActivity { // TODO: Fix numbers get 
                         numAndOperatorCount++;
                         tempNum = "";
                     }
+                    int openedParenthesesLocation = 0;
                     int openedParentheses = 0;
                     int closedParentheses = 0;
                     for (int p = 0; p < problem.length(); p++) {
-                        if (problem.charAt(p) == '(') {
+                        if (!done && openedParentheses == 1 && problem.charAt(p) == ')' && outputArray[p - 1] != '(') {
+                            for (int z = openedParenthesesLocation + 1; z < p; z++) {
+                                tempNum += problem.charAt(z);
+                            }
+                            numbers[numAndOperatorCount] = Double.valueOf(calculate(tempNum, false));
+                            if (p + 1 < problem.length()) {
+                                operators[numAndOperatorCount] = problem.charAt(p + 1);
+                            } else {
+                                done = true;
+                            }
+                            numAndOperatorCount++;
+                            p += tempNum.length();
+                            i = p - 2;
+                            tempNum = "";
+                            openedParentheses = 0;
+                        }
+                        if (!done && p < problem.length() && problem.charAt(p) == '(') {
+                            openedParenthesesLocation = p;
                             openedParentheses++;
                         }
                     }
-                    for (int n = i + 1; openedParentheses > closedParentheses; n++) {
-                        if (outputArray[n] == ')' && outputArray[n - 1] == '(') {
-                            Errors.errorToast(mContext, mContext.getString(R.string.warning_empty_parentheses));
-                            return ""; // Jump out and tell the caller something went terribly wrong
-                        } else if (outputArray[n] == ')') {
-                            closedParentheses++;
+                    if (!done) {
+                        for (int n = i + 1; openedParentheses > closedParentheses; n++) {
+                            if (outputArray[n] == ')' && outputArray[n - 1] == '(') {
+                                Errors.errorToast(mContext, mContext.getString(R.string.warning_empty_parentheses));
+                                return ""; // Jump out and tell the caller something went terribly wrong
+                            } else if (outputArray[n] == ')') {
+                                closedParentheses++;
+                            }
+                            inParentheses[n - (i + 1)] = outputArray[n];
                         }
-                        inParentheses[n - (i + 1)] = outputArray[n];
-                    }
-                    for (char c : inParentheses) {
-                        if (c != '\u0000') {
-                            tempNum += c;
+                        for (char c : inParentheses) {
+                            if (c != '\u0000') {
+                                tempNum += c;
+                            }
+                        }
+                        if (!tempNum.isEmpty()) {
+                            numbers[numAndOperatorCount] = Double.valueOf(calculate(tempNum, false));
+                            numAndOperatorCount++;
+                            i += tempNum.length(); // Once was +1, don't remember why, but it caused a bug, hence I took it out
+                            tempNum = "";
                         }
                     }
-                    numbers[numAndOperatorCount] = Double.valueOf(calculate(tempNum, false));
-                    numAndOperatorCount++;
-                    i += tempNum.length(); // Once was +1, don't remember why, but it caused a bug, hence I took it out
-                    tempNum = "";
                 } else if (outputArray[i] == '-' && lastCharIsNumeric(String.valueOf(outputArray[i + 1]))) {
                     if (i == 0 || outputArray[i - 1] == '(') {
                         tempNum += outputArray[i];
