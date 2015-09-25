@@ -317,14 +317,27 @@ public class CalculatorActivity extends BaseActivity { // TODO: Fix numbers get 
              * Everything in between parentheses, so this can be calculated beforehand
              */
             char[] inParentheses = new char[PROBLEM_LENGTH];
+
             /**
-             * Currently only used once to determine wether we are done with the problem within
+             * Currently only used once to determine whether we are done with the problem within
              * parentheses ot not
              */
-            boolean done = false;
+            boolean done;
+            /**
+             * Used to store the current opened parentheses location within the problem
+             */
+            int openedParenthesesLocation;
+            /**
+             * Count of all nested opened parentheses
+             */
+            int openedParentheses;
+            /**
+             * Count of all nested closed parentheses
+             */
+            int closedParentheses;
 
             for (int i = 0; i < PROBLEM_LENGTH; i++) {
-                // Here the numbers get build
+                // Here the numbers gets build
                 if (lastCharIsNumeric(String.valueOf(outputArray[i])) || outputArray[i] == '.') {
                     tempNum += outputArray[i];
                 } else if (outputArray[i] == '(') {
@@ -333,10 +346,13 @@ public class CalculatorActivity extends BaseActivity { // TODO: Fix numbers get 
                         numAndOperatorCount++;
                         tempNum = "";
                     }
-                    int openedParenthesesLocation = 0;
-                    int openedParentheses = 0;
-                    int closedParentheses = 0;
-                    for (int p = 0; p < problem.length(); p++) {
+
+                    openedParenthesesLocation = 0;
+                    openedParentheses = 0;
+                    closedParentheses = 0;
+                    done = false;
+
+                    for (int p = i; p < problem.length(); p++) { // i or 0?
                         if (!done && openedParentheses == 1 && problem.charAt(p) == ')' && outputArray[p - 1] != '(') {
                             for (int z = openedParenthesesLocation + 1; z < p; z++) {
                                 tempNum += problem.charAt(z);
@@ -344,12 +360,13 @@ public class CalculatorActivity extends BaseActivity { // TODO: Fix numbers get 
                             numbers[numAndOperatorCount] = Double.valueOf(calculate(tempNum, false));
                             if (p + 1 < problem.length()) {
                                 operators[numAndOperatorCount] = problem.charAt(p + 1);
+                                done = true; // Highly experimental, I have no idea what will happen now. Wish me luck
                             } else {
                                 done = true;
                             }
                             numAndOperatorCount++;
                             p += tempNum.length();
-                            i = p - 2;
+                            i = p; // What the heck?
                             tempNum = "";
                             openedParentheses = 0;
                         }
@@ -358,6 +375,7 @@ public class CalculatorActivity extends BaseActivity { // TODO: Fix numbers get 
                             openedParentheses++;
                         }
                     }
+
                     if (!done) {
                         for (int n = i + 1; openedParentheses > closedParentheses; n++) {
                             if (outputArray[n] == ')' && outputArray[n - 1] == '(') {
@@ -414,6 +432,16 @@ public class CalculatorActivity extends BaseActivity { // TODO: Fix numbers get 
             // Last check if we didn't forgot to build a number
             if (!tempNum.equals("")) {
                 numbers[numAndOperatorCount] = Double.valueOf(tempNum);
+            }
+
+            // This is crap. I am really really sorry for doing this. To whoever is going to look over this:
+            // Please forgive me
+            for (int u = 0; u < numbers.length; u++) {
+                if (numbers[u] == null) {
+                    for (int f = u; f + 1 < numbers.length; f++) {
+                        numbers[f] = numbers[f + 1];
+                    }
+                }
             }
 
             // Look if there are any primary operators and if so, where
@@ -491,7 +519,9 @@ public class CalculatorActivity extends BaseActivity { // TODO: Fix numbers get 
             for (int j = 0; j < numbers.length; j++) {
                 switch (operators[j]) {
                     case '+': {
-                        solution += numbers[j + 1];
+                        if (numbers[j + 1] != null) {
+                            solution += numbers[j + 1];
+                        }
                         break;
                     }
                     case '-': {
