@@ -17,8 +17,7 @@ import java.util.Calendar;
 import java.util.Locale;
 
 /**
- * Just as Countdown, it's partner, it has a dream too. Cool stuff 's supposed to happen here some
- * day soon(TM)
+ * Made some notes for ideas on how to continue this. Not abandoned, just delayed -- TODO
  */
 public class TimerActivity extends BaseActivity {
 

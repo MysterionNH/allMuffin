@@ -14,8 +14,12 @@ import com.mysterionnh.allmuffin.helper.Errors;
 
 import java.util.Locale;
 
-public class CalculatorActivity extends BaseActivity { // TODO: Fix numbers get displayed like 1.0E9 and also not calculated correctly after that
-
+public class CalculatorActivity extends BaseActivity {
+    
+    /** 
+     * TODO: Fix numbers get displayed like 1.0E9 (which is correct, but I don't want it to be like
+     * this, because of it's look and also it's not easy to calculate with it)
+    **/
     private final Context mContext = (Context) this;
 
     /**
@@ -436,6 +440,7 @@ public class CalculatorActivity extends BaseActivity { // TODO: Fix numbers get 
 
             // This is crap. I am really really sorry for doing this. To whoever is going to look over this:
             // Please forgive me
+            // // FIXME: 22.10.2015 doesn't even work in all cases so... :( I need to get back to work
             for (int u = 0; u < numbers.length; u++) {
                 if (numbers[u] == null) {
                     for (int f = u; f + 1 < numbers.length; f++) {
